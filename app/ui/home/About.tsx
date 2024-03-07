@@ -1,3 +1,7 @@
+import { Satisfy } from "next/font/google";
+
+const satisfy = Satisfy({ weight: "400", subsets: ["latin"] });
+
 const AboutUs = () => {
   return (
     <div className="relative min-h-screen">
@@ -9,7 +13,7 @@ const AboutUs = () => {
             </h1>
             <div className="flex flex-wrap justify-evenly">
               <div className="w-full md:w-1/3">
-                <h2 className="text-2xl mb-3">Visi</h2>
+                <h2 className={`text-2xl mb-3 ${satisfy.className}`}>Visi</h2>
                 <p>
                   Lorem ipsum dolor sit amet consectetur. Vitae praesent odio
                   dictum vivamus. Non lorem integer mollis urna. Fringilla in
@@ -23,7 +27,7 @@ const AboutUs = () => {
             </div>
             <div className="flex flex-wrap mt-10 justify-evenly">
               <div className="w-full md:w-1/3">
-                <h2 className="text-2xl mb-3">Misi</h2>
+                <h2 className={`text-2xl mb-3 ${satisfy.className}`}>Misi</h2>
                 <p>
                   Lorem ipsum dolor sit amet consectetur. Vitae praesent odio
                   dictum vivamus. Non lorem integer mollis urna. Fringilla in
