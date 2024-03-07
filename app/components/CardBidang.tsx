@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 
 const CardBidang = ({ url, name }: { name: string; url: string }) => {
