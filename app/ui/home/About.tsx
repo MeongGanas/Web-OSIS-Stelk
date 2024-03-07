@@ -12,7 +12,7 @@ const AboutUs = () => {
               About Us
             </h1>
             <div className="flex flex-wrap justify-evenly">
-              <div className="w-full md:w-1/3">
+              <div className="w-full sm:w-1/2 md:w-1/3">
                 <h2 className={`text-2xl mb-3 ${satisfy.className}`}>Visi</h2>
                 <p>
                   Lorem ipsum dolor sit amet consectetur. Vitae praesent odio
@@ -26,7 +26,7 @@ const AboutUs = () => {
               </div>
             </div>
             <div className="flex flex-wrap mt-10 justify-evenly">
-              <div className="w-full md:w-1/3">
+              <div className="w-full sm:w-1/2 md:w-1/3">
                 <h2 className={`text-2xl mb-3 ${satisfy.className}`}>Misi</h2>
                 <p>
                   Lorem ipsum dolor sit amet consectetur. Vitae praesent odio

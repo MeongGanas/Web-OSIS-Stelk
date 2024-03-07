@@ -18,7 +18,7 @@ const WelcomePage = () => {
       <img
         src="/images/introOsis.svg"
         alt="intro"
-        className="translate-y-1/3 sm:translate-y-1/4 md:translate-y-1/3 lg:translate-y-1/4 -z-10 w-full md:w-1/2"
+        className="translate-y-[37%] sm:translate-y-1/4 md:translate-y-1/3 lg:translate-y-1/4 -z-10 w-full md:w-1/2"
       />
     </div>
   );
