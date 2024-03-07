@@ -1,9 +1,13 @@
 "use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
+import NavLink from "./NavLink";
 
 const Navbar = () => {
   const [activeNav, setActiveNav] = useState(false);
+  const pathname = usePathname();
+
   return (
     <div
       id="navbar"
@@ -40,9 +44,9 @@ const Navbar = () => {
           >
             <path
               stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               d="M1 1h15M1 7h15M1 13h15"
             />
           </svg>
@@ -54,18 +58,14 @@ const Navbar = () => {
               : "h-0 w-0 opacity-0"
           } md:flex md:static md:opacity-100 md:w-full md:h-full gap-10 font-semibold`}
         >
-          <li className="mb-5 md:mb-0 hover:text-primary transition duration-150 text-sm">
-            <Link href={"#"}>HOME</Link>
-          </li>
-          <li className="mb-5 md:mb-0 hover:text-primary transition duration-150 text-sm">
-            <Link href={"#"}>BIDANG</Link>
-          </li>
-          <li className="mb-5 md:mb-0 hover:text-primary transition duration-150 text-sm">
-            <Link href={"#"}>EVENTS</Link>
-          </li>
-          <li className="mb-5 md:mb-0 hover:text-primary transition duration-150 text-sm">
-            <Link href={"#"}>ANNOUNCEMENT</Link>
-          </li>
+          <NavLink pathname={pathname} name="home" active="/" />
+          <NavLink pathname={pathname} name="bidang" active="/bidang" />
+          <NavLink pathname={pathname} name="events" active="/events" />
+          <NavLink
+            pathname={pathname}
+            name="announcement"
+            active="/announcement"
+          />
         </ul>
       </div>
     </div>

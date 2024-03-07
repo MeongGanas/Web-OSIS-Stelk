@@ -3,7 +3,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 
-const poppins = Poppins({ weight: "400", subsets: ["latin"] });
+const poppins = Poppins({ weight: "500", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "OSIS STELK - Official Website",
@@ -20,8 +20,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={poppins.className}>
-        <div className="overflow-x-hidden">
+      <body className={`${poppins.className} flex justify-center`}>
+        <div className="overflow-x-hidden w-full max-w-screen-2xl">
           <Navbar />
           <main className="-mt-28">{children}</main>
         </div>

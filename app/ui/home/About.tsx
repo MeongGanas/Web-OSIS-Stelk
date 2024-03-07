@@ -12,13 +12,14 @@ const AboutUs = () => {
               About Us
             </h1>
             <div className="flex flex-wrap justify-evenly">
-              <div className="w-full sm:w-1/2 md:w-1/3">
+              <div className="w-full sm:w-1/2 pr-5">
                 <h2 className={`text-2xl mb-3 ${satisfy.className}`}>Visi</h2>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur. Vitae praesent odio
-                  dictum vivamus. Non lorem integer mollis urna. Fringilla in
-                  cras tellus ultricies. Varius nibh ac ultrices donec ultrices
-                  scelerisque.
+                  Menjadikan OSIS SMK Telkom Makassar sebagai wadah yang
+                  menampung segala aspirasi, bakat, potensi dan kreativitas
+                  dengan pemanfaatn Ilmu Pengetahuan dan Teknologi (IPTEK),
+                  serta berakhlak mulia berlandaskan pancasila dengan
+                  mengedepankan Iman dan Taqwa (IMTAQ).
                 </p>
               </div>
               <div className="w-full md:w-1/2 bg-white text-black flex items-center justify-center rounded-md mt-5 md:mt-0">
@@ -26,14 +27,37 @@ const AboutUs = () => {
               </div>
             </div>
             <div className="flex flex-wrap mt-10 justify-evenly">
-              <div className="w-full sm:w-1/2 md:w-1/3">
+              <div className="w-full sm:w-1/2 pr-5">
                 <h2 className={`text-2xl mb-3 ${satisfy.className}`}>Misi</h2>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur. Vitae praesent odio
-                  dictum vivamus. Non lorem integer mollis urna. Fringilla in
-                  cras tellus ultricies. Varius nibh ac ultrices donec ultrices
-                  scelerisque.
-                </p>
+                <ol className="pl-5 list-decimal text-sm md:text-base">
+                  <li>
+                    Mengutamakan keimanan dan ketakwaan kepada Tuhan Yang Maha
+                    Esa, dan mengimplementasikan asas-asas Pancasila di berbagai
+                    aspek kegiatan.
+                  </li>
+                  <li>
+                    Menjadikan Pengurus OSIS sebagai penghubung koordinasi yang
+                    terbuka dan bertanggung jawab dalam meningkatkan komunikasi
+                    di setiap komponen OSIS.
+                  </li>
+                  <li>
+                    Menciptakan program kerja dan kegiatan yang efektif
+                    berdasarkan aspirasi serta kebutuhan SMK Telkom Makassar
+                    dengan kolaborasi antara pihak internal dan eksternal OSIS.
+                  </li>
+                  <li>
+                    Meningkatkan kinerja dan kualitas ekstrakurikuler sekolah
+                    guna membentuk siswa/i kompeten dan progresif.
+                  </li>
+                  <li>
+                    Mengoptimalkan fungsi sosial media sebagai sarana informatif
+                    berbasis online.
+                  </li>
+                  <li>
+                    Mengembangkan program kerja berkelanjutan OSIS periode
+                    sebelumnya dengan kreativitas baru.
+                  </li>
+                </ol>
               </div>
               <div className="w-full md:w-1/2 bg-white text-black flex items-center justify-center rounded-md mt-5 md:mt-0">
                 <h1>Foto Bersama</h1>
