@@ -8,7 +8,7 @@ const AboutUs = () => {
     <div className="relative min-h-screen">
       <div className="w-full shapebg h-full py-40">
         <Reveal>
-          <div className="container w-full h-full flex items-center relative text-white">
+          <div className="container w-full h-full flex items-center relative text-white pt-20">
             <div>
               <h1 className="text-2xl font-extrabold uppercase mb-10">
                 About Us
