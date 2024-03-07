@@ -10,25 +10,15 @@ import Reveal from "./components/Reveal";
 export default function Home() {
   return (
     <>
-      <Reveal translateY={0}>
-        <WelcomePage />
-      </Reveal>
+      <WelcomePage />
 
-      <Reveal translateY={0}>
-        <AboutUs />
-      </Reveal>
+      <AboutUs />
 
-      <Reveal translateY={0}>
-        <ListBidang />
-      </Reveal>
+      <ListBidang />
 
-      <Reveal translateY={0}>
-        <SambutanKetos />
-      </Reveal>
+      <SambutanKetos />
 
-      <Reveal translateY={0}>
-        <Manfaat />
-      </Reveal>
+      <Manfaat />
     </>
   );
 }
