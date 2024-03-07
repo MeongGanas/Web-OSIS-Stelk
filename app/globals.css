@@ -9,6 +9,8 @@
 .shapebg {
   background-image: url("../public/images/Vector\ 1.svg");
   background-size: cover;
+  background-clip: border-box;
+  background-position: top;
 }
 
 .container {

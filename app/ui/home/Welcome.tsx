@@ -4,8 +4,8 @@ const raleway = Raleway({ weight: "400", subsets: ["cyrillic"] });
 
 const WelcomePage = () => {
   return (
-    <div className="container w-full min-h-screen flex md:items-center flex-wrap pt-32">
-      <div className="w-full pt-5 lg:pt-0 md:w-1/2 pb-10">
+    <div className="container w-full flex md:items-center flex-wrap pt-32">
+      <div className="w-full md:w-1/2 flex items-center">
         <div className="max-w-lg">
           <h3 className={`text-2xl lg:text-4xl ${raleway.className}`}>
             Welcome
@@ -18,7 +18,7 @@ const WelcomePage = () => {
       <img
         src="/images/introOsis.svg"
         alt="intro"
-        className="max-h-96 md:-mb-14 -z-10 w-full md:w-1/2"
+        className="translate-y-1/3 sm:translate-y-1/4 md:translate-y-1/3 lg:translate-y-1/4 -z-10 w-full md:w-1/2"
       />
     </div>
   );
