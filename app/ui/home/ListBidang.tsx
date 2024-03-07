@@ -18,16 +18,16 @@ const ListBidang = () => {
             </div>
           </div>
           <div className="grid grid-cols-1 mt-5 sm:grid-cols-3 xl:grid-cols-5 gap-5">
-            <CardBidang name="Bidang 1" url="/images/bidang1.jpg" />
-            <CardBidang name="Bidang 2" url="/images/bidang2.jpg" />
-            <CardBidang name="Bidang 3" url="/images/bidang3.jpg" />
-            <CardBidang name="Bidang 4" url="/images/bidang4.jpg" />
-            <CardBidang name="Bidang 5" url="/images/bidang5.jpg" />
-            <CardBidang name="Bidang 6" url="/images/bidang6.jpg" />
-            <CardBidang name="Bidang 7" url="/images/bidang7.jpg" />
-            <CardBidang name="Bidang 8" url="/images/bidang8.jpg" />
-            <CardBidang name="Bidang 9" url="/images/bidang9.jpg" />
-            <CardBidang name="Bidang 10" url="/images/bidang10.jpg" />
+            <CardBidang name="Bidang 1" url="/images/bidang1.JPG" />
+            <CardBidang name="Bidang 2" url="/images/bidang2.JPG" />
+            <CardBidang name="Bidang 3" url="/images/bidang3.JPG" />
+            <CardBidang name="Bidang 4" url="/images/bidang4.JPG" />
+            <CardBidang name="Bidang 5" url="/images/bidang5.JPG" />
+            <CardBidang name="Bidang 6" url="/images/bidang6.JPG" />
+            <CardBidang name="Bidang 7" url="/images/bidang7.JPG" />
+            <CardBidang name="Bidang 8" url="/images/bidang8.JPG" />
+            <CardBidang name="Bidang 9" url="/images/bidang9.JPG" />
+            <CardBidang name="Bidang 10" url="/images/bidang10.JPG" />
           </div>
         </div>
       </div>
