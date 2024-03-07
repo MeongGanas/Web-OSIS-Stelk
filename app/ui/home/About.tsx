@@ -6,10 +6,10 @@ const satisfy = Satisfy({ weight: "400", subsets: ["latin"] });
 const AboutUs = () => {
   return (
     <div className="relative min-h-screen">
-      <div className="w-full shapebg h-full">
+      <div className="w-full shapebg h-full py-40">
         <Reveal>
-          <div className="container w-full h-full flex items-center relative py-40 text-white">
-            <div className="pt-10">
+          <div className="container w-full h-full flex items-center relative text-white">
+            <div>
               <h1 className="text-2xl font-extrabold uppercase mb-10">
                 About Us
               </h1>
