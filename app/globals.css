@@ -6,14 +6,8 @@
   @apply backdrop-blur-md bg-opacity-35 bg-white shadow-md;
 }
 
-.shapebg {
-  background-image: url("../public/images/Vector\ 1.svg");
-  background-size: cover;
-  background-clip: border-box;
-  background-position: top;
-}
 .shapebg2 {
-  background-image: url("../public/images/Vector\ 2.svg");
+  background-image: url("../public/shapes/Vector\ 2.svg");
   background-size: cover;
   background-clip: border-box;
   background-position: top;
