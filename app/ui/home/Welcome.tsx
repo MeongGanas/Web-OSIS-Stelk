@@ -5,9 +5,9 @@ const raleway = Raleway({ weight: "400", subsets: ["cyrillic"] });
 
 const WelcomePage = () => {
   return (
-    <div className="translate-y-[48%] sm:translate-y-1/4">
+    <div className="translate-y-1/4 sm:translate-y-1/4">
       <Reveal>
-        <div className="container md:pt-20 w-full flex flex-wrap md:items-center lg:items-start">
+        <div className="container min-h-screen md:pt-20 w-full flex flex-wrap md:items-center lg:items-start">
           <div className="w-full md:w-1/2 lg:pt-10">
             <div className="max-w-sm md:max-w-xl">
               <h3 className={`text-2xl lg:text-4xl ${raleway.className}`}>
@@ -18,11 +18,13 @@ const WelcomePage = () => {
               </h1>
             </div>
           </div>
-          <img
-            src="/images/introOsis.png"
-            alt="intro"
-            className="-z-10 w-full md:w-1/2"
-          />
+          <div className="w-full md:w-1/2">
+            <img
+              src="/images/introOsis.png"
+              alt="intro"
+              className="-z-10 w-full"
+            />
+          </div>
         </div>
       </Reveal>
     </div>
