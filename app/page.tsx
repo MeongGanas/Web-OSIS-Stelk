@@ -1,21 +1,34 @@
+"use client";
+
 import WelcomePage from "./ui/home/Welcome";
 import AboutUs from "./ui/home/About";
 import ListBidang from "./ui/home/ListBidang";
 import SambutanKetos from "./ui/home/SambutanKetos";
 import Manfaat from "./ui/home/Manfaat";
+import Reveal from "./components/Reveal";
 
 export default function Home() {
   return (
     <>
-      <WelcomePage />
+      <Reveal translateY={0}>
+        <WelcomePage />
+      </Reveal>
 
-      <AboutUs />
+      <Reveal translateY={0}>
+        <AboutUs />
+      </Reveal>
 
-      <ListBidang />
+      <Reveal translateY={0}>
+        <ListBidang />
+      </Reveal>
 
-      <SambutanKetos />
+      <Reveal translateY={0}>
+        <SambutanKetos />
+      </Reveal>
 
-      <Manfaat />
+      <Reveal translateY={0}>
+        <Manfaat />
+      </Reveal>
     </>
   );
 }

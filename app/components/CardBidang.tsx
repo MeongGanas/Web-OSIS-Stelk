@@ -4,7 +4,7 @@ const CardBidang = ({ url, name }: { name: string; url: string }) => {
   return (
     <Link
       href={""}
-      className="relative rounded-md overflow-hidden hover:scale-105 transition duration-200 "
+      className="relative rounded-md overflow-hidden hover:scale-105 transition duration-200 min-h-32"
     >
       <div className="bg-black bg-opacity-70 w-full h-full absolute"></div>
       <img src={url} alt={name} />

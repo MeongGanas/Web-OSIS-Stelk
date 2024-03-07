@@ -7,12 +7,12 @@ const AboutUs = () => {
     <div className="relative min-h-screen">
       <div className="w-full shapebg h-full">
         <div className="container w-full h-full flex items-center relative py-40 text-white">
-          <div className="pt-40">
+          <div className="pt-20">
             <h1 className="text-2xl font-extrabold uppercase mb-10">
               About Us
             </h1>
             <div className="flex flex-wrap justify-evenly items-center">
-              <div className="w-full md:w-1/2 pr-5">
+              <div className="w-full lg:w-1/2 pr-5">
                 <h2 className={`text-2xl mb-5 ${satisfy.className}`}>Visi</h2>
                 <p>
                   Menjadikan OSIS SMK Telkom Makassar sebagai wadah yang
@@ -22,44 +22,44 @@ const AboutUs = () => {
                   mengedepankan Iman dan Taqwa (IMTAQ).
                 </p>
               </div>
-              <div className="w-full md:w-1/2 overflow-hidden text-black flex items-center justify-center rounded-md mt-5 md:mt-0">
+              <div className="w-full lg:w-1/2 overflow-hidden text-black flex items-center justify-center rounded-md mt-5 md:mt-0">
                 <img src="/images/raker.jpg" alt="" />
               </div>
             </div>
             <div className="flex flex-wrap mt-10 justify-evenly items-center">
-              <div className="w-full md:w-1/2 pl-5 md:order-2">
+              <div className="w-full lg:w-1/2 pl-5 lg:order-2">
                 <h2 className={`text-2xl mb-3 ${satisfy.className}`}>Misi</h2>
                 <ol className="pl-5 list-decimal text-sm md:text-base">
-                  <li>
+                  <li className="mb-2">
                     Mengutamakan keimanan dan ketakwaan kepada Tuhan Yang Maha
                     Esa, dan mengimplementasikan asas-asas Pancasila di berbagai
                     aspek kegiatan.
                   </li>
-                  <li>
+                  <li className="mb-2">
                     Menjadikan Pengurus OSIS sebagai penghubung koordinasi yang
                     terbuka dan bertanggung jawab dalam meningkatkan komunikasi
                     di setiap komponen OSIS.
                   </li>
-                  <li>
+                  <li className="mb-2">
                     Menciptakan program kerja dan kegiatan yang efektif
                     berdasarkan aspirasi serta kebutuhan SMK Telkom Makassar
                     dengan kolaborasi antara pihak internal dan eksternal OSIS.
                   </li>
-                  <li>
+                  <li className="mb-2">
                     Meningkatkan kinerja dan kualitas ekstrakurikuler sekolah
                     guna membentuk siswa/i kompeten dan progresif.
                   </li>
-                  <li>
+                  <li className="mb-2">
                     Mengoptimalkan fungsi sosial media sebagai sarana informatif
                     berbasis online.
                   </li>
-                  <li>
+                  <li className="mb-2">
                     Mengembangkan program kerja berkelanjutan OSIS periode
                     sebelumnya dengan kreativitas baru.
                   </li>
                 </ol>
               </div>
-              <div className="w-full md:w-1/2 bg-white h-fit overflow-hidden md:order-1 text-black flex items-center justify-center rounded-md mt-5 md:mt-0">
+              <div className="w-full lg:w-1/2 bg-white h-fit overflow-hidden md:order-1 text-black flex items-center justify-center rounded-md mt-5 md:mt-0">
                 <img src="/images/raker.jpg" alt="" />
               </div>
             </div>
