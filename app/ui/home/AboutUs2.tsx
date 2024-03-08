@@ -12,7 +12,7 @@ const AboutUs2 = () => {
           <div className="container">
             <div className="w-full text-center">
               <h1 className="font-extrabold mb-5 text-center text-4xl">
-                OSIS SMK Telkom Makassar
+                Organisasi Siswa Intra Sekolah STELK
               </h1>
               <p className="text-sm">
                 Organisasi yang menampung segala aspirasi, bakat, potensi dan
