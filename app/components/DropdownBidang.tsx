@@ -4,9 +4,10 @@ import {
   DropdownMenu,
   DropdownTrigger,
 } from "@nextui-org/react";
+import React from "react";
 
 const DropdownBidang = ({ active }: { active: boolean }) => {
-  const bidangList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const bidangList: any = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   return (
     <Dropdown>
@@ -24,7 +25,7 @@ const DropdownBidang = ({ active }: { active: boolean }) => {
           Pengurus Inti
         </DropdownItem>
 
-        {bidangList.map((bidang) => (
+        {bidangList.map((bidang: number) => (
           <DropdownItem
             key={`bidang-${bidang}`}
             href={`/pengurus/bidang-${bidang}`}
