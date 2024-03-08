@@ -7,7 +7,7 @@ const WelcomePage = () => {
   return (
     <div className="relative md:pt-20 pt-44">
       <Reveal>
-        <div className="container min-h-[500px] w-full flex flex-wrap md:items-center">
+        <div className="container min-h-[600px] w-full flex flex-wrap md:items-center">
           <div className="w-full md:w-1/2">
             <div className="max-w-sm md:max-w-xl">
               <h3 className={`text-2xl lg:text-4xl ${raleway.className}`}>
@@ -29,7 +29,7 @@ const WelcomePage = () => {
       </Reveal>
       <img
         src="/shapes/Vector 3.svg"
-        className="absolute w-full left-0 -bottom-1 md:-bottom-10 lg:-bottom-1/4 xl:-bottom-1/3"
+        className="absolute w-full left-0 -bottom-1 md:-bottom-10 lg:-bottom-1/4 xl:-bottom-1/4"
         alt=""
       />
     </div>

@@ -21,13 +21,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.className} flex justify-center`}>
+      <body className={`${poppins.className}`}>
         <Providers>
-          <div className="overflow-x-hidden w-full max-w-screen-xl">
-            <div className="overflow-x-hidden w-full max-w-screen-2xl">
-              <Navbar />
-              <main className="-mt-28">{children}</main>
-            </div>
+          <div className="overflow-x-hidden w-full">
+            <Navbar />
+            <main className="-mt-28 w-full">{children}</main>
           </div>
         </Providers>
       </body>
