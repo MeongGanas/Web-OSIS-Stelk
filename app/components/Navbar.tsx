@@ -1,12 +1,13 @@
 "use client";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useState } from "react";
 import NavLink from "./NavLink";
+import { usePathname } from "next/navigation";
+import DropdownBidang from "./DropdownBidang";
 
 const Navbar = () => {
   const [activeNav, setActiveNav] = useState(false);
-  const pathname = usePathname();
+  const pathname = usePathname().split("/")[1];
 
   return (
     <div
@@ -15,10 +16,10 @@ const Navbar = () => {
     >
       <div className="flex items-center gap-7 max-w-80">
         <div className="flex items-center gap-2">
-          <Link href={"#home"}>
+          <Link href={"/"}>
             <img src="/icon/telkom.svg" alt="" />
           </Link>
-          <Link href={"#home"}>
+          <Link href={"/"}>
             <img src="/icon/osis.svg" alt="" />
           </Link>
         </div>
@@ -56,15 +57,19 @@ const Navbar = () => {
             activeNav
               ? "block w-full absolute top-full transition-all duration-200 bg-white p-5 left-0 opacity-100"
               : "h-0 w-0 opacity-0"
-          } md:flex md:static md:opacity-100 md:w-full md:h-full gap-10 font-semibold`}
+          } md:flex md:static md:opacity-100 items-center md:w-full md:h-full gap-10 font-semibold`}
         >
-          <NavLink pathname={pathname} name="home" active="/" />
-          <NavLink pathname={pathname} name="bidang" active="/bidang" />
-          <NavLink pathname={pathname} name="events" active="/events" />
+          <NavLink name="home" active={pathname === ""} to={"/"} />
+          <DropdownBidang active={pathname === "pengurus"} />
           <NavLink
-            pathname={pathname}
+            name="events"
+            active={pathname === "events"}
+            to={"/events"}
+          />
+          <NavLink
             name="announcement"
-            active="/announcement"
+            active={pathname === "announcement"}
+            to={"/announcement"}
           />
         </ul>
       </div>

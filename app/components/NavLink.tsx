@@ -1,21 +1,21 @@
 import Link from "next/link";
 
 const NavLink = ({
-  pathname,
   name,
   active,
+  to,
 }: {
-  pathname: string;
   name: string;
-  active: string;
+  active: boolean;
+  to: string;
 }) => {
   return (
     <li
       className={`${
-        pathname === active ? "text-primary" : ""
+        active ? "text-primary" : "text-black"
       } mb-5 md:mb-0 hover:text-primary transition duration-150 text-sm`}
     >
-      <Link href={"#"} className="uppercase">
+      <Link href={to} className="uppercase">
         {name}
       </Link>
     </li>
