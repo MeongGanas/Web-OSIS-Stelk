@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
-import MainApp from "./App";
+import { Providers } from "./Providers";
 
 const poppins = Poppins({ weight: "500", subsets: ["latin"] });
 
@@ -22,7 +22,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.className} flex justify-center`}>
-        <MainApp children={children} />
+        <Providers>
+          <div className="overflow-x-hidden w-full max-w-screen-xl">
+            <div className="overflow-x-hidden w-full max-w-screen-2xl">
+              <Navbar />
+              <main className="-mt-28">{children}</main>
+            </div>
+          </div>
+        </Providers>
       </body>
     </html>
   );
