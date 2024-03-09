@@ -16,8 +16,10 @@ const DropdownBidang = ({ active }: { active: boolean }) => {
         <Button
           className={`${
             active ? "text-primary" : "text-black"
-          } uppercase cursor-pointer md:mb-0 text-sm bg-transparent font-bold hover:text-primary w-fit px-0 text-left block`}
+          } uppercase cursor-pointer md:mb-0 text-sm bg-transparent font-bold hover:text-primary w-fit text-left block`}
           aria-label="dropdownBidang"
+          disableAnimation={true}
+          variant="flat"
         >
           Bidang
         </Button>
