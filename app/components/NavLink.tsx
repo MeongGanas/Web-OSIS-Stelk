@@ -14,10 +14,10 @@ const NavLink = ({
     <Button
       className={`${
         active ? "text-primary" : "text-black"
-      } hover:text-primary bg-transparent transition duration-150 text-sm font-bold w-fit block text-left uppercase`}
+      } hover:text-primary bg-transparent px-0 transition duration-150 text-sm font-bold w-fit block text-left uppercase`}
       disableAnimation={true}
     >
-      <Link href={to} className="w-full h-full">
+      <Link href={to} className="px-5">
         {name}
       </Link>
     </Button>
