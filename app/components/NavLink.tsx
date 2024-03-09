@@ -1,3 +1,4 @@
+import { Button } from "@nextui-org/react";
 import Link from "next/link";
 
 const NavLink = ({
@@ -10,15 +11,15 @@ const NavLink = ({
   to: string;
 }) => {
   return (
-    <li
+    <Button
       className={`${
         active ? "text-primary" : "text-black"
-      } mb-5 md:mb-0 hover:text-primary transition duration-150 text-sm`}
+      } hover:text-primary bg-transparent transition duration-150 text-sm font-bold w-fit px-0 block text-left`}
     >
       <Link href={to} className="uppercase">
         {name}
       </Link>
-    </li>
+    </Button>
   );
 };
 

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import Navbar from "./components/Navbar";
 import { Providers } from "./Providers";
+import MyNavbar from "./components/Navbar";
 
 const poppins = Poppins({ weight: "500", subsets: ["latin"] });
 
@@ -24,7 +24,7 @@ export default function RootLayout({
       <body className={`${poppins.className}`}>
         <Providers>
           <div className="overflow-x-hidden w-full">
-            <Navbar />
+            <MyNavbar />
             <main className="-mt-28 w-full">{children}</main>
           </div>
         </Providers>

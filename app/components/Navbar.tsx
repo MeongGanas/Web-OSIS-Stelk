@@ -4,6 +4,8 @@ import { useState } from "react";
 import NavLink from "./NavLink";
 import { usePathname } from "next/navigation";
 import DropdownBidang from "./DropdownBidang";
+import { motion } from "framer-motion";
+import Reveal from "./Reveal";
 
 const Navbar = () => {
   const [activeNav, setActiveNav] = useState(false);
@@ -52,12 +54,13 @@ const Navbar = () => {
             />
           </svg>
         </button>
+
         <ul
           className={`${
             activeNav
-              ? "block w-full absolute top-full transition-all duration-200 bg-white p-5 left-0 opacity-100"
-              : "h-0 w-0 opacity-0"
-          } md:flex md:static md:opacity-100 items-center md:w-full md:h-full gap-10 font-semibold`}
+              ? "block w-full absolute top-full bg-white pb-5 px-5 left-0 scale-100"
+              : "absolute top-full w-full left-0 scale-0"
+          } md:flex md:static md:scale-100 items-center md:w-full md:h-full gap-10 font-semibold transition-all duration-200`}
         >
           <NavLink name="home" active={pathname === ""} to={"/"} />
           <DropdownBidang active={pathname === "pengurus"} />

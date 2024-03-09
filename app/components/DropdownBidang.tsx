@@ -1,4 +1,5 @@
 import {
+  Button,
   Dropdown,
   DropdownItem,
   DropdownMenu,
@@ -12,15 +13,16 @@ const DropdownBidang = ({ active }: { active: boolean }) => {
   return (
     <Dropdown>
       <DropdownTrigger>
-        <h1
+        <Button
           className={`${
             active ? "text-primary" : "text-black"
-          } uppercase cursor-pointer mb-5 md:mb-0 text-sm hover:text-primary`}
+          } uppercase cursor-pointer md:mb-0 text-sm bg-transparent font-bold hover:text-primary w-fit px-0 text-left block`}
+          aria-label="dropdownBidang"
         >
           Bidang
-        </h1>
+        </Button>
       </DropdownTrigger>
-      <DropdownMenu>
+      <DropdownMenu aria-label="dropdownBidang">
         <DropdownItem key="inti" href="/pengurus/inti-osis">
           Pengurus Inti
         </DropdownItem>
