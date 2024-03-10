@@ -1,4 +1,5 @@
 import Reveal from "@/app/components/Reveal";
+import Image from "next/image";
 
 const SambutanKetos = () => {
   return (
@@ -6,10 +7,11 @@ const SambutanKetos = () => {
       <Reveal>
         <div className="flex items-center flex-wrap">
           <div className="w-full order-2 flex justify-center md:order-1 md:w-1/2">
-            <img
+            <Image
               src="/images/sambutanketos.png"
               className="max-w-full"
               height={500}
+              width={500}
               alt=""
             />
           </div>
@@ -18,13 +20,16 @@ const SambutanKetos = () => {
               Pesan Ketua OSIS
             </h1>
             <p className="mb-10">
-              "Halo teman-teman! OSIS SMK Telkom Makassar merupakan tempat bagi
-              siswa(i) agar dapat berkontribusi dan berpatisipasi secara aktif
-              dalam mewujudkan Visi dan Misi SMK Telkom Makassar, melalui
+              &quot;Halo teman-teman! OSIS SMK Telkom Makassar merupakan tempat
+              bagi siswa(i) agar dapat berkontribusi dan berpatisipasi secara
+              aktif dalam mewujudkan Visi dan Misi SMK Telkom Makassar, melalui
               kreatifitas dan kerja sama yang baik dalam melaksanakan berbagai
-              program kerja. Kami akan selalu berusaha yang terbaik dalam
-              mengemban amanah yang telah diberikan. Mari bersama-sama melangkah
-              menuju kesuksesan!"
+              program kerja.{" "}
+              <span className="block mt-2">
+                Kami akan selalu berusaha yang terbaik dalam mengemban amanah
+                yang telah diberikan. Mari bersama-sama melangkah menuju
+                kesuksesan!&quot;
+              </span>
             </p>
             <h2 className="text-primary mb-2 font-bold text-xl md:text-2xl">
               Narisyah Aqila

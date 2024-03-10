@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
 
 const CardBidang = ({
@@ -15,7 +16,7 @@ const CardBidang = ({
       href={to}
       className="relative rounded-md overflow-hidden hover:scale-105 transition duration-200 min-h-32"
     >
-      <img src={url} alt={name} className="w-full" />
+      <Image src={url} alt={name} width={200} height={200} className="w-full" />
       <h1 className="uppercase absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 text-white text-xl">
         {name}
       </h1>
