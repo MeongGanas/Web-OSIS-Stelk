@@ -14,9 +14,9 @@ const AboutUs2 = () => {
               <h1 className="font-extrabold mb-5 text-center text-4xl">
                 Organisasi Siswa Intra Sekolah STELK
               </h1>
-              <p className="text-sm">
+              <p className="text-sm text-slate-100 italic">
                 Organisasi yang menampung segala aspirasi, bakat, potensi dan
-                kreativitas, serta berakhlak mulia
+                kreativitas, serta berakhlak mulia.
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-10">

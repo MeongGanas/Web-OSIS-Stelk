@@ -18,14 +18,20 @@ const SambutanKetos = () => {
               Pesan Ketua OSIS
             </h1>
             <p className="mb-10">
-              Lorem ipsum dolor sit amet consectetur. Vitae praesent odio dictum
-              vivamus. Non lorem integer mollis urna. Fringilla in cras tellus
-              ultricies. Varius nibh ac ultrices donec ultrices scelerisque.
+              "Halo teman-teman! OSIS SMK Telkom Makassar merupakan tempat bagi
+              siswa(i) agar dapat berkontribusi dan berpatisipasi secara aktif
+              dalam mewujudkan Visi dan Misi SMK Telkom Makassar, melalui
+              kreatifitas dan kerja sama yang baik dalam melaksanakan berbagai
+              program kerja. Kami akan selalu berusaha yang terbaik dalam
+              mengemban amanah yang telah diberikan. Mari bersama-sama melangkah
+              menuju kesuksesan!"
             </p>
             <h2 className="text-primary mb-2 font-bold text-xl md:text-2xl">
               Narisyah Aqila
             </h2>
-            <h4>Ketua OSIS Periode 2023/2024</h4>
+            <h4>
+              Ketua OSIS Periode <span className="italic">2023/2024</span>
+            </h4>
           </div>
         </div>
       </Reveal>

@@ -12,9 +12,15 @@
   background-clip: border-box;
   background-position: top;
 }
+.shapebg1 {
+  background-image: url("../public/shapes/Vector\ 3.svg");
+  background-size: cover;
+  background-clip: border-box;
+  background-position: top;
+}
 
 .glass {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.9);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -24,4 +30,11 @@
 
 .container {
   @apply px-5 md:px-10;
+}
+
+.findus-link {
+  @apply block w-full bg-slate-50 py-10;
+}
+.findus-link:not(:last-child) {
+  @apply mb-10;
 }

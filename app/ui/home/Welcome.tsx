@@ -5,7 +5,7 @@ const raleway = Raleway({ weight: "400", subsets: ["cyrillic"] });
 
 const WelcomePage = () => {
   return (
-    <div className="relative md:pt-20 pt-44">
+    <div className="relative min-h-screen md:pt-20 pt-44">
       <Reveal>
         <div className="container min-h-[600px] w-full flex flex-wrap md:items-center">
           <div className="w-full md:w-1/2">
