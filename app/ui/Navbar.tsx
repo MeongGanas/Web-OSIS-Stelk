@@ -12,7 +12,7 @@ export default function Navbar() {
   return (
     <div
       id="navbar"
-      className="w-full relative z-[9999] px-5 md:px-10 py-7 flex justify-between items-center"
+      className="w-full bg-white relative z-[9999] px-5 md:px-10 py-7 flex justify-between items-center"
     >
       <div className="flex items-center gap-7 max-w-80">
         <div className="flex items-center gap-2">
@@ -23,7 +23,7 @@ export default function Navbar() {
             <img src="/icon/osis.svg" alt="" />
           </Link>
         </div>
-        <h1 className="font-extrabold mt-1 text-wrap">
+        <h1 className="font-extrabold text-black mt-1 text-wrap">
           OSIS SMK TELKOM MAKASSAR
         </h1>
       </div>

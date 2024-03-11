@@ -25,14 +25,14 @@ export default function DropdownBidang({ active }: { active: boolean }) {
         </Button>
       </DropdownTrigger>
       <DropdownMenu aria-label="dropdownBidang">
-        <DropdownItem key="inti" href="/pengurus/inti-osis">
+        <DropdownItem key="inti" href="/pengurus/inti">
           Pengurus Inti
         </DropdownItem>
 
         {bidangList.map((bidang: number) => (
           <DropdownItem
             key={`bidang-${bidang}`}
-            href={`/pengurus/bidang-${bidang}`}
+            href={`/pengurus/bidang/${bidang}`}
           >
             Bidang {bidang}
           </DropdownItem>
