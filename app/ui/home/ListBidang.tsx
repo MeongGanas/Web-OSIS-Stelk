@@ -1,5 +1,5 @@
-import CardBidang from "@/app/components/CardBidang";
-import Reveal from "@/app/components/Reveal";
+import CardBidang from "./components/CardBidang";
+import Reveal from "@/app/ui/Reveal";
 
 const ListBidang = () => {
   return (

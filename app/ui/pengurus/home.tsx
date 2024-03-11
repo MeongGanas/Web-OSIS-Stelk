@@ -2,7 +2,7 @@ const HomePengurus = ({
   name,
   namaBidang,
 }: {
-  name: string;
+  name?: string;
   namaBidang?: string;
 }) => {
   return (
@@ -13,7 +13,7 @@ const HomePengurus = ({
         </h1>
         <h4>{namaBidang}</h4>
         <img
-          src={`/images/${name.replace(" ", "")}/intro.png`}
+          src={`/images/${name?.replace(" ", "")}/intro.png`}
           alt=""
           className="absolute bottom-16 left-1/2 -translate-x-1/2 md:static md:translate-x-0"
         />

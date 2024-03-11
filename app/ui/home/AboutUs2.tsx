@@ -1,5 +1,5 @@
-import CardMisi from "@/app/components/CardMisi";
-import Reveal from "@/app/components/Reveal";
+import CardMisi from "./components/CardMisi";
+import Reveal from "@/app/ui/Reveal";
 import { Satisfy } from "next/font/google";
 
 const satisfy = Satisfy({ weight: "400", subsets: ["latin"] });

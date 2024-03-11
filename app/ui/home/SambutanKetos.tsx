@@ -1,4 +1,4 @@
-import Reveal from "@/app/components/Reveal";
+import Reveal from "@/app/ui/Reveal";
 import Image from "next/image";
 
 const SambutanKetos = () => {

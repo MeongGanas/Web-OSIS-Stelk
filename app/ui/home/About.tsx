@@ -1,4 +1,4 @@
-import Reveal from "@/app/components/Reveal";
+import Reveal from "@/app/ui/Reveal";
 import { Satisfy } from "next/font/google";
 
 const satisfy = Satisfy({ weight: "400", subsets: ["latin"] });

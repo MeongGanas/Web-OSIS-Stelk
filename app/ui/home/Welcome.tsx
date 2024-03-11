@@ -1,4 +1,4 @@
-import Reveal from "@/app/components/Reveal";
+import Reveal from "@/app/ui/Reveal";
 import { Raleway } from "next/font/google";
 
 const raleway = Raleway({ weight: "400", subsets: ["cyrillic"] });

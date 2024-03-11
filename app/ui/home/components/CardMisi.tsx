@@ -1,4 +1,4 @@
-import CardReveal from "./CardReveal";
+import CardReveal from "../../CardReveal";
 
 const CardMisi = ({ title, desc }: { title: string; desc: string }) => {
   return (

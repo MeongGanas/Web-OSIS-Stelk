@@ -4,8 +4,6 @@ import { useState } from "react";
 import NavLink from "./NavLink";
 import { usePathname } from "next/navigation";
 import DropdownBidang from "./DropdownBidang";
-import { motion } from "framer-motion";
-import Reveal from "./Reveal";
 
 const Navbar = () => {
   const [activeNav, setActiveNav] = useState(false);
