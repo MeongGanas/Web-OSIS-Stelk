@@ -1,7 +1,7 @@
 import Reveal from "@/app/ui/Reveal";
 import Image from "next/image";
 
-const SambutanKetos = () => {
+export default function SambutanKetos() {
   return (
     <div className="container w-full min-h-screen flex items-center translate-y-[8%]">
       <Reveal>
@@ -42,6 +42,4 @@ const SambutanKetos = () => {
       </Reveal>
     </div>
   );
-};
-
-export default SambutanKetos;
+}

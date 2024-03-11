@@ -1,9 +1,6 @@
 import Reveal from "@/app/ui/Reveal";
-import { Satisfy } from "next/font/google";
 
-const satisfy = Satisfy({ weight: "400", subsets: ["latin"] });
-
-const Manfaat = () => {
+export default function Manfaat() {
   return (
     <div className="relative min-h-screen">
       <div className="w-full shapebg2 h-full">
@@ -37,6 +34,4 @@ const Manfaat = () => {
       </div>
     </div>
   );
-};
-
-export default Manfaat;
+}

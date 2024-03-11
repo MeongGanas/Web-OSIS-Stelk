@@ -9,13 +9,14 @@ import AboutUs2 from "./ui/home/AboutUs2";
 import FindUs from "./ui/home/FindUs";
 import JoinUs from "./ui/home/JoinUs";
 import Copyright from "./ui/home/Copyright";
+import VisiMisi from "./ui/home/VisiMisi";
 
 export default function Home() {
   return (
     <>
       <WelcomePage />
 
-      <AboutUs2 />
+      <VisiMisi />
 
       <ListBidang />
 

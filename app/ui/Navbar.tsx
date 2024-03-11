@@ -5,7 +5,7 @@ import NavLink from "./NavLink";
 import { usePathname } from "next/navigation";
 import DropdownBidang from "./DropdownBidang";
 
-const Navbar = () => {
+export default function Navbar() {
   const [activeNav, setActiveNav] = useState(false);
   const pathname = usePathname().split("/")[1];
 
@@ -76,6 +76,4 @@ const Navbar = () => {
       </div>
     </div>
   );
-};
-
-export default Navbar;
+}

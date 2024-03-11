@@ -1,7 +1,7 @@
 import { Button } from "@nextui-org/react";
 import Link from "next/link";
 
-const NavLink = ({
+export default function NavLink({
   name,
   active,
   to,
@@ -9,7 +9,7 @@ const NavLink = ({
   name: string;
   active: boolean;
   to: string;
-}) => {
+}) {
   return (
     <Button
       className={`${
@@ -22,6 +22,4 @@ const NavLink = ({
       </Link>
     </Button>
   );
-};
-
-export default NavLink;
+}

@@ -1,6 +1,12 @@
 import CardReveal from "../../CardReveal";
 
-const CardMisi = ({ title, desc }: { title: string; desc: string }) => {
+export default function CardMisi({
+  title,
+  desc,
+}: {
+  title: string;
+  desc: string;
+}) {
   return (
     <CardReveal>
       <div className="p-5 rounded-md flex items-center min-h-56 glass hover:scale-105 transition duration-150 text-black">
@@ -11,6 +17,4 @@ const CardMisi = ({ title, desc }: { title: string; desc: string }) => {
       </div>
     </CardReveal>
   );
-};
-
-export default CardMisi;
+}

@@ -1,10 +1,10 @@
-const HomePengurus = ({
+export default function HomePengurus({
   name,
   namaBidang,
 }: {
   name?: string;
   namaBidang?: string;
-}) => {
+}) {
   return (
     <div className="relative mt-40 text-center overflow-hidden flex justify-center">
       <div className="min-h-[500px]">
@@ -25,6 +25,4 @@ const HomePengurus = ({
       </div>
     </div>
   );
-};
-
-export default HomePengurus;
+}

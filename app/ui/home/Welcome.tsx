@@ -3,7 +3,7 @@ import { Raleway } from "next/font/google";
 
 const raleway = Raleway({ weight: "400", subsets: ["cyrillic"] });
 
-const WelcomePage = () => {
+export default function WelcomePage() {
   return (
     <div className="relative min-h-screen md:pt-20 pt-44">
       <Reveal>
@@ -34,6 +34,4 @@ const WelcomePage = () => {
       />
     </div>
   );
-};
-
-export default WelcomePage;
+}

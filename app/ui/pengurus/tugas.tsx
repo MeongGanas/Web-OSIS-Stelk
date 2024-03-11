@@ -1,4 +1,4 @@
-const TugasUmum = () => {
+export default function TugasUmum() {
   return (
     <div className="min-h-screen py-40 bg-primary">
       <div className="w-full text-center text-white">
@@ -10,6 +10,4 @@ const TugasUmum = () => {
       </div>
     </div>
   );
-};
-
-export default TugasUmum;
+}

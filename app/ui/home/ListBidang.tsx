@@ -1,7 +1,7 @@
 import CardBidang from "./components/CardBidang";
 import Reveal from "@/app/ui/Reveal";
 
-const ListBidang = () => {
+export default function ListBidang() {
   return (
     <Reveal>
       <div className="container py-20 w-full flex items-center">
@@ -73,6 +73,4 @@ const ListBidang = () => {
       </div>
     </Reveal>
   );
-};
-
-export default ListBidang;
+}

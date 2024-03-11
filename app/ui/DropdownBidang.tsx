@@ -7,7 +7,7 @@ import {
 } from "@nextui-org/react";
 import React from "react";
 
-const DropdownBidang = ({ active }: { active: boolean }) => {
+export default function DropdownBidang({ active }: { active: boolean }) {
   const bidangList: any = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   return (
@@ -40,6 +40,4 @@ const DropdownBidang = ({ active }: { active: boolean }) => {
       </DropdownMenu>
     </Dropdown>
   );
-};
-
-export default DropdownBidang;
+}

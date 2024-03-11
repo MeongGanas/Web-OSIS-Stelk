@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const CardBidang = ({
+export default function CardBidang({
   url,
   name,
   to,
@@ -10,7 +10,7 @@ const CardBidang = ({
   name: string;
   url: string;
   to: string;
-}) => {
+}) {
   return (
     <Link
       href={to}
@@ -22,6 +22,4 @@ const CardBidang = ({
       </h1>
     </Link>
   );
-};
-
-export default CardBidang;
+}
