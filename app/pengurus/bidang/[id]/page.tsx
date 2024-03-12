@@ -1,10 +1,9 @@
 "use client";
 import { useParams } from "next/navigation";
 import HomePengurus from "../../../ui/pengurus/home";
-import TugasUmum from "../../../ui/pengurus/tugas";
 import Proker from "@/app/ui/pengurus/proker";
 
-const Bidang = () => {
+export default function Bidang() {
   const { id } = useParams();
 
   return (
@@ -16,6 +15,4 @@ const Bidang = () => {
       <Proker />
     </>
   );
-};
-
-export default Bidang;
+}
