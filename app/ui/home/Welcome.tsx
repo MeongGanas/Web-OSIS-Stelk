@@ -5,26 +5,26 @@ const raleway = Raleway({ weight: "400", subsets: ["cyrillic"] });
 
 export default function WelcomePage() {
   return (
-    <div className="relative min-h-screen md:pt-20 pt-44">
+    <div className="relative md:pt-20 pt-44">
       <Reveal>
-        <div className="container min-h-[600px] w-full flex flex-wrap md:items-center">
-          <div className="w-full md:w-1/2">
-            <div className="max-w-sm md:max-w-xl">
-              <h3 className={`text-2xl lg:text-4xl ${raleway.className}`}>
-                Welcome
-              </h3>
-              <h1 className="block text-4xl lg:text-5xl xl:text-6xl font-extrabold text-primary">
-                OSIS SMK TELKOM MAKASSAR
-              </h1>
-            </div>
+        <div className="container min-h-screen xl:flex xl:items-center w-full">
+          <div className="w-full py-20 md:py-40">
+            <h3
+              className={`text-2xl lg:text-4xl ${raleway.className} antialiased`}
+            >
+              Welcome
+            </h3>
+            <h1 className="block text-4xl md:text-5xl xl:text-6xl font-extrabold text-primary ">
+              OSIS SMK TELKOM <span className="block">MAKASSAR</span>
+            </h1>
           </div>
-          <div className="w-full md:w-1/2">
-            <img
-              src="/images/introOsis.png"
-              alt="intro"
-              className="-z-10 absolute bottom-16 right-1/2 translate-x-1/2 sm:static sm:translate-x-0"
-            />
-          </div>
+          <img
+            src="/images/introOsis.png"
+            alt="intro"
+            className="-z-10 absolute bottom-10 lg:bottom-0 right-1/2 translate-x-1/2 xl:right-16 xl:translate-x-16 xl:bottom-12"
+            width={600}
+            height={600}
+          />
         </div>
       </Reveal>
       <img

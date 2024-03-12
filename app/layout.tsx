@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.className}`}>
+      <body className={`${poppins.className} antialiased`}>
         <Providers>
           <div className="overflow-x-hidden w-full">
             <MyNavbar />

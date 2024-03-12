@@ -5,18 +5,26 @@ import {
   DropdownMenu,
   DropdownTrigger,
 } from "@nextui-org/react";
+import clsx from "clsx";
 import React from "react";
 
-export default function DropdownBidang({ active }: { active: boolean }) {
+export default function DropdownBidang({
+  pathname,
+  setActiveNav,
+}: {
+  pathname: string;
+  setActiveNav: Function;
+}) {
   const bidangList: any = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   return (
     <Dropdown>
       <DropdownTrigger>
         <Button
-          className={`${
-            active ? "text-primary" : "text-black"
-          } uppercase cursor-pointer md:mb-0 text-sm bg-transparent font-bold hover:text-primary w-fit px-0 text-left block`}
+          className={clsx(
+            "uppercase cursor-pointer md:mb-0 text-sm bg-transparent font-bold hover:text-primary w-fit px-0 text-left block",
+            { "text-primary": pathname.includes("pengurus") }
+          )}
           aria-label="dropdownBidang"
           disableAnimation={true}
           variant="flat"
@@ -25,7 +33,11 @@ export default function DropdownBidang({ active }: { active: boolean }) {
         </Button>
       </DropdownTrigger>
       <DropdownMenu aria-label="dropdownBidang">
-        <DropdownItem key="inti" href="/pengurus/inti">
+        <DropdownItem
+          key="inti"
+          href="/pengurus/inti"
+          onClick={() => setActiveNav(false)}
+        >
           Pengurus Inti
         </DropdownItem>
 
@@ -33,6 +45,7 @@ export default function DropdownBidang({ active }: { active: boolean }) {
           <DropdownItem
             key={`bidang-${bidang}`}
             href={`/pengurus/bidang/${bidang}`}
+            onClick={() => setActiveNav(false)}
           >
             Bidang {bidang}
           </DropdownItem>

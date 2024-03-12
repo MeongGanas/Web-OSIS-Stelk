@@ -8,10 +8,10 @@ export default function HomePengurus({
   return (
     <div className="relative mt-40 text-center overflow-hidden flex justify-center">
       <div className="min-h-[500px]">
-        <h1 className="uppercase text-6xl font-extrabold text-primary">
+        <h1 className="uppercase text-6xl font-extrabold text-primary mb-3">
           {name}
         </h1>
-        <h4>{namaBidang}</h4>
+        <h4 className="text-primary">{namaBidang}</h4>
         <img
           src={`/images/${name?.replace(" ", "")}/intro.png`}
           alt=""

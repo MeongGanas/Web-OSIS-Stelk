@@ -7,7 +7,7 @@ import DropdownBidang from "./DropdownBidang";
 
 export default function Navbar() {
   const [activeNav, setActiveNav] = useState(false);
-  const pathname = usePathname().split("/")[1];
+  const pathname = usePathname();
 
   return (
     <div
@@ -56,20 +56,27 @@ export default function Navbar() {
         <ul
           className={`${
             activeNav
-              ? "block w-full absolute top-full bg-white pb-5  px-5 left-0 scale-100"
+              ? "block w-full absolute top-full bg-white pb-5 shadow-md px-5 left-0 scale-100"
               : "absolute top-full w-full left-0 scale-0"
           } md:flex md:static md:scale-100 items-center md:w-full md:h-full gap-10 font-semibold transition-all duration-200`}
         >
-          <NavLink name="home" active={pathname === ""} to={"/"} />
-          <DropdownBidang active={pathname === "pengurus"} />
           <NavLink
+            setActiveNav={setActiveNav}
+            name="home"
+            pathname={pathname}
+            to={"/"}
+          />
+          <DropdownBidang pathname={pathname} setActiveNav={setActiveNav} />
+          <NavLink
+            setActiveNav={setActiveNav}
             name="events"
-            active={pathname === "events"}
+            pathname={pathname}
             to={"/events"}
           />
           <NavLink
+            setActiveNav={setActiveNav}
             name="announcement"
-            active={pathname === "announcement"}
+            pathname={pathname}
             to={"/announcement"}
           />
         </ul>
