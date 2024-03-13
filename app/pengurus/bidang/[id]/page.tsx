@@ -1,7 +1,7 @@
 "use client";
 import { useParams } from "next/navigation";
 import HomePengurus from "../../../ui/pengurus/home";
-import Proker from "@/app/ui/pengurus/proker";
+import TugasUmum from "@/app/ui/pengurus/tugas";
 
 export default function Bidang() {
   const { id } = useParams();
@@ -12,7 +12,7 @@ export default function Bidang() {
         name={`bidang ${id}`}
         namaBidang="KEIMANAN DAN KETAKWAAN KEPADA TUHAN YANG MAHA ESA"
       />
-      <Proker />
+      <TugasUmum />
     </>
   );
 }

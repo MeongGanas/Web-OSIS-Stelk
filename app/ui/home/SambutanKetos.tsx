@@ -12,7 +12,7 @@ export default function SambutanKetos() {
               className="max-w-full"
               height={500}
               width={500}
-              alt=""
+              alt="ketos"
             />
           </div>
           <div className="w-full order-1 md:order-2 md:w-1/2">

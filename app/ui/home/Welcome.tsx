@@ -1,11 +1,10 @@
 import Reveal from "@/app/ui/Reveal";
-import { Raleway } from "next/font/google";
-
-const raleway = Raleway({ weight: "400", subsets: ["cyrillic"] });
+import { raleway } from "../fonts";
+import Image from "next/image";
 
 export default function WelcomePage() {
   return (
-    <div className="relative min-h-screen pt-20">
+    <div className="relative min-h-screen">
       <Reveal>
         <div className="container w-full">
           <div className="w-full py-28 lg:py-52">
@@ -20,17 +19,19 @@ export default function WelcomePage() {
           </div>
         </div>
       </Reveal>
-      <img
+      <Image
         src="/images/introOsis.png"
         alt="intro"
         className="-z-10 absolute bottom-10 md:bottom-20 lg:bottom-0 right-1/2 translate-x-1/2 xl:right-16 xl:translate-x-16 xl:bottom-16"
         width={600}
         height={600}
       />
-      <img
+      <Image
         src="/shapes/Vector 3.svg"
         className="absolute w-full left-0 -bottom-1 md:-bottom-10 lg:-bottom-1/4"
-        alt=""
+        alt="shape"
+        width={1000}
+        height={400}
       />
     </div>
   );

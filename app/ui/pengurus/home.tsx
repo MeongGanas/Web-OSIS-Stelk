@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function HomePengurus({
   name,
   namaBidang,
@@ -7,20 +9,24 @@ export default function HomePengurus({
 }) {
   return (
     <div className="relative mt-40 text-center overflow-hidden flex justify-center">
-      <div className="min-h-[500px]">
+      <div className="min-h-screen">
         <h1 className="uppercase text-6xl font-extrabold text-primary mb-3">
           {name}
         </h1>
-        <h4 className="text-primary">{namaBidang}</h4>
-        <img
+        <h4 className="text-primary text-sm px-10">{namaBidang}</h4>
+        <Image
           src={`/images/${name?.replace(" ", "")}/intro.png`}
-          alt=""
+          alt={`${name?.replace(" ", "")}`}
           className="absolute bottom-16 left-1/2 -translate-x-1/2 md:static md:translate-x-0"
+          width={1300}
+          height={500}
         />
-        <img
+        <Image
           src="/shapes/Vector 3.png"
           className="absolute w-full left-0 bottom-0 md:-bottom-1/3"
           alt=""
+          width={600}
+          height={400}
         />
       </div>
     </div>

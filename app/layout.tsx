@@ -1,16 +1,14 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./Providers";
-import MyNavbar from "./ui/Navbar";
-
-const poppins = Poppins({ weight: "500", subsets: ["latin"] });
+import MyNavbar from "./ui/navbar/Navbar";
+import { poppins } from "./ui/fonts";
 
 export const metadata: Metadata = {
   title: "OSIS STELK - Official Website",
   description: "Website OSIS SMK Telkom Makassar",
   icons: {
-    icon: "/icon.png",
+    icon: "/icon/icon.png",
   },
 };
 
