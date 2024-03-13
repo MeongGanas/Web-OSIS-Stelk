@@ -1,18 +1,13 @@
-"use client";
-import { useParams } from "next/navigation";
-import HomePengurus from "../../../ui/pengurus/home";
-import TugasUmum from "@/app/ui/pengurus/tugas";
+import { getDetailBidang } from "@/app/libs/data";
+import { Suspense } from "react";
+import Pengurus from "@/app/ui/pengurus/pengurus";
 
-export default function Bidang() {
-  const { id } = useParams();
+export default async function Page() {
+  const bidangs = await getDetailBidang();
 
   return (
-    <>
-      <HomePengurus
-        name={`bidang ${id}`}
-        namaBidang="KEIMANAN DAN KETAKWAAN KEPADA TUHAN YANG MAHA ESA"
-      />
-      <TugasUmum />
-    </>
+    <Suspense fallback={<div className="py-40">Loading...</div>}>
+      <Pengurus bidangs={bidangs} />
+    </Suspense>
   );
 }

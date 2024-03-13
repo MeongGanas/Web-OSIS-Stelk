@@ -1,0 +1,44 @@
+const bidangs = [
+  {
+    id: 1,
+    name: "KEIMANAN DAN KETAKWAAN KEPADA TUHAN YANG MAHA ESA",
+  },
+  {
+    id: 2,
+    name: "PEMBINAAN BUDI PEKERTI LUHUR ATAU AKHLAK MULIA",
+  },
+  {
+    id: 3,
+    name: "KEPRIBADIAN UNGGUL, WAWASAN KEBANGSAAN DAN BELA NEGARA",
+  },
+  {
+    id: 4,
+    name: "PEMBINAAN PRESTASI AKADEMIK, SENI DAN OLAHRAGA SESUAI BAKAT DAN MINAT",
+  },
+  {
+    id: 5,
+    name: "DEMOKRASI, HAK ASASI MANUSIA, PENDIDIKAN POLITIK, LINGKUNGAN HIDUP KEPEKAAN, DAN TOLERANSI SOSIAL DALAM KONTEKS MASYARAKAT PLURAL ",
+  },
+  {
+    id: 6,
+    name: "KREATIVITAS, KETERAMPILAN DAN KEWIRAUSAHAAN",
+  },
+  {
+    id: 7,
+    name: "KUALITAS JASMANI, KESEHATAN, DAN GIZI BERBASIS SUMBER GIZI YANG TERDIVERSIFIKASI",
+  },
+  {
+    id: 8,
+    name: "SASTRA & BUDAYA",
+  },
+  {
+    id: 9,
+    name: "TEKNOLOGI INFORMASI DAN KOMUNIKASI",
+  },
+  {
+    id: 10,
+    name: "KOMUNIKASI DALAM BAHASA INGGRIS",
+  },
+];
+
+module.exports = { bidangs };

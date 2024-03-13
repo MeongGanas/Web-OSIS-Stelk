@@ -4,8 +4,8 @@ export default function HomePengurus({
   name,
   namaBidang,
 }: {
-  name?: string;
-  namaBidang?: string;
+  name?: String;
+  namaBidang?: String;
 }) {
   return (
     <div className="relative mt-40 text-center overflow-hidden flex justify-center">
@@ -13,7 +13,7 @@ export default function HomePengurus({
         <h1 className="uppercase text-6xl font-extrabold text-primary mb-3">
           {name}
         </h1>
-        <h4 className="text-primary text-sm px-10">{namaBidang}</h4>
+        <h4 className="text-primary text-sm px-10 uppercase">{namaBidang}</h4>
         <Image
           src={`/images/${name?.replace(" ", "")}/intro.png`}
           alt={`${name?.replace(" ", "")}`}
@@ -21,12 +21,10 @@ export default function HomePengurus({
           width={1300}
           height={500}
         />
-        <Image
+        <img
           src="/shapes/Vector 3.png"
-          className="absolute w-full left-0 bottom-0 md:-bottom-1/3"
+          className="absolute w-full left-0 bottom-0 lg:-bottom-1/3"
           alt=""
-          width={600}
-          height={400}
         />
       </div>
     </div>

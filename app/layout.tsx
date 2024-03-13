@@ -21,10 +21,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${poppins.className} antialiased`}>
         <Providers>
-          <div className="overflow-x-hidden w-full">
-            <MyNavbar />
-            <main className="-mt-28 w-full">{children}</main>
-          </div>
+          <MyNavbar />
+          <main className="-mt-28 w-full">{children}</main>
         </Providers>
       </body>
     </html>
