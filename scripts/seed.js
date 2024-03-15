@@ -6,7 +6,7 @@ async function seedBidang(client) {
     const createTable = await client.sql`
         CREATE TABLE IF NOT EXISTS bidangs (
         id INT PRIMARY KEY,
-        name VARCHAR(255) NOT NULL
+        name VARCHAR(255) NOT NULL,
         );
     `;
 

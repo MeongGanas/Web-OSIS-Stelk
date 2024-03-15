@@ -1,5 +1,4 @@
-"use client";
-import { useParams } from "next/navigation";
+import { getDetailBidang } from "@/app/libs/data";
 import HomePengurus from "./home";
 import TugasUmum from "./tugas";
 
@@ -8,13 +7,11 @@ interface Bidang {
   name: String;
 }
 
-export default function Pengurus({ bidangs }: { bidangs: Array<Bidang> }) {
-  const { id } = useParams();
-  const detailBidang = bidangs.filter((bidang) => bidang.id === Number(id))[0];
-
+export default async function Pengurus({ id }: { id: String }) {
+  const bidang = await getDetailBidang(id);
   return (
     <>
-      <HomePengurus name={`Bidang ${id}`} namaBidang={detailBidang.name} />
+      <HomePengurus name={`Bidang ${bidang.id}`} namaBidang={bidang.name} />
       <TugasUmum />
     </>
   );

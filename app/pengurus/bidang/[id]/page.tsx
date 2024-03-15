@@ -1,13 +1,17 @@
-import { getDetailBidang } from "@/app/libs/data";
 import { Suspense } from "react";
 import Pengurus from "@/app/ui/pengurus/pengurus";
+import PengurusSkeleton from "@/app/ui/pengurus/skeletons/PengurusSkeleton";
 
-export default async function Page() {
-  const bidangs = await getDetailBidang();
+interface Params {
+  id: string;
+}
+
+export default async function Page({ params }: { params: Params }) {
+  const { id } = params;
 
   return (
-    <Suspense fallback={<div className="py-40">Loading...</div>}>
-      <Pengurus bidangs={bidangs} />
+    <Suspense fallback={<PengurusSkeleton />}>
+      <Pengurus id={id} />
     </Suspense>
   );
 }
