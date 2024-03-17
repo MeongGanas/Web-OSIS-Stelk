@@ -1,5 +1,5 @@
-import CardReveal from "@/app/ui/CardReveal";
 import Link from "next/link";
+import CardReveal from "../Reveal";
 
 export default function JoinUs() {
   return (

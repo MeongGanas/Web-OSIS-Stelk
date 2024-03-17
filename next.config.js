@@ -16,6 +16,11 @@ module.exports = {
         destination: "/pengurus/bidang/1",
         permanent: false,
       },
+      {
+        source: "/dashboard",
+        destination: "/dashboard/home",
+        permanent: true,
+      },
     ];
   },
 };

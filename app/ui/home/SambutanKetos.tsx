@@ -1,10 +1,10 @@
-import Reveal from "@/app/ui/Reveal";
+import { ContainerReveal } from "@/app/ui/Reveal";
 import Image from "next/image";
 
 export default function SambutanKetos() {
   return (
     <div className="container w-full min-h-screen flex items-center translate-y-[8%]">
-      <Reveal>
+      <ContainerReveal>
         <div className="flex items-center flex-wrap">
           <div className="w-full order-2 flex justify-center md:order-1 md:w-1/2">
             <Image
@@ -39,7 +39,7 @@ export default function SambutanKetos() {
             </h4>
           </div>
         </div>
-      </Reveal>
+      </ContainerReveal>
     </div>
   );
 }

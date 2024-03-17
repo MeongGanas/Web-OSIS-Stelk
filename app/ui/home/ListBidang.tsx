@@ -1,10 +1,10 @@
-import CardReveal from "../CardReveal";
-import CardBidang from "./components/CardBidang";
-import Reveal from "@/app/ui/Reveal";
+import { getAllBidang } from "@/app/libs/data";
+import CardReveal from "../Reveal";
+import CardBidang from "./HomeComponent/CardBidang";
 
-const bidang = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+export default async function ListBidang() {
+  const bidangs = await getAllBidang();
 
-export default function ListBidang() {
   return (
     <div className="container py-20 w-full flex items-center">
       <div className="w-full">
@@ -22,12 +22,12 @@ export default function ListBidang() {
           </CardReveal>
         </div>
         <div className="grid grid-cols-1 mt-5 sm:grid-cols-3 xl:grid-cols-5 gap-5">
-          {bidang.map((id: number) => (
+          {bidangs.map((bidang) => (
             <CardBidang
-              name={`bidang ${id}`}
-              url={`/images/bidang${id}/BIDANG ${id}.svg`}
-              to={`/pengurus/bidang/${id}`}
-              key={id}
+              name={`bidang ${bidang.id}`}
+              url={`/images/bidang${bidang.id}/BIDANG ${bidang.id}.svg`}
+              to={`/pengurus/bidang/${bidang.id}`}
+              key={bidang.id}
             />
           ))}
         </div>

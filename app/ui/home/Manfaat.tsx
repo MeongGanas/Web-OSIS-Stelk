@@ -1,11 +1,10 @@
-import Reveal from "@/app/ui/Reveal";
-import Image from "next/image";
+import { ContainerReveal } from "@/app/ui/Reveal";
 
 export default function Manfaat() {
   return (
     <div className="relative min-h-screen">
       <div className="w-full shapebg2 h-full">
-        <Reveal>
+        <ContainerReveal>
           <div className="container w-full h-full flex items-center relative py-32 text-white">
             <div className="flex flex-wrap items-center">
               <div className="w-full md:w-1/2">
@@ -31,7 +30,7 @@ export default function Manfaat() {
               </div>
             </div>
           </div>
-        </Reveal>
+        </ContainerReveal>
       </div>
     </div>
   );

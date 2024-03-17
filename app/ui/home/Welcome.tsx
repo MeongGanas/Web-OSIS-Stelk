@@ -1,11 +1,11 @@
-import Reveal from "@/app/ui/Reveal";
-import { raleway } from "../fonts";
+import { ContainerReveal } from "@/app/ui/Reveal";
 import Image from "next/image";
+import { raleway } from "../fonts";
 
-export default function WelcomePage() {
+export default async function WelcomePage() {
   return (
     <div className="relative min-h-screen">
-      <Reveal>
+      <ContainerReveal>
         <div className="container w-full">
           <div className="w-full py-28 lg:py-52">
             <h3
@@ -13,12 +13,13 @@ export default function WelcomePage() {
             >
               Welcome
             </h3>
-            <h1 className="block text-4xl md:text-5xl xl:text-6xl font-extrabold text-primary ">
-              OSIS SMK TELKOM <span className="block">MAKASSAR</span>
-            </h1>
+            <div className="block text-4xl md:text-5xl xl:text-6xl font-extrabold text-primary">
+              <h1>OSIS SMK TELKOM</h1>
+              <span className="block">MAKASSAR</span>
+            </div>
           </div>
         </div>
-      </Reveal>
+      </ContainerReveal>
       <Image
         src="/images/introOsis.png"
         alt="intro"

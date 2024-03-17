@@ -1,5 +1,3 @@
-"use client";
-
 import WelcomePage from "./ui/home/Welcome";
 import ListBidang from "./ui/home/ListBidang";
 import SambutanKetos from "./ui/home/SambutanKetos";
@@ -9,7 +7,7 @@ import JoinUs from "./ui/home/JoinUs";
 import Copyright from "./ui/home/Copyright";
 import VisiMisi from "./ui/home/VisiMisi";
 
-export default function Home() {
+export default async function Home() {
   return (
     <div className="pt-20">
       <WelcomePage />
