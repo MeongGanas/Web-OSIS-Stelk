@@ -1,13 +1,15 @@
 "use client";
 import Link from "next/link";
+import { Bidang } from "@/app/libs/definitions";
 import { useState } from "react";
 import NavLink from "./NavLink";
 import { usePathname } from "next/navigation";
 import DropdownBidang from "./DropdownBidang";
 
-export default function Navbar() {
+export default function Navbar({ bidangs }: { bidangs: Array<Bidang> }) {
   const [activeNav, setActiveNav] = useState(false);
   const pathname = usePathname();
+  const isInDashboard = pathname.startsWith("/dashboard");
 
   return (
     <div
@@ -64,20 +66,25 @@ export default function Navbar() {
             setActiveNav={setActiveNav}
             name="home"
             pathname={pathname}
-            to={"/"}
+            to={isInDashboard ? "/dashboard/home" : "/"}
           />
-          <DropdownBidang pathname={pathname} setActiveNav={setActiveNav} />
+          <DropdownBidang
+            pathname={pathname}
+            setActiveNav={setActiveNav}
+            isInDashboard={isInDashboard}
+            bidangs={bidangs}
+          />
           <NavLink
             setActiveNav={setActiveNav}
             name="events"
             pathname={pathname}
-            to={"/events"}
+            to={isInDashboard ? "/dashboard/events" : "/events"}
           />
           <NavLink
             setActiveNav={setActiveNav}
             name="announcement"
             pathname={pathname}
-            to={"/announcement"}
+            to={isInDashboard ? "/dashboard/announcement" : "/announcement"}
           />
         </ul>
       </div>

@@ -3,6 +3,7 @@ import "./globals.css";
 import { Providers } from "./Providers";
 import MyNavbar from "./ui/navbar/Navbar";
 import { poppins } from "./ui/fonts";
+import { getAllBidang } from "./libs/data";
 
 export const metadata: Metadata = {
   title: "OSIS STELK - Official Website",
@@ -12,16 +13,18 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const bidangs = await getAllBidang();
+
   return (
     <html lang="en">
       <body className={`${poppins.className} antialiased`}>
         <Providers>
-          <MyNavbar />
+          <MyNavbar bidangs={bidangs} />
           <main className="-mt-28 w-full">{children}</main>
         </Providers>
       </body>

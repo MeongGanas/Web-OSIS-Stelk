@@ -1,8 +1,8 @@
-export default function Page() {
+export default function Page({ params }: { params: { id: string } }) {
   return (
     <main className="pt-32 px-5 md:px-10">
       <div className="border border-black rounded-md p-5">
-        <h1 className="text-3xl">Edit Halaman Utama</h1>
+        <h1 className="text-3xl">Edit Halaman Bidang {params.id}</h1>
 
         <form action="" className="mt-10">
           <div>
@@ -13,7 +13,7 @@ export default function Page() {
               type="file"
               name="fotoWelcome"
               id="fotoWelcome"
-              accept=""
+              accept="image/*"
               className="block mt-2"
             />
           </div>

@@ -1,4 +1,4 @@
-import CardReveal from "../../CardReveal";
+import CardReveal from "../../Reveal";
 
 export default function CardMisi({
   title,

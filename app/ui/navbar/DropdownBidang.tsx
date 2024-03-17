@@ -1,8 +1,10 @@
+import { Bidang } from "@/app/libs/definitions";
 import {
   Button,
   Dropdown,
   DropdownItem,
   DropdownMenu,
+  DropdownSection,
   DropdownTrigger,
 } from "@nextui-org/react";
 import clsx from "clsx";
@@ -11,12 +13,14 @@ import React from "react";
 export default function DropdownBidang({
   pathname,
   setActiveNav,
+  bidangs,
+  isInDashboard,
 }: {
   pathname: string;
   setActiveNav: Function;
+  bidangs: Array<Bidang>;
+  isInDashboard: boolean;
 }) {
-  const bidangList: any = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
   return (
     <Dropdown>
       <DropdownTrigger>
@@ -35,21 +39,26 @@ export default function DropdownBidang({
       <DropdownMenu aria-label="dropdownBidang">
         <DropdownItem
           key="inti"
-          href="/pengurus/inti"
+          href={isInDashboard ? "/dashboard/pengurus/inti" : "/pengurus/inti"}
           onClick={() => setActiveNav(false)}
         >
           Pengurus Inti
         </DropdownItem>
-
-        {bidangList.map((bidang: number) => (
-          <DropdownItem
-            key={`bidang-${bidang}`}
-            href={`/pengurus/bidang/${bidang}`}
-            onClick={() => setActiveNav(false)}
-          >
-            Bidang {bidang}
-          </DropdownItem>
-        ))}
+        <DropdownSection items={bidangs}>
+          {bidangs.map((bidang) => (
+            <DropdownItem
+              key={`bidang-${bidang.id}`}
+              href={
+                isInDashboard
+                  ? `/dashboard/pengurus/bidang/${bidang.id}`
+                  : `/pengurus/bidang/${bidang.id}`
+              }
+              onClick={() => setActiveNav(false)}
+            >
+              Bidang {bidang.id}
+            </DropdownItem>
+          ))}
+        </DropdownSection>
       </DropdownMenu>
     </Dropdown>
   );
