@@ -33,7 +33,7 @@
 }
 
 .findus-link {
-  @apply block w-full bg-slate-50 py-10;
+  @apply block w-full capitalize bg-slate-50 py-10;
 }
 .findus-link:not(:last-child) {
   @apply mb-10;

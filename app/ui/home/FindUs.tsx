@@ -1,7 +1,10 @@
 import Link from "next/link";
 import CardReveal from "../Reveal";
+import clsx from "clsx";
+import { Add, Delete } from "@mui/icons-material";
 
-export default function FindUs() {
+export default function FindUs({ isAdmin }: { isAdmin?: boolean }) {
+  const platforms = ["youtube", "instagram", "twitter"];
   return (
     <div className="pt-20 text-center w-full">
       <CardReveal>
@@ -13,26 +16,29 @@ export default function FindUs() {
         </div>
       </CardReveal>
 
-      <div className="mb-10">
-        <CardReveal>
-          <Link href={""} className="findus-link">
-            Instagram
-          </Link>
-        </CardReveal>
-      </div>
+      {platforms &&
+        platforms.map((platform) => (
+          <div className="mb-10">
+            <CardReveal>
+              <div className="findus-link">
+                <Link href={""} className="inline">
+                  {platform}
+                </Link>
+                <Link
+                  href={"/dashboard/home/delete-platform"}
+                  className={clsx(isAdmin ? "inline ml-2" : "hidden")}
+                >
+                  <Delete />
+                </Link>
+              </div>
+            </CardReveal>
+          </div>
+        ))}
 
-      <div className="mb-10">
+      <div className={clsx(isAdmin ? "block" : "hidden")}>
         <CardReveal>
-          <Link href={""} className="findus-link">
-            Twitter
-          </Link>
-        </CardReveal>
-      </div>
-
-      <div>
-        <CardReveal>
-          <Link href={""} className="findus-link">
-            Youtube
+          <Link href={"/dashboard/home/add-platform"} className="findus-link">
+            <Add />
           </Link>
         </CardReveal>
       </div>

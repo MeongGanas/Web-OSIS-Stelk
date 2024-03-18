@@ -1,27 +1,23 @@
+import Copyright from "@/app/ui/home/Copyright";
+import FindUs from "@/app/ui/home/FindUs";
+import JoinUs from "@/app/ui/home/JoinUs";
+import ListBidang from "@/app/ui/home/ListBidang";
+import Manfaat from "@/app/ui/home/Manfaat";
+import SambutanKetos from "@/app/ui/home/SambutanKetos";
+import VisiMisi from "@/app/ui/home/VisiMisi";
+import WelcomePage from "@/app/ui/home/Welcome";
+
 export default function Page() {
   return (
-    <main className="pt-32 px-5 md:px-10">
-      <div className="border border-black rounded-md p-5">
-        <h1 className="text-3xl">Edit Halaman Utama</h1>
-
-        <form action="" className="mt-10">
-          <div>
-            <label htmlFor="fotoWelcome" className="text-xl">
-              Foto halaman Welcome
-            </label>
-            <input
-              type="file"
-              name="fotoWelcome"
-              id="fotoWelcome"
-              accept=""
-              className="block mt-2"
-            />
-          </div>
-          <button className="bg-primary hover:bg-opacity-90 transition-all duration-200 text-white px-10 py-3 rounded-md mt-5">
-            Save
-          </button>
-        </form>
-      </div>
-    </main>
+    <div className="pt-20">
+      <WelcomePage />
+      <VisiMisi />
+      <ListBidang />
+      <SambutanKetos />
+      <Manfaat />
+      <FindUs isAdmin={true} />
+      <JoinUs />
+      <Copyright />
+    </div>
   );
 }
