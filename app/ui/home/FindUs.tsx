@@ -18,7 +18,7 @@ export default function FindUs({ isAdmin }: { isAdmin?: boolean }) {
 
       {platforms &&
         platforms.map((platform) => (
-          <div className="mb-10">
+          <div className="mb-10" key={platform}>
             <CardReveal>
               <div className="findus-link">
                 <Link href={""} className="inline">

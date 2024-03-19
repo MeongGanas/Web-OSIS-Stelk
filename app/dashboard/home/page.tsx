@@ -10,10 +10,10 @@ import WelcomePage from "@/app/ui/home/Welcome";
 export default function Page() {
   return (
     <div className="pt-20">
-      <WelcomePage />
-      <VisiMisi />
+      <WelcomePage admin={true} />
+      <VisiMisi admin={true} />
       <ListBidang />
-      <SambutanKetos />
+      <SambutanKetos admin={true} />
       <Manfaat />
       <FindUs isAdmin={true} />
       <JoinUs />

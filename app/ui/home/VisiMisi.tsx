@@ -1,7 +1,10 @@
 import { getVisiMisi } from "@/app/libs/data";
 import { ContainerReveal } from "../Reveal";
+import Link from "next/link";
+import { Edit } from "@mui/icons-material";
+import clsx from "clsx";
 
-export default async function VisiMisi() {
+export default async function VisiMisi({ admin }: { admin?: boolean }) {
   const visiMisi = await getVisiMisi();
 
   return (
@@ -16,7 +19,13 @@ export default async function VisiMisi() {
           <ContainerReveal>
             <div id="visi" className="mb-10">
               <h1 className="text-2xl mb-5">
-                Visi <span className="font-bold">OSIS STELK</span>
+                Visi{" "}
+                <span className={clsx("font-bold", { "mr-5": admin })}>
+                  OSIS STELK
+                </span>
+                <Link href={""} className={clsx(admin ? "inline" : "hidden")}>
+                  <Edit />
+                </Link>
               </h1>
               <p className="text-slate-50 text-sm">{visiMisi.visi}</p>
             </div>
@@ -25,7 +34,13 @@ export default async function VisiMisi() {
           <ContainerReveal>
             <div id="misi">
               <h1 className="text-2xl mb-5">
-                Misi <span className="font-bold">OSIS STELK</span>
+                Misi{" "}
+                <span className={clsx("font-bold", { "mr-5": admin })}>
+                  OSIS STELK
+                </span>
+                <Link href={""} className={clsx(admin ? "inline" : "hidden")}>
+                  <Edit />
+                </Link>
               </h1>
               <ol className="list-decimal ml-5 text-justify">
                 {visiMisi.misi &&
