@@ -1,4 +1,4 @@
-export default function TugasUmum() {
+export default function TugasUmum({ admin }: { admin?: boolean }) {
   return (
     <div className="min-h-screen py-40 bg-primary">
       <div className="w-full text-center text-white">

@@ -35,6 +35,7 @@ export default async function WelcomePage({ admin }: { admin?: boolean }) {
               className={`items-center justify-center w-full xl:w-1/2 ${
                 admin ? "flex" : "hidden"
               }`}
+              id="input-image"
             >
               <label
                 htmlFor="dropzone-file"
