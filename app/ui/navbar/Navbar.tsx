@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { Bidang } from "@/app/libs/definitions";
+import { Bidang } from "@/app/lib/definitions";
 import { useState } from "react";
 import NavLink from "./NavLink";
 import { usePathname } from "next/navigation";

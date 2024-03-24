@@ -1,4 +1,4 @@
-import { getDetailBidang } from "@/app/libs/data";
+import { getDetailBidang } from "@/app/lib/data";
 import HomePengurus from "./home";
 import TugasUmum from "./tugas";
 

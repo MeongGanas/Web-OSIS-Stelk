@@ -1,7 +1,5 @@
-import { Edit } from "@mui/icons-material";
-import clsx from "clsx";
+import { EditButton } from "@/app/Button";
 import Image from "next/image";
-import Link from "next/link";
 
 export default function HomePengurus({
   name,
@@ -18,9 +16,9 @@ export default function HomePengurus({
         <div className="title mb-10">
           <h1 className="uppercase text-6xl font-extrabold text-primary mb-3">
             {name}
-            <Link href={""} className={clsx(admin ? "inline ml-5" : "hidden")}>
-              <Edit />
-            </Link>
+            <div className={`${admin ? "block" : "hidden"}`}>
+              <EditButton data="id" />
+            </div>
           </h1>
           <h4 className="text-primary text-sm px-10 uppercase">{namaBidang}</h4>
         </div>

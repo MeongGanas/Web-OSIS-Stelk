@@ -1,5 +1,6 @@
 const { db } = require("@vercel/postgres");
-const { bidangs, visiMisi } = require("../app/libs/placeholder-data");
+const { bidangs, visiMisi, admins } = require("../app/lib/placeholder-data");
+const bcrypt = require("bcrypt");
 
 async function seedBidang(client) {
   try {
@@ -66,11 +67,47 @@ async function seedVisiMisi(client) {
   }
 }
 
+async function seedAdmin(client) {
+  try {
+    const createTable = await client.sql`
+        CREATE TABLE IF NOT EXISTS admins (
+        id SERIAL PRIMARY KEY,
+        username TEXT NOT NULL UNIQUE,
+        password TEXT NOT NULL
+        );
+    `;
+
+    console.log(`Created "admins" table`);
+
+    const insertedAdmins = await Promise.all(
+      admins.map(async (admin) => {
+        const hashed_pass = await bcrypt.hash(admin.password, 10);
+        return client.sql`
+        INSERT INTO admins (username, password)
+        VALUES (${admin.username}, ${hashed_pass})
+        ON CONFLICT (id) DO NOTHING;
+      `;
+      })
+    );
+
+    console.log(`Seeded admins`);
+
+    return {
+      createTable,
+      admin: insertedAdmins,
+    };
+  } catch (error) {
+    console.error("Error seeding bidangs:", error);
+    throw error;
+  }
+}
+
 async function main() {
   const client = await db.connect();
 
   await seedBidang(client);
   await seedVisiMisi(client);
+  await seedAdmin(client);
 
   await client.end();
 }

@@ -3,7 +3,7 @@ import "./globals.css";
 import { Providers } from "./Providers";
 import MyNavbar from "./ui/navbar/Navbar";
 import { poppins } from "./ui/fonts";
-import { getAllBidang } from "./libs/data";
+import { getAllBidang } from "./lib/data";
 
 export const metadata: Metadata = {
   title: "OSIS STELK - Official Website",

@@ -1,4 +1,4 @@
-import { Bidang } from "@/app/libs/definitions";
+import { Bidang } from "@/app/lib/definitions";
 import {
   Button,
   Dropdown,

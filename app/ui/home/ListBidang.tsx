@@ -1,4 +1,4 @@
-import { getAllBidang } from "@/app/libs/data";
+import { getAllBidang } from "@/app/lib/data";
 import CardReveal from "../Reveal";
 import CardBidang from "./HomeComponent/CardBidang";
 

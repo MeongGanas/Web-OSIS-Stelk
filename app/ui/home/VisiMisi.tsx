@@ -1,4 +1,4 @@
-import { getVisiMisi } from "@/app/libs/data";
+import { getVisiMisi } from "@/app/lib/data";
 import { ContainerReveal } from "../Reveal";
 import Link from "next/link";
 import { Edit } from "@mui/icons-material";

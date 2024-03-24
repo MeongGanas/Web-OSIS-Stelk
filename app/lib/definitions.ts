@@ -25,3 +25,8 @@ export type VisiMisi = {
   visi: string;
   misi: Array<string>;
 };
+
+export type Admin = {
+  username: string;
+  password: string;
+};
