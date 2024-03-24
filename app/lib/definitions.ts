@@ -27,6 +27,8 @@ export type VisiMisi = {
 };
 
 export type Admin = {
-  username: string;
+  id: string;
+  name: string;
+  email: string;
   password: string;
 };

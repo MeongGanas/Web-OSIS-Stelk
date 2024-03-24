@@ -72,7 +72,8 @@ async function seedAdmin(client) {
     const createTable = await client.sql`
         CREATE TABLE IF NOT EXISTS admins (
         id SERIAL PRIMARY KEY,
-        username TEXT NOT NULL UNIQUE,
+        name VARCHAR(255) NOT NULL,
+        email TEXT NOT NULL UNIQUE,
         password TEXT NOT NULL
         );
     `;
@@ -83,8 +84,8 @@ async function seedAdmin(client) {
       admins.map(async (admin) => {
         const hashed_pass = await bcrypt.hash(admin.password, 10);
         return client.sql`
-        INSERT INTO admins (username, password)
-        VALUES (${admin.username}, ${hashed_pass})
+        INSERT INTO admins (name, email, password)
+        VALUES (${admin.name}, ${admin.email}, ${hashed_pass})
         ON CONFLICT (id) DO NOTHING;
       `;
       })

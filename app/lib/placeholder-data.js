@@ -60,6 +60,6 @@ const Ketos = {
   namaKetos: "Narisyah Aqila",
 };
 
-const admins = [{ username: "Farrel", password: "123" }];
+const admins = [{ name: "Farrel", email: "farrel@gmail.com", password: "123" }];
 
 module.exports = { bidangs, visiMisi, admins };
