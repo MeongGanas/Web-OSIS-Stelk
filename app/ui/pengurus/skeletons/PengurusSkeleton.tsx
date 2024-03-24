@@ -1,14 +1,14 @@
 function HomeSkeleton() {
   return (
-    <div className="h-screen flex items-center pt-20 justify-center">
+    <div className="flex h-screen items-center justify-center pt-20">
       <div>
         <div className="mb-20">
-          <div className="h-10 bg-gray-200 mx-auto rounded-full dark:bg-gray-700 w-80 mb-4"></div>
-          <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-96 mb-4"></div>
+          <div className="mx-auto mb-4 h-10 w-80 rounded-full bg-gray-200 dark:bg-gray-700"></div>
+          <div className="mb-4 h-2.5 w-96 rounded-full bg-gray-200 dark:bg-gray-700"></div>
         </div>
-        <div className="flex items-center justify-center w-full h-48 bg-gray-300 rounded sm:w-96 dark:bg-gray-700">
+        <div className="flex h-48 w-full items-center justify-center rounded bg-gray-300 dark:bg-gray-700 sm:w-96">
           <svg
-            className="w-10 h-10 text-gray-200 dark:text-gray-600"
+            className="h-10 w-10 text-gray-200 dark:text-gray-600"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="currentColor"

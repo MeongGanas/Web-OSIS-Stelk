@@ -6,10 +6,10 @@ import { Add, Delete } from "@mui/icons-material";
 export default function FindUs({ isAdmin }: { isAdmin?: boolean }) {
   const platforms = ["youtube", "instagram", "twitter"];
   return (
-    <div className="pt-20 text-center w-full">
+    <div className="w-full pt-20 text-center">
       <CardReveal>
         <div className="container mb-10">
-          <h1 className="text-4xl mb-2">Find Us</h1>
+          <h1 className="mb-2 text-4xl">Find Us</h1>
           <p className="italic text-slate-600">
             Program Kerja kami di salurkan melalui platform berikut.
           </p>
@@ -26,7 +26,7 @@ export default function FindUs({ isAdmin }: { isAdmin?: boolean }) {
                 </Link>
                 <Link
                   href={"/dashboard/home/delete-platform"}
-                  className={clsx(isAdmin ? "inline ml-2" : "hidden")}
+                  className={clsx(isAdmin ? "ml-2 inline" : "hidden")}
                 >
                   <Delete />
                 </Link>

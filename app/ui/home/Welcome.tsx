@@ -11,7 +11,7 @@ export default async function WelcomePage({ admin }: { admin?: boolean }) {
       <ContainerReveal>
         <div className="container w-full">
           <div
-            className={`w-full py-28 block ${
+            className={`block w-full py-28 ${
               admin ? "lg:py-36" : "lg:py-52"
             } xl:flex xl:items-center`}
           >
@@ -21,7 +21,7 @@ export default async function WelcomePage({ admin }: { admin?: boolean }) {
               >
                 Welcome
               </h3>
-              <div className="block text-4xl md:text-5xl xl:text-6xl font-extrabold text-primary">
+              <div className="block text-4xl font-extrabold text-primary md:text-5xl xl:text-6xl">
                 <h1>OSIS SMK TELKOM</h1>
                 <span className="block">
                   MAKASSAR{" "}
@@ -32,18 +32,18 @@ export default async function WelcomePage({ admin }: { admin?: boolean }) {
               </div>
             </div>
             <div
-              className={`items-center justify-center w-full xl:w-1/2 ${
+              className={`w-full items-center justify-center xl:w-1/2 ${
                 admin ? "flex" : "hidden"
               }`}
               id="input-image"
             >
               <label
                 htmlFor="dropzone-file"
-                className="flex flex-col items-center justify-center w-full border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 hover:bg-gray-100"
+                className="dark:hover:bg-bray-800 flex w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100"
               >
-                <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                <div className="flex flex-col items-center justify-center pb-6 pt-5">
                   <svg
-                    className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
+                    className="mb-4 h-8 w-8 text-gray-500 dark:text-gray-400"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -75,15 +75,15 @@ export default async function WelcomePage({ admin }: { admin?: boolean }) {
         src="/images/introOsis.png"
         alt="intro"
         className={clsx(
-          "-z-10 absolute bottom-10 md:bottom-20 lg:bottom-0 right-1/2 translate-x-1/2 xl:right-16 xl:translate-x-16 xl:bottom-16",
-          { "hidden w-0": admin }
+          "absolute bottom-10 right-1/2 -z-10 translate-x-1/2 md:bottom-20 lg:bottom-0 xl:bottom-16 xl:right-16 xl:translate-x-16",
+          { "hidden w-0": admin },
         )}
         width={600}
         height={600}
       />
       <Image
         src="/shapes/Vector 3.svg"
-        className="absolute w-full left-0 -bottom-1 md:-bottom-10 lg:-bottom-1/4"
+        className="absolute -bottom-1 left-0 w-full md:-bottom-10 lg:-bottom-1/4"
         alt="shape"
         width={1000}
         height={400}

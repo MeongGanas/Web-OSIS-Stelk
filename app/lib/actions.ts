@@ -1,11 +1,11 @@
 "use server";
 
 import { AuthError } from "next-auth";
-import { signIn } from "@/auth";
+import { signIn, signOut } from "@/auth";
 
 export async function authenticate(
   prevState: string | undefined,
-  formData: FormData
+  formData: FormData,
 ) {
   try {
     await signIn("credentials", formData);
@@ -18,5 +18,14 @@ export async function authenticate(
           return "Something went wrong.";
       }
     }
+    throw error;
+  }
+}
+
+export async function Logout() {
+  try {
+    await signOut();
+  } catch (error) {
+    throw error;
   }
 }

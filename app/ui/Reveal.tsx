@@ -15,7 +15,7 @@ export function ContainerReveal({ children }: { children: JSX.Element }) {
   }, [isInView]);
 
   return (
-    <div className="overflow-hidden relative">
+    <div className="relative overflow-hidden">
       <motion.div
         ref={ref}
         variants={{

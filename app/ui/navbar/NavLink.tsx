@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@nextui-org/react";
 import clsx from "clsx";
 import Link from "next/link";
@@ -15,7 +16,7 @@ export default function NavLink({
 }) {
   return (
     <Button
-      className="hover:text-primary bg-transparent px-0 transition duration-150 text-sm font-bold w-fit block text-left uppercase"
+      className="block w-fit bg-transparent px-0 text-left text-sm font-bold uppercase transition duration-150 hover:text-primary"
       disableAnimation={true}
       onClick={() => setActiveNav(false)}
     >

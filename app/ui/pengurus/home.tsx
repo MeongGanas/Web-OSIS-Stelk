@@ -11,32 +11,32 @@ export default function HomePengurus({
   admin?: boolean;
 }) {
   return (
-    <div className="relative mt-40 text-center overflow-hidden">
+    <div className="relative mt-40 overflow-hidden text-center">
       <div className="min-h-screen w-full">
         <div className="title mb-10">
-          <h1 className="uppercase text-6xl font-extrabold text-primary mb-3">
+          <h1 className="mb-3 text-6xl font-extrabold uppercase text-primary">
             {name}
             <div className={`${admin ? "block" : "hidden"}`}>
               <EditButton data="id" />
             </div>
           </h1>
-          <h4 className="text-primary text-sm px-10 uppercase">{namaBidang}</h4>
+          <h4 className="px-10 text-sm uppercase text-primary">{namaBidang}</h4>
         </div>
 
-        <div className="w-full flex justify-center">
+        <div className="flex w-full justify-center">
           <div
-            className={`items-center justify-center w-full max-w-screen-md ${
+            className={`w-full max-w-screen-md items-center justify-center ${
               admin ? "flex" : "hidden"
             }`}
             id="input-image"
           >
             <label
               htmlFor="dropzone-file"
-              className="flex flex-col items-center justify-center w-full border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 hover:bg-gray-100"
+              className="dark:hover:bg-bray-800 flex w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100"
             >
-              <div className="flex flex-col items-center justify-center pt-5 pb-6">
+              <div className="flex flex-col items-center justify-center pb-6 pt-5">
                 <svg
-                  className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
+                  className="mb-4 h-8 w-8 text-gray-500 dark:text-gray-400"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -75,7 +75,7 @@ export default function HomePengurus({
 
         <img
           src="/shapes/Vector 3.png"
-          className="absolute w-full left-0 bottom-0 lg:-bottom-1/3"
+          className="absolute bottom-0 left-0 w-full lg:-bottom-1/3"
           alt=""
         />
       </div>

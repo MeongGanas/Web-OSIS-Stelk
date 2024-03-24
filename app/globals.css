@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .navbarscrolled {
-  @apply backdrop-blur-md bg-opacity-35 bg-white shadow-md;
+  @apply bg-white bg-opacity-35 shadow-md backdrop-blur-md;
 }
 
 .shapebg2 {
@@ -33,7 +33,7 @@
 }
 
 .findus-link {
-  @apply block w-full capitalize bg-slate-50 py-10;
+  @apply block w-full bg-slate-50 py-10 capitalize;
 }
 .findus-link:not(:last-child) {
   @apply mb-10;

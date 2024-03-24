@@ -9,9 +9,9 @@ export default function CardMisi({
 }) {
   return (
     <CardReveal>
-      <div className="p-5 rounded-md flex items-center min-h-56 glass hover:scale-105 transition duration-150 text-black">
+      <div className="glass flex min-h-56 items-center rounded-md p-5 text-black transition duration-150 hover:scale-105">
         <div>
-          <h1 className="text-2xl mb-2">{title}</h1>
+          <h1 className="mb-2 text-2xl">{title}</h1>
           <p className="text-sm">{desc}</p>
         </div>
       </div>

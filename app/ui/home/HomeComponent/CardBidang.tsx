@@ -14,16 +14,16 @@ export default function CardBidang({
   return (
     <Link
       href={to}
-      className="relative rounded-md overflow-hidden hover:scale-105 transition duration-200 min-h-32"
+      className="relative min-h-32 overflow-hidden rounded-md transition duration-200 hover:scale-105"
     >
       <Image
         src={url}
         alt={name}
         width={200}
         height={200}
-        className="w-full h-full"
+        className="h-full w-full"
       />
-      <h1 className="uppercase absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 text-white text-xl">
+      <h1 className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-xl uppercase text-white">
         {name}
       </h1>
     </Link>

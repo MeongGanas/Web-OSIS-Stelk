@@ -20,7 +20,7 @@ async function seedBidang(client) {
         VALUES (${bidang.id}, ${bidang.name})
         ON CONFLICT (id) DO NOTHING;
       `;
-      })
+      }),
     );
 
     console.log(`Seeded ${insertedBidangs.length} users`);
@@ -50,7 +50,7 @@ async function seedVisiMisi(client) {
     const insertedVisiMisi = await client.sql`
     INSERT INTO visiMisi (periode, visi, misi)
     VALUES (${visiMisi.periode}, ${visiMisi.visi}, ${JSON.stringify(
-      visiMisi.misi
+      visiMisi.misi,
     )})
     ON CONFLICT (periode) DO NOTHING;
   `;
@@ -88,7 +88,7 @@ async function seedAdmin(client) {
         VALUES (${admin.name}, ${admin.email}, ${hashed_pass})
         ON CONFLICT (id) DO NOTHING;
       `;
-      })
+      }),
     );
 
     console.log(`Seeded admins`);
@@ -116,6 +116,6 @@ async function main() {
 main().catch((err) => {
   console.error(
     "An error occurred while attempting to seed the database:",
-    err
+    err,
   );
 });

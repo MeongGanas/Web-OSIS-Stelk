@@ -6,22 +6,22 @@ export default async function ListBidang() {
   const bidangs = await getAllBidang();
 
   return (
-    <div className="container py-20 w-full flex items-center">
+    <div className="container flex w-full items-center py-20">
       <div className="w-full">
-        <div className="w-full flex justify-center">
+        <div className="flex w-full justify-center">
           <CardReveal>
-            <div className="w-full text-center max-w-screen-sm">
-              <h1 className="text-2xl mb-5 md:text-4xl font-extrabold text-primary">
+            <div className="w-full max-w-screen-sm text-center">
+              <h1 className="mb-5 text-2xl font-extrabold text-primary md:text-4xl">
                 Bidang
               </h1>
-              <p className="text-wrap text-slate-600 italic text-sm">
+              <p className="text-wrap text-sm italic text-slate-600">
                 OSIS SMK Telkom Makassar terbagi menjadi 10 bidang agar dapat
                 fokus menjalankan program kerja dan tugas masing-masing
               </p>
             </div>
           </CardReveal>
         </div>
-        <div className="grid grid-cols-1 mt-5 sm:grid-cols-3 xl:grid-cols-5 gap-5">
+        <div className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3 xl:grid-cols-5">
           {bidangs.map((bidang) => (
             <CardBidang
               name={`bidang ${bidang.id}`}
