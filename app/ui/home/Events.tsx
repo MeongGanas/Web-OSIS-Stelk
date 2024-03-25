@@ -4,7 +4,7 @@ export default function Events() {
   return (
     <div className="container min-h-screen w-full py-28">
       <div className="w-full text-center">
-        <h1 className="mb-2 text-3xl font-bold">Events</h1>
+        <h1 className="mb-2 text-3xl font-bold text-primary">Events</h1>
         <p className="text-wrap text-sm italic text-slate-600">
           Berikut ini adalah event-event yang baru kami selesaikan.
         </p>
