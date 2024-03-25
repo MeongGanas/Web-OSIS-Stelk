@@ -21,7 +21,7 @@ export default async function WelcomePage({ admin }: { admin?: boolean }) {
               >
                 Welcome
               </h3>
-              <div className="block text-4xl font-extrabold text-primary md:text-5xl xl:text-6xl">
+              <div className="block text-5xl font-extrabold text-primary md:text-6xl">
                 <h1>OSIS SMK TELKOM</h1>
                 <span className="block">
                   MAKASSAR{" "}

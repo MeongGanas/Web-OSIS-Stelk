@@ -4,6 +4,8 @@ import { Providers } from "./Providers";
 import MyNavbar from "./ui/navbar/Navbar";
 import { poppins } from "./ui/fonts";
 import { getAllBidang } from "./lib/data";
+import Copyright from "./ui/home/Copyright";
+import Footer from "./ui/home/Footer";
 
 export const metadata: Metadata = {
   title: "OSIS STELK - Official Website",
@@ -26,6 +28,8 @@ export default async function RootLayout({
         <Providers>
           <MyNavbar bidangs={bidangs} />
           <main className="-mt-28 w-full">{children}</main>
+          <Footer />
+          <Copyright />
         </Providers>
       </body>
     </html>

@@ -11,7 +11,9 @@ export default async function VisiMisi({ admin }: { admin?: boolean }) {
     <div className="relative z-[999] bg-primary py-20 text-white">
       <ContainerReveal>
         <div className="container mb-10">
-          <h1 className="font-extabold text-4xl">About Us</h1>
+          <h1 className="text-center text-3xl font-extrabold uppercase">
+            Visi & Misi Osis Stelk
+          </h1>
         </div>
       </ContainerReveal>
       <div className=" flex w-full justify-center">
@@ -19,10 +21,7 @@ export default async function VisiMisi({ admin }: { admin?: boolean }) {
           <ContainerReveal>
             <div id="visi" className="mb-10">
               <h1 className="mb-5 text-2xl">
-                Visi{" "}
-                <span className={clsx("font-bold", { "mr-5": admin })}>
-                  OSIS STELK
-                </span>
+                Visi
                 <Link href={""} className={clsx(admin ? "inline" : "hidden")}>
                   <Edit />
                 </Link>
@@ -34,10 +33,7 @@ export default async function VisiMisi({ admin }: { admin?: boolean }) {
           <ContainerReveal>
             <div id="misi">
               <h1 className="mb-5 text-2xl">
-                Misi{" "}
-                <span className={clsx("font-bold", { "mr-5": admin })}>
-                  OSIS STELK
-                </span>
+                Misi
                 <Link href={""} className={clsx(admin ? "inline" : "hidden")}>
                   <Edit />
                 </Link>

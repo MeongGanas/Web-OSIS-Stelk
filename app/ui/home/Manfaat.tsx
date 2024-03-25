@@ -12,7 +12,7 @@ export default function Manfaat() {
                   Belajar dan Bekerja Bersama dalam Tim untuk menyukseskan
                   Program Kerja
                 </h1>
-                <p>
+                <p className="text-slate-50">
                   Dalam OSIS kita belajar dan bekerja bersama dalam setiap
                   Program Kerja yang telah direncanakan. Mulai dari perencanaan,
                   pembiayaan, pembentukan panitia hingga saat kegiatan

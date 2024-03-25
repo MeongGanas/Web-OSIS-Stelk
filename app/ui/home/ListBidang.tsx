@@ -11,7 +11,7 @@ export default async function ListBidang() {
         <div className="flex w-full justify-center">
           <CardReveal>
             <div className="w-full max-w-screen-sm text-center">
-              <h1 className="mb-5 text-2xl font-extrabold text-primary md:text-4xl">
+              <h1 className="mb-5 text-3xl font-extrabold text-primary md:text-4xl">
                 Bidang
               </h1>
               <p className="text-wrap text-sm italic text-slate-600">

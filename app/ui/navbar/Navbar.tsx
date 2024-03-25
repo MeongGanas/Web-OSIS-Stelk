@@ -83,12 +83,6 @@ export default function Navbar({ bidangs }: { bidangs: Array<Bidang> }) {
             pathname={pathname}
             to={isInDashboard ? "/dashboard/events" : "/events"}
           />
-          <NavLink
-            setActiveNav={setActiveNav}
-            name="announcement"
-            pathname={pathname}
-            to={isInDashboard ? "/dashboard/announcement" : "/announcement"}
-          />
           <form
             action={Logout}
             className={`${isInDashboard ? "block" : "hidden"}`}

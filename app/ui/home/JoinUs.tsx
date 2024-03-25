@@ -12,11 +12,31 @@ export default function JoinUs() {
           </h1>
         </CardReveal>
         <CardReveal>
-          <Link href={""} className="text-lg font-bold text-white md:text-2xl">
+          <Link
+            href={""}
+            className="text-lg font-bold text-white underline md:text-2xl"
+          >
             Ayo Join Sekarang!
           </Link>
         </CardReveal>
       </div>
     </div>
+
+    // <div className="container py-28 text-center">
+    //   <CardReveal>
+    //     <h1 className="mb-10 text-xl font-bold text-primary md:text-3xl">
+    //       Banyak pengalaman dan koneksi yang bisa kalian dapatkan dengan
+    //       mengikuti kepengurusan OSIS.
+    //     </h1>
+    //   </CardReveal>
+    //   <CardReveal>
+    //     <Link
+    //       href={""}
+    //       className="text-lg font-bold text-primary underline md:text-2xl"
+    //     >
+    //       Ayo Join Sekarang!
+    //     </Link>
+    //   </CardReveal>
+    // </div>
   );
 }

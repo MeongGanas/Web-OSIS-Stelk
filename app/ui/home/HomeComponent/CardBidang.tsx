@@ -14,8 +14,9 @@ export default function CardBidang({
   return (
     <Link
       href={to}
-      className="relative min-h-32 overflow-hidden rounded-md transition duration-200 hover:scale-105"
+      className="group relative min-h-20 overflow-hidden rounded-md"
     >
+      <div className="absolute left-0 right-0 top-0 h-full w-full bg-black bg-opacity-20 transition-all duration-200 group-hover:bg-opacity-100"></div>
       <Image
         src={url}
         alt={name}
@@ -23,7 +24,7 @@ export default function CardBidang({
         height={200}
         className="h-full w-full"
       />
-      <h1 className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-xl uppercase text-white">
+      <h1 className="absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2 text-center text-xl font-bold uppercase tracking-wide text-white">
         {name}
       </h1>
     </Link>
