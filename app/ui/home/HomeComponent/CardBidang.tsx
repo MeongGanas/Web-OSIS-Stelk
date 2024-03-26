@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
+import { CardRevealBottom } from "../../Reveal";
 
 export default function CardBidang({
   url,
@@ -12,16 +13,14 @@ export default function CardBidang({
   to: string;
 }) {
   return (
-    <Link
-      href={to}
-      className="group relative min-h-20 overflow-hidden rounded-md"
-    >
-      <div className="absolute left-0 right-0 top-0 h-full w-full bg-black bg-opacity-20 transition-all duration-200 group-hover:bg-opacity-100"></div>
+    <Link href={to} className="group relative overflow-hidden rounded-md">
+      <div className="absolute bottom-0 left-0 right-0 top-0 w-full bg-black bg-opacity-20 transition-all duration-200 group-hover:bg-opacity-100"></div>
       <Image
         src={url}
         alt={name}
         width={200}
         height={200}
+        loading="eager"
         className="h-full w-full"
       />
       <h1 className="absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2 text-center text-xl font-bold uppercase tracking-wide text-white">

@@ -1,5 +1,5 @@
 import { getAllBidang } from "@/app/lib/data";
-import CardReveal from "../Reveal";
+import { CardRevealBottom } from "../Reveal";
 import CardBidang from "./HomeComponent/CardBidang";
 
 export default async function ListBidang() {
@@ -9,7 +9,7 @@ export default async function ListBidang() {
     <div className="container flex w-full items-center py-20">
       <div className="w-full">
         <div className="flex w-full justify-center">
-          <CardReveal>
+          <CardRevealBottom>
             <div className="w-full max-w-screen-sm text-center">
               <h1 className="mb-5 text-3xl font-extrabold text-primary md:text-4xl">
                 Bidang
@@ -19,7 +19,7 @@ export default async function ListBidang() {
                 fokus menjalankan program kerja dan tugas masing-masing
               </p>
             </div>
-          </CardReveal>
+          </CardRevealBottom>
         </div>
         <div className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3 xl:grid-cols-5">
           {bidangs.map((bidang) => (
