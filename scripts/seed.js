@@ -86,7 +86,7 @@ async function seedAdmin(client) {
         return client.sql`
         INSERT INTO admins (name, email, password)
         VALUES (${admin.name}, ${admin.email}, ${hashed_pass})
-        ON CONFLICT (id) DO NOTHING;
+        ON CONFLICT (email) DO NOTHING;
       `;
       }),
     );

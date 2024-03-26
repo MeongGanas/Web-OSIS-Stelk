@@ -16,7 +16,7 @@ export default async function VisiMisi({ admin }: { admin?: boolean }) {
           </h1>
           <p className="text-center text-sm">
             OSIS | Organisasi Siswa Intra Sekolah adalah organisasi yang bekerja
-            sama untuk malakukan kegiatan-kegiatan yang telah disusun dan
+            sama untuk melakukan kegiatan-kegiatan yang telah disusun dan
             disepakati bersama.
           </p>
         </div>

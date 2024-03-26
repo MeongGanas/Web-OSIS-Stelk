@@ -43,7 +43,7 @@ const bidangs = [
 
 const visiMisi = {
   periode: "2024/2025",
-  visi: "Menjadikan OSIS SMK Telkom Makassar sebagai wadah yang menampung segala aspirasi, bakat, potensi dan kreativitas dengan pemanfaatn Ilmu Pengetahuan dan Teknologi (IPTEK), serta berakhlak mulia berlandaskan pancasila dengan mengedepankan Iman dan Taqwa (IMTAQ).",
+  visi: "Menjadikan OSIS SMK Telkom Makassar sebagai wadah yang menampung segala aspirasi, bakat, potensi dan kreativitas dengan pemanfaatan Ilmu Pengetahuan dan Teknologi (IPTEK), serta berakhlak mulia berlandaskan pancasila dengan mengedepankan Iman dan Taqwa (IMTAQ).",
   misi: [
     "Mengutamakan keimanan dan ketakwaan kepada Tuhan Yang Maha Esa, dan mengimplementasikan asas-asas Pancasila di berbagai aspek kegiatan.",
     "Menjadikan Pengurus OSIS sebagai penghubung koordinasi yang terbuka dan bertanggung jawab dalam meningkatkan komunikasi di setiap komponen OSIS.",

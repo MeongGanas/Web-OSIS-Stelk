@@ -20,7 +20,7 @@ export default function CardBidang({
         alt={name}
         width={200}
         height={200}
-        loading="eager"
+        quality={50}
         className="h-full w-full"
       />
       <h1 className="absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2 text-center text-xl font-bold uppercase tracking-wide text-white">
