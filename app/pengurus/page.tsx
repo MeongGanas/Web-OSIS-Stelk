@@ -15,8 +15,8 @@ export default async function Pengurus() {
             Inti OSIS
           </Link>
         </li>
-        {bidangs.map((bidang) => (
-          <li className="mb-5">
+        {bidangs.map((bidang, index) => (
+          <li className="mb-5" key={index}>
             <Link
               href={`/pengurus/bidang/${bidang.id}`}
               className="findus-link text-center"
