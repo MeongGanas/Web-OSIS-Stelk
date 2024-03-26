@@ -23,7 +23,7 @@ export default function Manfaat() {
               <div className="relative z-10 mt-10 flex w-full justify-center md:mt-0 md:w-1/2 md:pl-10">
                 <img
                   src="/images/manfaat.png"
-                  alt=""
+                  alt="manfaat"
                   className="relative z-30 rounded-md"
                 />
                 <div className="absolute -bottom-5 -right-2 z-20 h-full w-full max-w-80 rounded-md bg-white sm:right-20 md:-right-10 lg:right-20"></div>

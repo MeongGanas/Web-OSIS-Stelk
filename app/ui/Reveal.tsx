@@ -12,7 +12,7 @@ export function ContainerReveal({ children }: { children: JSX.Element }) {
     if (isInView) {
       mainControls.start("visible");
     }
-  }, [isInView]);
+  }, [isInView, mainControls]);
 
   return (
     <div className="relative overflow-hidden">
@@ -41,7 +41,7 @@ export function CardRevealBottom({ children }: { children: JSX.Element }) {
     if (isInView) {
       mainControls.start("visible");
     }
-  }, [isInView]);
+  }, [isInView, mainControls]);
 
   return (
     <motion.div
@@ -68,7 +68,7 @@ export function CardRevealTop({ children }: { children: JSX.Element }) {
     if (isInView) {
       mainControls.start("visible");
     }
-  }, [isInView]);
+  }, [isInView, mainControls]);
 
   return (
     <motion.div
