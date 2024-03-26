@@ -1,6 +1,7 @@
 import { getDetailBidang } from "@/app/lib/data";
-import HomePengurus from "./home";
-import TugasUmum from "./tugas";
+import HomePengurus from "./HomePengurus";
+import TugasUmum from "./TugasUmum";
+import Anggota from "./Anggota";
 
 export default async function Pengurus({
   id,
@@ -18,6 +19,7 @@ export default async function Pengurus({
         namaBidang={bidang.nama}
       />
       <TugasUmum admin={admin} />
+      <Anggota />
     </>
   );
 }

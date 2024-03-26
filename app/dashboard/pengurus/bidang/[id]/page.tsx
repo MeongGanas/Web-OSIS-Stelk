@@ -1,4 +1,4 @@
-import Pengurus from "@/app/ui/pengurus/pengurus";
+import Pengurus from "@/app/ui/pengurus/Pengurus";
 
 export default function Page({ params }: { params: { id: string } }) {
   return (

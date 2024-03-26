@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import Pengurus from "@/app/ui/pengurus/pengurus";
+import Pengurus from "@/app/ui/pengurus/Pengurus";
 import PengurusSkeleton from "@/app/ui/pengurus/skeletons/PengurusSkeleton";
 
 interface Params {

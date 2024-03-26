@@ -11,9 +11,9 @@ export default function HomePengurus({
   admin?: boolean;
 }) {
   return (
-    <div className="relative mt-40 overflow-hidden text-center">
-      <div className="min-h-screen w-full">
-        <div className="title mb-10">
+    <div className="relative overflow-hidden text-center">
+      <div className="w-full py-40">
+        <div className="title mb-10 pb-40 md:pb-0">
           <h1 className="mb-3 text-6xl font-extrabold uppercase text-primary">
             {name}
             <div className={`${admin ? "block" : "hidden"}`}>
@@ -66,7 +66,7 @@ export default function HomePengurus({
         <Image
           src={`/images/${name?.replace(" ", "")}/intro.png`}
           alt={`${name?.replace(" ", "")}`}
-          className={`absolute bottom-16 left-1/2 -translate-x-1/2 md:static md:translate-x-0 ${
+          className={`absolute bottom-16 left-1/2 w-full -translate-x-1/2 md:static md:translate-x-0 ${
             admin ? "hidden" : "block"
           }`}
           width={1300}
@@ -75,8 +75,8 @@ export default function HomePengurus({
 
         <img
           src="/shapes/Vector 3.png"
-          className="absolute bottom-0 left-0 w-full lg:-bottom-1/3"
-          alt=""
+          className="absolute bottom-0 left-0 max-h-60 w-full"
+          alt="shape"
         />
       </div>
     </div>

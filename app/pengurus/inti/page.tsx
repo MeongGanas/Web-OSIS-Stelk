@@ -1,14 +1,14 @@
 "use client";
-import HomePengurus from "../../ui/pengurus/home";
-import TugasUmum from "../../ui/pengurus/tugas";
+import Anggota from "@/app/ui/pengurus/Anggota";
+import HomePengurus from "../../ui/pengurus/HomePengurus";
+import TugasUmum from "../../ui/pengurus/TugasUmum";
 
-const Bidang = () => {
+export default function Bidang() {
   return (
     <>
       <HomePengurus name={"Inti OSIS"} />
       <TugasUmum />
+      <Anggota />
     </>
   );
-};
-
-export default Bidang;
+}
