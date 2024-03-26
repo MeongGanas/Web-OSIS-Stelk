@@ -38,3 +38,7 @@
 .findus-link:not(:last-child) {
   @apply mb-10;
 }
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}

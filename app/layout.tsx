@@ -6,6 +6,7 @@ import { poppins } from "./ui/fonts";
 import { getAllBidang } from "./lib/data";
 import Copyright from "./ui/home/Copyright";
 import Footer from "./ui/home/Footer";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "OSIS STELK - Official Website",
@@ -24,7 +25,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`${poppins.className} antialiased`}>
+      <body className={`${poppins.className} relative antialiased`}>
         <Providers>
           <MyNavbar bidangs={bidangs} />
           <main className="-mt-28 w-full">{children}</main>

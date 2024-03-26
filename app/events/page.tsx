@@ -7,12 +7,12 @@ export default function Events() {
       <div className="w-full text-center">
         <CardRevealBottom>
           <h1 className="mb-2 text-3xl font-bold text-primary">
-            All About Events
+            Semua Event OSIS
           </h1>
         </CardRevealBottom>
         <CardRevealTop>
           <p className="text-wrap text-sm italic text-slate-600">
-            Berikut ini adalah semua event-event yang kami selesaikan.
+            Berikut ini adalah semua event-event yang telah kami selesaikan.
           </p>
         </CardRevealTop>
       </div>

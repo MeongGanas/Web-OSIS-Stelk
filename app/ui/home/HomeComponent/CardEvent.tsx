@@ -27,7 +27,7 @@ export default function CardEvent() {
               <CalendarMonth />
               <p>23-05-2024</p>
             </div>
-            <Link href={""} className="text-blue-700 underline">
+            <Link href={"/events/1"} className="text-blue-700 underline">
               Lihat Detail
             </Link>
           </div>

@@ -12,7 +12,7 @@ export default async function VisiMisi({ admin }: { admin?: boolean }) {
       <ContainerReveal>
         <div className="container mb-10 max-w-screen-lg">
           <h1 className="mb-4 text-center text-4xl font-extrabold uppercase">
-            About Us
+            About Osis stelk
           </h1>
           <p className="text-center text-sm">
             OSIS | Organisasi Siswa Intra Sekolah adalah organisasi yang bekerja

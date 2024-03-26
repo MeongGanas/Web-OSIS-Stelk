@@ -49,7 +49,7 @@ export default function Footer() {
               </li>
               <li className="mb-2">
                 <Link
-                  href={"/pengurus/"}
+                  href={"/pengurus"}
                   className="underline transition duration-200 hover:text-primary"
                 >
                   Bidang
@@ -57,7 +57,7 @@ export default function Footer() {
               </li>
               <li className="mb-2">
                 <Link
-                  href={""}
+                  href={"/events"}
                   className="underline transition duration-200 hover:text-primary"
                 >
                   Events
