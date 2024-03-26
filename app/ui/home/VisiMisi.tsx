@@ -10,18 +10,23 @@ export default async function VisiMisi({ admin }: { admin?: boolean }) {
   return (
     <div className="relative z-[999] bg-primary py-20 text-white">
       <ContainerReveal>
-        <div className="container mb-10">
-          <h1 className="text-center text-3xl font-extrabold uppercase">
-            Visi & Misi Osis Stelk
+        <div className="container mb-10 max-w-screen-lg">
+          <h1 className="mb-4 text-center text-4xl font-extrabold uppercase">
+            About Us
           </h1>
+          <p className="text-center text-sm">
+            OSIS | Organisasi Siswa Intra Sekolah adalah organisasi yang bekerja
+            sama untuk malakukan kegiatan-kegiatan yang telah disusun dan
+            disepakati bersama.
+          </p>
         </div>
       </ContainerReveal>
-      <div className=" flex w-full justify-center">
+      <div className="flex w-full justify-center">
         <div className="container max-w-screen-lg text-center">
           <ContainerReveal>
             <div id="visi" className="mb-10">
               <h1 className="mb-5 text-2xl">
-                Visi
+                Visi OSIS Stelk
                 <Link href={""} className={clsx(admin ? "inline" : "hidden")}>
                   <Edit />
                 </Link>
@@ -33,7 +38,7 @@ export default async function VisiMisi({ admin }: { admin?: boolean }) {
           <ContainerReveal>
             <div id="misi">
               <h1 className="mb-5 text-2xl">
-                Misi
+                Misi OSIS Stelk
                 <Link href={""} className={clsx(admin ? "inline" : "hidden")}>
                   <Edit />
                 </Link>

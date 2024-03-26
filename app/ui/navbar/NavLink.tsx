@@ -16,16 +16,16 @@ export default function NavLink({
 }) {
   return (
     <Button
-      className="block w-fit bg-transparent px-0 text-left text-sm font-bold uppercase transition duration-150 hover:text-primary"
+      className={clsx(
+        "block h-fit w-fit bg-transparent px-5 text-left font-bold uppercase transition duration-150 hover:text-primary",
+        { "text-primary": pathname === to },
+      )}
       disableAnimation={true}
+      href={to}
+      as={Link}
       onClick={() => setActiveNav(false)}
     >
-      <Link
-        href={to}
-        className={clsx("px-5", { "text-primary": pathname === to })}
-      >
-        {name}
-      </Link>
+      {name}
     </Button>
   );
 }

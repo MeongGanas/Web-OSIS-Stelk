@@ -21,7 +21,7 @@ export default async function ListBidang() {
             </div>
           </CardRevealBottom>
         </div>
-        <div className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3 xl:grid-cols-5">
+        <div className="mt-5 grid grid-cols-2 gap-5 sm:grid-cols-3 xl:grid-cols-5">
           {bidangs.map((bidang) => (
             <CardBidang
               name={`bidang ${bidang.id}`}

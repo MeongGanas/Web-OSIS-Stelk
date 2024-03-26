@@ -1,12 +1,12 @@
 import { CalendarMonth } from "@mui/icons-material";
 import { Card, CardBody, CardFooter, Image } from "@nextui-org/react";
 import Link from "next/link";
-import { CardRevealBottom, CardRevealTop } from "../../Reveal";
+import { CardRevealBottom } from "../../Reveal";
 
 export default function CardEvent() {
   return (
     <CardRevealBottom>
-      <Card shadow="sm" isPressable>
+      <Card shadow="sm" isPressable className="w-full">
         <CardBody className="overflow-visible p-0">
           <Image
             shadow="sm"
