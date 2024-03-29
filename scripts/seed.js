@@ -7,7 +7,7 @@ async function seedBidang(client) {
     const createTable = await client.sql`
         CREATE TABLE IF NOT EXISTS bidangs (
         id INT PRIMARY KEY,
-        name VARCHAR(255) NOT NULL
+        nama VARCHAR(255) NOT NULL
         );
     `;
 
@@ -16,8 +16,8 @@ async function seedBidang(client) {
     const insertedBidangs = await Promise.all(
       bidangs.map(async (bidang) => {
         return client.sql`
-        INSERT INTO bidangs (id, name)
-        VALUES (${bidang.id}, ${bidang.name})
+        INSERT INTO bidangs (id, nama)
+        VALUES (${bidang.id}, ${bidang.nama})
         ON CONFLICT (id) DO NOTHING;
       `;
       }),
@@ -62,7 +62,7 @@ async function seedVisiMisi(client) {
       visiMisi: insertedVisiMisi,
     };
   } catch (error) {
-    console.error("Error seeding bidangs:", error);
+    console.error("Error seeding visi misi:", error);
     throw error;
   }
 }
@@ -72,7 +72,7 @@ async function seedAdmin(client) {
     const createTable = await client.sql`
         CREATE TABLE IF NOT EXISTS admins (
         id SERIAL PRIMARY KEY,
-        name VARCHAR(255) NOT NULL,
+        nama VARCHAR(255) NOT NULL,
         email TEXT NOT NULL UNIQUE,
         password TEXT NOT NULL
         );
@@ -84,8 +84,8 @@ async function seedAdmin(client) {
       admins.map(async (admin) => {
         const hashed_pass = await bcrypt.hash(admin.password, 10);
         return client.sql`
-        INSERT INTO admins (name, email, password)
-        VALUES (${admin.name}, ${admin.email}, ${hashed_pass})
+        INSERT INTO admins (nama, email, password)
+        VALUES (${admin.nama}, ${admin.email}, ${hashed_pass})
         ON CONFLICT (email) DO NOTHING;
       `;
       }),
@@ -98,7 +98,7 @@ async function seedAdmin(client) {
       admin: insertedAdmins,
     };
   } catch (error) {
-    console.error("Error seeding bidangs:", error);
+    console.error("Error seeding admins:", error);
     throw error;
   }
 }

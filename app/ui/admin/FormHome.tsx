@@ -1,4 +1,4 @@
-import { getVisiMisi } from "@/app/lib/data";
+"use client";
 import { Button } from "@nextui-org/react";
 import Image from "next/image";
 
@@ -46,8 +46,11 @@ export function IntroForm() {
   );
 }
 
-export async function AboutForm() {
-  const visiMisi = await getVisiMisi();
+export function AboutForm({
+  visiMisi,
+}: {
+  visiMisi: { misi: Array<string>; visi: string };
+}) {
   return (
     <form
       action=""
