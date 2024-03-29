@@ -1,7 +1,4 @@
-"use client";
 import { Button } from "@nextui-org/react";
-import Image from "next/image";
-import { useState } from "react";
 
 export function EditBidangForm({
   params,
@@ -32,12 +29,12 @@ export function EditBidangForm({
               />
             </div>
             <div className="mb-4 w-full">
-              <label htmlFor="nama" className="mb-2 block">
+              <label htmlFor="tugas" className="mb-2 block">
                 Tugas Umum Bidang {params.id}
               </label>
               <textarea
-                id="nama"
-                name="nama"
+                id="tugas"
+                name="tugas"
                 rows={2}
                 defaultValue={detail.nama}
                 className="block w-full rounded-md border border-gray-500 p-3 text-sm text-default-500"
@@ -54,8 +51,8 @@ export function EditBidangForm({
                 <input
                   type="file"
                   className="block w-full"
-                  id="fotoAnggota"
-                  name="fotoAnggota"
+                  id="card"
+                  name="card"
                 />
               </div>
             </div>
@@ -67,8 +64,8 @@ export function EditBidangForm({
                 <input
                   type="file"
                   className="block w-full"
-                  id="fotoAnggota"
-                  name="fotoAnggota"
+                  id="intro"
+                  name="intro"
                 />
               </div>
             </div>
@@ -95,13 +92,13 @@ export function EditAnggotaForm({
       <form action={""}>
         <div className="mb-4 grid w-full grid-cols-2 gap-5" id="koor">
           <div className="mb-2">
-            <label htmlFor="nama" className="mb-2 block">
+            <label htmlFor="namaKoor" className="mb-2 block">
               Nama Koordinator
             </label>
             <input
               type="text"
-              id="nama"
-              name="nama"
+              id="namaKoor"
+              name="namaKoor"
               defaultValue={detail.nama}
               className="block w-full rounded-md border border-gray-500 p-3 text-sm uppercase text-default-500"
             />
@@ -123,13 +120,13 @@ export function EditAnggotaForm({
 
         <div className="mb-4 grid w-full grid-cols-2 gap-5" id="anggota">
           <div>
-            <label htmlFor="nama" className="mb-2 block">
+            <label htmlFor="namaAnggota" className="mb-2 block">
               Nama Anggota
             </label>
             <input
               type="text"
-              id="nama"
-              name="nama"
+              id="namaAnggota"
+              name="namaAnggota"
               defaultValue={detail.nama}
               className="block w-full rounded-md border border-gray-500 p-3 text-sm uppercase text-default-500"
             />
@@ -160,13 +157,13 @@ export function AddAnggotaForm({ params }: { params: { id: string } }) {
       <h1 className="mb-5 text-4xl">Tambah Anggota Bidang {params.id}</h1>
       <form action="">
         <div className="mb-4 w-full">
-          <label htmlFor="nama" className="mb-2 block">
+          <label htmlFor="anggotaBaru" className="mb-2 block">
             Nama Anggota
           </label>
           <input
             type="text"
-            id="nama"
-            name="nama"
+            id="anggotaBaru"
+            name="anggotaBaru"
             className="block w-full max-w-sm rounded-md border border-gray-500 p-3 text-sm text-default-500"
           />
         </div>
