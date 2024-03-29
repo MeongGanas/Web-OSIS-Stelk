@@ -1,10 +1,7 @@
 import { ContainerReveal } from "@/app/ui/Reveal";
-import { Edit } from "@mui/icons-material";
-import clsx from "clsx";
 import Image from "next/image";
-import Link from "next/link";
 
-export default function SambutanKetos({ admin }: { admin?: boolean }) {
+export default function SambutanKetos() {
   return (
     <div className="container flex min-h-screen w-full translate-y-[8%] items-center">
       <ContainerReveal>
@@ -21,9 +18,6 @@ export default function SambutanKetos({ admin }: { admin?: boolean }) {
           <div className="order-1 w-full md:order-2 md:w-1/2">
             <h1 className="mb-5 text-2xl font-extrabold text-primary md:text-4xl">
               <span className="mr-5">Pesan Ketua OSIS</span>
-              <Link href={""} className={clsx(admin ? "inline" : "hidden")}>
-                <Edit />
-              </Link>
             </h1>
             <p className="mb-10">
               &quot;Halo teman-teman! OSIS SMK Telkom Makassar merupakan tempat

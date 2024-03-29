@@ -1,9 +1,7 @@
 import Link from "next/link";
 import { CardRevealBottom } from "../Reveal";
-import clsx from "clsx";
-import { Add, Delete } from "@mui/icons-material";
 
-export default function FindUs({ isAdmin }: { isAdmin?: boolean }) {
+export default function FindUs() {
   const platforms = ["youtube", "instagram", "twitter"];
   return (
     <div className="w-full pt-20 text-center">
@@ -24,24 +22,10 @@ export default function FindUs({ isAdmin }: { isAdmin?: boolean }) {
                 <Link href={""} className="inline">
                   {platform}
                 </Link>
-                <Link
-                  href={"/dashboard/home/delete-platform"}
-                  className={clsx(isAdmin ? "ml-2 inline" : "hidden")}
-                >
-                  <Delete />
-                </Link>
               </div>
             </CardRevealBottom>
           </div>
         ))}
-
-      <div className={clsx(isAdmin ? "block" : "hidden")}>
-        <CardRevealBottom>
-          <Link href={"/dashboard/home/add-platform"} className="findus-link">
-            <Add />
-          </Link>
-        </CardRevealBottom>
-      </div>
     </div>
   );
 }

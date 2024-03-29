@@ -1,10 +1,7 @@
 import { getVisiMisi } from "@/app/lib/data";
 import { ContainerReveal } from "../Reveal";
-import Link from "next/link";
-import { Edit } from "@mui/icons-material";
-import clsx from "clsx";
 
-export default async function VisiMisi({ admin }: { admin?: boolean }) {
+export default async function VisiMisi() {
   const visiMisi = await getVisiMisi();
 
   return (
@@ -25,24 +22,14 @@ export default async function VisiMisi({ admin }: { admin?: boolean }) {
         <div className="container max-w-screen-lg text-center">
           <ContainerReveal>
             <div id="visi" className="mb-10">
-              <h1 className="mb-5 text-2xl">
-                Visi OSIS Stelk
-                <Link href={""} className={clsx(admin ? "inline" : "hidden")}>
-                  <Edit />
-                </Link>
-              </h1>
+              <h1 className="mb-5 text-2xl">Visi OSIS Stelk</h1>
               <p className="text-sm text-slate-50">{visiMisi.visi}</p>
             </div>
           </ContainerReveal>
 
           <ContainerReveal>
             <div id="misi">
-              <h1 className="mb-5 text-2xl">
-                Misi OSIS Stelk
-                <Link href={""} className={clsx(admin ? "inline" : "hidden")}>
-                  <Edit />
-                </Link>
-              </h1>
+              <h1 className="mb-5 text-2xl">Misi OSIS Stelk</h1>
               <ol className="ml-5 list-decimal text-justify">
                 {visiMisi.misi &&
                   visiMisi.misi.map((misi: string, i: number) => (

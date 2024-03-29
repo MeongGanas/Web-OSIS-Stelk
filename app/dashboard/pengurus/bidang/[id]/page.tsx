@@ -1,9 +1,7 @@
-import PengurusContent from "@/app/ui/pengurus/Pengurus";
-
-export default function Page({ params }: { params: { id: string } }) {
+export default function Bidang({ params }: { params: { id: string } }) {
   return (
-    <>
-      <PengurusContent id={params.id} admin={true} />
-    </>
+    <div className="pt-32">
+      <h1>Edit halaman bidang</h1>
+    </div>
   );
 }

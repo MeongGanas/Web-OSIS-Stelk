@@ -1,23 +1,11 @@
-import Copyright from "@/app/ui/home/Copyright";
-import FindUs from "@/app/ui/home/FindUs";
-import JoinUs from "@/app/ui/home/JoinUs";
-import ListBidang from "@/app/ui/home/ListBidang";
-import Manfaat from "@/app/ui/home/Manfaat";
-import SambutanKetos from "@/app/ui/home/SambutanKetos";
-import VisiMisi from "@/app/ui/home/VisiMisi";
-import WelcomePage from "@/app/ui/home/Welcome";
+import { AboutForm, IntroForm, PesanKetosForm } from "@/app/ui/admin/Forms";
 
-export default function Page() {
+export default function Dashboard() {
   return (
-    <div className="pt-20">
-      <WelcomePage admin={true} />
-      <VisiMisi admin={true} />
-      <ListBidang />
-      <SambutanKetos admin={true} />
-      <Manfaat />
-      <FindUs isAdmin={true} />
-      <JoinUs />
-      <Copyright />
+    <div className="container grid grid-cols-1 gap-5 pb-20 pt-32 md:grid-cols-2">
+      <IntroForm />
+      <PesanKetosForm />
+      <AboutForm />
     </div>
   );
 }
