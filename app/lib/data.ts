@@ -1,5 +1,5 @@
 import { sql } from "@vercel/postgres";
-import { Bidang, VisiMisi } from "./definitions";
+import { Bidang, Misi, PesanKetos } from "./definitions";
 import { unstable_noStore as noStore } from "next/cache";
 
 export async function getAllBidang() {
@@ -27,14 +27,32 @@ export async function getDetailBidang(id: String) {
   }
 }
 
-export async function getVisiMisi() {
+export async function getAbout() {
   noStore();
 
   try {
-    const data = await sql<VisiMisi>`SELECT * FROM visiMisi`;
-    return data.rows[0];
+    const about = await sql`SELECT * FROM aboutosis`;
+    const visi = await sql`SELECT * FROM visiosis`;
+    const misi = await sql<Misi>`SELECT * FROM misiosis ORDER BY id`;
+    return {
+      about: about.rows[0].about,
+      visi: visi.rows[0].visi,
+      misi: misi.rows,
+    };
   } catch (err) {
     console.log(err);
-    throw new Error("failed fetch visi misi");
+    throw new Error("failed fetch about");
+  }
+}
+
+export async function getPesanKetos() {
+  noStore();
+
+  try {
+    const pesan = await sql<PesanKetos>`SELECT * FROM pesanketos`;
+    return pesan.rows[0];
+  } catch (err) {
+    console.log(err);
+    throw new Error("failed fetch about");
   }
 }

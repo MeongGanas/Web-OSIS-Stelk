@@ -20,15 +20,21 @@ export type Inti = {
   tugas: string;
 };
 
-export type VisiMisi = {
-  periode: string;
-  visi: string;
-  misi: Array<string>;
-};
-
 export type Admin = {
   id: string;
   name: string;
   email: string;
   password: string;
+};
+
+export type Misi = {
+  id: number;
+  misi: string;
+};
+
+export type PesanKetos = {
+  id: number;
+  nama: string;
+  pesan: string;
+  periode: string;
 };

@@ -1,5 +1,12 @@
 const { db } = require("@vercel/postgres");
-const { bidangs, visiMisi, admins } = require("../app/lib/placeholder-data");
+const {
+  bidangs,
+  admins,
+  misi,
+  visi,
+  about,
+  PesanKetos,
+} = require("../app/lib/placeholder-data");
 const bcrypt = require("bcrypt");
 
 async function seedBidang(client) {
@@ -35,34 +42,124 @@ async function seedBidang(client) {
   }
 }
 
-async function seedVisiMisi(client) {
+async function seedVisi(client) {
   try {
     const createTable = await client.sql`
-        CREATE TABLE IF NOT EXISTS visiMisi (
-        periode VARCHAR(12) PRIMARY KEY,
-        visi TEXT NOT NULL,
-        misi JSON NOT NULL
+        CREATE TABLE IF NOT EXISTS VisiOSIS (
+        id SERIAL PRIMARY KEY,
+        visi TEXT NOT NULL
         );
     `;
 
     console.log(`Created "visiMisi" table`);
 
-    const insertedVisiMisi = await client.sql`
-    INSERT INTO visiMisi (periode, visi, misi)
-    VALUES (${visiMisi.periode}, ${visiMisi.visi}, ${JSON.stringify(
-      visiMisi.misi,
-    )})
-    ON CONFLICT (periode) DO NOTHING;
+    const insertedVisi = await client.sql`
+    INSERT INTO VisiOSIS (visi)
+    VALUES (${visi})
+    ON CONFLICT (id) DO NOTHING;
   `;
 
-    console.log(`Seeded visi misi`);
+    console.log(`Seeded visi`);
 
     return {
       createTable,
-      visiMisi: insertedVisiMisi,
+      visi: insertedVisi,
     };
   } catch (error) {
-    console.error("Error seeding visi misi:", error);
+    console.error("Error seeding visi :", error);
+    throw error;
+  }
+}
+
+async function seedMisi(client) {
+  try {
+    const createTable = await client.sql`
+        CREATE TABLE IF NOT EXISTS MisiOSIS (
+        id SERIAL PRIMARY KEY,
+        misi TEXT NOT NULL
+        );
+    `;
+
+    console.log(`Created "misi" table`);
+
+    const insertedMisis = await Promise.all(
+      misi.map(async (m) => {
+        return client.sql`
+        INSERT INTO MisiOSIS (misi)
+        VALUES (${m})
+        ON CONFLICT (id) DO NOTHING;
+      `;
+      }),
+    );
+
+    console.log(`Seeded misi`);
+
+    return {
+      createTable,
+      misi: insertedMisis,
+    };
+  } catch (error) {
+    console.error("Error seeding misi :", error);
+    throw error;
+  }
+}
+
+async function seedAbout(client) {
+  try {
+    const createTable = await client.sql`
+        CREATE TABLE IF NOT EXISTS aboutosis (
+        id SERIAL PRIMARY KEY,
+        about TEXT NOT NULL
+        );
+    `;
+
+    console.log(`Created "about" table`);
+
+    const insertedAbout = await client.sql`
+        INSERT INTO aboutosis (about)
+        VALUES (${about})
+        ON CONFLICT (id) DO NOTHING;
+      `;
+
+    console.log(`Seeded about`);
+
+    return {
+      createTable,
+      about: insertedAbout,
+    };
+  } catch (error) {
+    console.error("Error seeding about :", error);
+    throw error;
+  }
+}
+
+async function seedPesan(client) {
+  try {
+    const createTable = await client.sql`
+        CREATE TABLE IF NOT EXISTS pesanketos (
+        id SERIAL PRIMARY KEY,
+        nama VARCHAR(255) NOT NULL,
+        periode VARCHAR(255) NOT NULL,
+        pesan TEXT NOT NULL
+        );
+    `;
+
+    console.log(`Created "pesanketos" table`);
+
+    const insertedPesan = await client.sql`
+        INSERT INTO pesanketos (nama, periode, pesan)
+        VALUES (${PesanKetos.nama}, ${PesanKetos.periode}, ${PesanKetos.pesan})
+        ON CONFLICT (id) DO NOTHING;
+      `;
+
+    console.log(`Seeded ${insertedPesan.length}`);
+
+    return {
+      createTable,
+      pesanketos: insertedPesan,
+    };
+  } catch (error) {
+    console.error("Error seeding pesan ketos:", error);
     throw error;
   }
 }
@@ -106,9 +203,12 @@ async function seedAdmin(client) {
 async function main() {
   const client = await db.connect();
 
-  await seedBidang(client);
-  await seedVisiMisi(client);
-  await seedAdmin(client);
+  // await seedBidang(client);
+  // await seedVisi(client);
+  // await seedMisi(client);
+  // await seedAbout(client);
+  // await seedAdmin(client);
+  await seedPesan(client);
 
   await client.end();
 }

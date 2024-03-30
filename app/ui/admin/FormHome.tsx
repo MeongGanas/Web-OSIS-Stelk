@@ -1,11 +1,16 @@
+"use client";
+import { AddMisi, EditAbout, EditMisi, EditVisi } from "@/app/lib/actions";
+import { Misi, PesanKetos } from "@/app/lib/definitions";
 import { Button } from "@nextui-org/react";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import { useFormState } from "react-dom";
 
 export function IntroForm() {
   return (
     <form
       action=""
-      className="w-full rounded-lg border border-gray-200 p-5 shadow"
+      className="h-fit w-full rounded-lg border border-gray-200 p-5 shadow"
     >
       <h1 className="text-4xl">Edit Halaman Intro</h1>
       <div className="my-5 w-full items-center justify-center" id="input-image">
@@ -45,76 +50,61 @@ export function IntroForm() {
   );
 }
 
-export function AboutForm({
-  visiMisi,
-}: {
-  visiMisi: { misi: Array<string>; visi: string };
-}) {
+export function AboutForm({ about }: { about: string }) {
+  const [formState, dispatch] = useFormState(EditAbout, undefined);
+  const [showMessage, setShowMessage] = useState(false);
+
+  useEffect(() => {
+    if (formState && (formState.success || !formState.success)) {
+      setShowMessage(true);
+      const timer = setTimeout(() => {
+        setShowMessage(false);
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [formState]);
+
   return (
     <form
-      action=""
-      className="w-full rounded-lg border border-gray-200 p-5 shadow"
+      action={dispatch}
+      method="POST"
+      className="h-fit w-full rounded-lg border border-gray-200 p-5 shadow"
     >
-      <h1 className="text-4xl">Edit Halaman About</h1>
+      <h1 className="text-4xl">Edit About</h1>
 
       <div className="my-5">
         <div>
-          <label htmlFor="about-osis" className="mb-2 block">
+          <label htmlFor="about" className="mb-2 block">
             About OSIS
           </label>
           <textarea
             className="block w-full rounded-md border border-gray-500 p-3 text-sm text-default-500"
-            name="about-osis"
-            id="about-osis"
+            name="about"
+            defaultValue={about}
+            id="about"
             cols={30}
-            rows={2}
+            rows={4}
           ></textarea>
-        </div>
-      </div>
-
-      <div className="my-5">
-        <div>
-          <label htmlFor="visi" className="mb-2 block">
-            Visi OSIS
-          </label>
-          <textarea
-            className="block w-full rounded-md border border-gray-500 p-3 text-sm text-default-500"
-            name="visi"
-            defaultValue={visiMisi.visi}
-            id="visi"
-            cols={30}
-            rows={8}
-          ></textarea>
-        </div>
-      </div>
-
-      <div className="my-5">
-        <div>
-          <label className="mb-2 block">Misi OSIS</label>
-          <ul>
-            {visiMisi.misi.map((misi, index) => (
-              <li key={index}>
-                <textarea
-                  defaultValue={misi}
-                  rows={5}
-                  className="mb-3 w-full text-wrap rounded-md border border-gray-500 p-3 text-sm text-default-500"
-                ></textarea>
-              </li>
-            ))}
-          </ul>
         </div>
       </div>
 
       <Button type="submit">Submit</Button>
+
+      {showMessage && formState && formState.success && (
+        <p className="mt-5 text-green-500">{formState.message}</p>
+      )}
+      {showMessage && formState && !formState.success && (
+        <p className="mt-5 text-red-700">{formState.message}</p>
+      )}
     </form>
   );
 }
 
-export function PesanKetosForm() {
+export function PesanKetosForm({ pesanketos }: { pesanketos: PesanKetos }) {
   return (
     <form
       action=""
-      className="w-full rounded-lg border border-gray-200 p-5 shadow"
+      className="h-fit w-full rounded-lg border border-gray-200 p-5 shadow"
     >
       <h1 className="text-4xl">Edit Halaman Pesan Ketos</h1>
       <div className="my-5">
@@ -125,6 +115,7 @@ export function PesanKetosForm() {
           <textarea
             name="pesan"
             id="pesan"
+            defaultValue={pesanketos.pesan}
             cols={30}
             rows={5}
             className="mb-3 w-full text-wrap rounded-md border border-gray-500 p-3 text-default-500"
@@ -139,6 +130,7 @@ export function PesanKetosForm() {
             type="text"
             id="nama"
             name="nama"
+            defaultValue={pesanketos.nama}
             className="mb-3 w-full text-wrap rounded-md border border-gray-500 p-3 text-default-500"
           />
         </div>
@@ -149,6 +141,7 @@ export function PesanKetosForm() {
           </label>
           <input
             type="text"
+            defaultValue={pesanketos.periode}
             id="periode"
             name="periode"
             className="mb-3 w-full text-wrap rounded-md border border-gray-500 p-3 text-default-500"
@@ -156,6 +149,155 @@ export function PesanKetosForm() {
         </div>
       </div>
       <Button type="submit">Submit</Button>
+    </form>
+  );
+}
+
+export function AddMisiForm() {
+  const [formState, disptach] = useFormState(AddMisi, undefined);
+  const [showMessage, setShowMessage] = useState(false);
+
+  useEffect(() => {
+    if (formState && (formState.success || !formState.success)) {
+      setShowMessage(true);
+      const timer = setTimeout(() => {
+        setShowMessage(false);
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [formState]);
+
+  return (
+    <form
+      action={disptach}
+      className="h-fit w-full rounded-lg border border-gray-200 p-5 shadow"
+    >
+      <h1 className="text-4xl">Tambah Misi OSIS</h1>
+
+      <div className="my-5">
+        <div>
+          <label htmlFor="misiBaru" className="mb-2 block">
+            Misi baru
+          </label>
+          <textarea
+            className="block w-full rounded-md border border-gray-500 p-3 text-sm text-default-500"
+            name="misiBaru"
+            id="misiBaru"
+            cols={30}
+            rows={4}
+          ></textarea>
+        </div>
+      </div>
+
+      <Button type="submit">Submit</Button>
+      {showMessage && formState && formState.success && (
+        <p className="mt-5 text-green-500">{formState.message}</p>
+      )}
+      {showMessage && formState && !formState.success && (
+        <p className="mt-5 text-red-700">{formState.message}</p>
+      )}
+    </form>
+  );
+}
+
+export function VisiForm({ visi }: { visi: string }) {
+  const [formState, dispatch] = useFormState(EditVisi, undefined);
+  const [showMessage, setShowMessage] = useState(false);
+
+  useEffect(() => {
+    if (formState && (formState.success || !formState.success)) {
+      setShowMessage(true);
+      const timer = setTimeout(() => {
+        setShowMessage(false);
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [formState]);
+
+  return (
+    <form
+      action={dispatch}
+      method="POST"
+      className="h-fit w-full rounded-lg border border-gray-200 p-5 shadow"
+    >
+      <h1 className="text-4xl">Edit Visi</h1>
+
+      <div className="my-5">
+        <div>
+          <label htmlFor="visi" className="mb-2 block">
+            Visi OSIS
+          </label>
+          <textarea
+            className="block w-full rounded-md border border-gray-500 p-3 text-sm text-default-500"
+            name="visi"
+            id="visi"
+            defaultValue={visi}
+            cols={30}
+            rows={8}
+          ></textarea>
+        </div>
+      </div>
+
+      <Button type="submit">Submit</Button>
+      {showMessage && formState && formState.success && (
+        <p className="mt-5 text-green-500">{formState.message}</p>
+      )}
+      {showMessage && formState && !formState.success && (
+        <p className="mt-5 text-red-700">{formState.message}</p>
+      )}
+    </form>
+  );
+}
+
+export function MisiForm({ misi }: { misi: Array<Misi> }) {
+  const [formState, dispatch] = useFormState(EditMisi, undefined);
+  const [showMessage, setShowMessage] = useState(false);
+
+  useEffect(() => {
+    if (formState && (formState.success || !formState.success)) {
+      setShowMessage(true);
+      const timer = setTimeout(() => {
+        setShowMessage(false);
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [formState]);
+
+  return (
+    <form
+      action={dispatch}
+      method="POST"
+      className="h-fit w-full rounded-lg border border-gray-200 p-5 shadow"
+    >
+      <h1 className="text-4xl">Edit Misi</h1>
+
+      <div className="my-5">
+        <div>
+          <label className="mb-2 block">Misi OSIS</label>
+          <ul>
+            {misi.map((m) => (
+              <li key={m.id}>
+                <textarea
+                  defaultValue={m.misi}
+                  rows={5}
+                  id={`${m.id}`}
+                  name="misi"
+                  className="mb-3 w-full text-wrap rounded-md border border-gray-500 p-3 text-sm text-default-500"
+                ></textarea>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <Button type="submit">Submit</Button>
+
+      {showMessage && formState && formState.success && (
+        <p className="mt-5 text-green-500">{formState.message}</p>
+      )}
+      {showMessage && formState && !formState.success && (
+        <p className="mt-5 text-red-700">{formState.message}</p>
+      )}
     </form>
   );
 }
