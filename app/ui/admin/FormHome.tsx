@@ -1,5 +1,11 @@
 "use client";
-import { AddMisi, EditAbout, EditMisi, EditVisi } from "@/app/lib/actions";
+import {
+  AddMisi,
+  EditAbout,
+  EditMisi,
+  EditPesanKetos,
+  EditVisi,
+} from "@/app/lib/actions";
 import { Misi, PesanKetos } from "@/app/lib/definitions";
 import { Button } from "@nextui-org/react";
 import Image from "next/image";
@@ -101,16 +107,29 @@ export function AboutForm({ about }: { about: string }) {
 }
 
 export function PesanKetosForm({ pesanketos }: { pesanketos: PesanKetos }) {
+  const [formState, dispatch] = useFormState(EditPesanKetos, undefined);
+  const [showMessage, setShowMessage] = useState(false);
+
+  useEffect(() => {
+    if (formState && (formState.success || !formState.success)) {
+      setShowMessage(true);
+      const timer = setTimeout(() => {
+        setShowMessage(false);
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [formState]);
+
   return (
     <form
-      action=""
+      action={dispatch}
       className="h-fit w-full rounded-lg border border-gray-200 p-5 shadow"
     >
-      <h1 className="text-4xl">Edit Halaman Pesan Ketos</h1>
+      <h1 className="text-4xl">Edit Halaman Sambutan Ketos</h1>
       <div className="my-5">
         <div className="mb-2">
           <label htmlFor="pesan" className="mb-2">
-            Pesan Ketos
+            Sambutan Ketos
           </label>
           <textarea
             name="pesan"
@@ -149,6 +168,13 @@ export function PesanKetosForm({ pesanketos }: { pesanketos: PesanKetos }) {
         </div>
       </div>
       <Button type="submit">Submit</Button>
+
+      {showMessage && formState && formState.success && (
+        <p className="mt-5 text-green-500">{formState.message}</p>
+      )}
+      {showMessage && formState && !formState.success && (
+        <p className="mt-5 text-red-700">{formState.message}</p>
+      )}
     </form>
   );
 }
@@ -281,7 +307,7 @@ export function MisiForm({ misi }: { misi: Array<Misi> }) {
                   defaultValue={m.misi}
                   rows={5}
                   id={`${m.id}`}
-                  name="misi"
+                  name={`misi-${m.id}`}
                   className="mb-3 w-full text-wrap rounded-md border border-gray-500 p-3 text-sm text-default-500"
                 ></textarea>
               </li>

@@ -80,20 +80,43 @@ export async function EditMisi(
   prevState: { success: boolean; message: string } | undefined,
   formData: FormData,
 ) {
-  const misi = formData.getAll("misi");
+  const entries = Array.from(formData.entries());
+  const misiEntries = entries.filter(([key]) => key.startsWith("misi-"));
 
   try {
     await Promise.all(
-      misi.map(async (m, index) => {
-        if (m.toString().length === 0) {
-          await sql`DELETE FROM misiosis WHERE id=${index + 1}`;
+      misiEntries.map(async (misi) => {
+        const entries = misi[0];
+        const id = entries.slice(5, entries.length);
+        const value = misi[1];
+
+        if (value.toString().length === 0) {
+          await sql`DELETE FROM misiosis WHERE id=${id}`;
         } else {
-          await sql`UPDATE misiosis SET misi=${m?.toString()} WHERE id=${index + 1}`;
+          await sql`UPDATE misiosis SET misi=${value.toString()} WHERE id=${id}`;
         }
       }),
     );
+
     revalidatePath("/dashboard/home");
     return { success: true, message: "Misi updated successfully." };
+  } catch (error) {
+    return { success: false, message: "Something went wrong." };
+  }
+}
+
+export async function EditPesanKetos(
+  prevState: { success: boolean; message: string } | undefined,
+  formData: FormData,
+) {
+  const pesan = formData.get("pesan")?.toString();
+  const nama = formData.get("nama")?.toString();
+  const periode = formData.get("periode")?.toString();
+
+  try {
+    await sql`UPDATE pesanketos SET pesan=${pesan}, periode=${periode}, nama=${nama} `;
+    revalidatePath("/dashboard/home");
+    return { success: true, message: "Sambutan Ketos updated successfully." };
   } catch (error) {
     return { success: false, message: "Something went wrong." };
   }
