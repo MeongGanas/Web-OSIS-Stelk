@@ -39,3 +39,11 @@ export type PesanKetos = {
   periode: string;
   image: string | null;
 };
+
+export type Events = {
+  id: number;
+  nama: string;
+  deskripsi: string;
+  tanggal: string;
+  foto: string;
+};

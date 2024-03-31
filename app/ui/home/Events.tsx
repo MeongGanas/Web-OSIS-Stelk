@@ -1,7 +1,9 @@
+import { get3Events } from "@/app/lib/data";
 import { CardRevealBottom, CardRevealTop } from "../Reveal";
 import CardEvent from "./HomeComponent/CardEvent";
 
-export default function Events() {
+export default async function Events() {
+  const events = await get3Events();
   return (
     <div className="container min-h-screen w-full py-28">
       <div className="w-full text-center">
@@ -14,10 +16,8 @@ export default function Events() {
           </p>
         </CardRevealTop>
       </div>
-      <div className="mt-5 grid grid-cols-1 gap-5 md:grid-cols-3">
-        <CardEvent />
-        <CardEvent />
-        <CardEvent />
+      <div className="mt-5 grid w-fit grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {events && events.map((event) => <CardEvent data={event} />)}
       </div>
     </div>
   );

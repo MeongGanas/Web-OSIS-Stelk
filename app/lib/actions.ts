@@ -5,12 +5,52 @@ import { signIn, signOut } from "@/auth";
 import { sql } from "@vercel/postgres";
 import { revalidatePath } from "next/cache";
 import ImageKit from "imagekit";
+import { redirect } from "next/navigation";
 
 const imageKit = new ImageKit({
   publicKey: process.env.IMAGEKIT_PUBLIC_KEY!,
   privateKey: process.env.IMAGEKIT_PRIVATE_KEY!,
   urlEndpoint: process.env.IMAGEKIT_URL_ENDPOINT!,
 });
+
+export async function UploadSingleImage(formData: FormData) {
+  const entries = Array.from(formData.entries());
+  const [key, value] = entries.filter(([key]) => key.startsWith("image-"))[0];
+  const image = value as unknown as File;
+
+  if (image.size !== 0) {
+    const imageBuffer = await image.arrayBuffer();
+    const buffer = Buffer.from(imageBuffer);
+
+    const response = await imageKit.upload({
+      file: buffer,
+      fileName: image.name,
+    });
+    return response.url;
+  }
+  return null;
+}
+
+export async function UploadMultiImage(formData: FormData) {
+  const entries = Array.from(formData.entries());
+  const imageEntries = entries.filter(([key]) => key.startsWith("image-"));
+
+  const imageUrl = await Promise.all(
+    imageEntries.map(async ([key, value]) => {
+      const image = value as unknown as File;
+      const imageBuffer = await image.arrayBuffer();
+      const buffer = Buffer.from(imageBuffer);
+
+      const response = await imageKit.upload({
+        file: buffer,
+        fileName: image.name,
+      });
+      return response.url;
+    }),
+  );
+
+  return imageUrl;
+}
 
 export async function authenticate(
   prevState: string | undefined,
@@ -150,41 +190,27 @@ export async function EditIntro(
   }
 }
 
-export async function UploadSingleImage(formData: FormData) {
-  const entries = Array.from(formData.entries());
-  const [key, value] = entries.filter(([key]) => key.startsWith("image-"))[0];
-  const image = value as unknown as File;
+export default async function AddEvent(
+  prevState: { success: boolean; message: string } | undefined,
+  formData: FormData,
+) {
+  const nama = formData.get("namaEvent")?.toString();
+  const tanggal = formData
+    .get("tanggalEvent")
+    ?.toString()
+    .split("-")
+    .reverse()
+    .join("-");
+  const desc = formData.get("desc")?.toString();
 
-  if (image.size !== 0) {
-    const imageBuffer = await image.arrayBuffer();
-    const buffer = Buffer.from(imageBuffer);
+  try {
+    const imageUrl = await UploadSingleImage(formData);
+    await sql`INSERT INTO events (nama, tanggal, deskripsi, foto) 
+    VALUES (${nama}, ${tanggal}, ${desc}, ${imageUrl})`;
 
-    const response = await imageKit.upload({
-      file: buffer,
-      fileName: image.name,
-    });
-    return response.url;
+    revalidatePath("/dashboard/events");
+    redirect("/dashboard/events");
+  } catch (err) {
+    return { success: false, message: "Something went wrong" };
   }
-  return null;
-}
-
-export async function UploadMultiImage(formData: FormData) {
-  const entries = Array.from(formData.entries());
-  const imageEntries = entries.filter(([key]) => key.startsWith("image-"));
-
-  const imageUrl = await Promise.all(
-    imageEntries.map(async ([key, value]) => {
-      const image = value as unknown as File;
-      const imageBuffer = await image.arrayBuffer();
-      const buffer = Buffer.from(imageBuffer);
-
-      const response = await imageKit.upload({
-        file: buffer,
-        fileName: image.name,
-      });
-      return response.url;
-    }),
-  );
-
-  return imageUrl;
 }

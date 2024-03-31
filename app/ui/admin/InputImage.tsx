@@ -21,7 +21,7 @@ export default function InputImage({ name }: { name: string }) {
   };
   return (
     <>
-      <div className="w-full max-w-sm rounded-md border border-gray-500 p-3 text-sm text-default-500">
+      <div className="w-full rounded-md border border-gray-500 p-3 text-sm text-default-500">
         <input
           type="file"
           className="block w-full"

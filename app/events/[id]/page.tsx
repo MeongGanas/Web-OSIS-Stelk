@@ -1,38 +1,33 @@
-import Carousel from "@/app/ui/event/carousel";
+import { getDetailEvent } from "@/app/lib/data";
 import { CalendarMonth } from "@mui/icons-material";
+import Image from "next/image";
 
-export default function EventDetail({ params }: { params: { id: number } }) {
-  const images = [
-    "/images/bukber.jpg",
-    "/images/bukber.jpg",
-    "/images/bukber.jpg",
-  ];
-
+export default async function EventDetail({
+  params,
+}: {
+  params: { id: number };
+}) {
+  const event = await getDetailEvent(params.id);
   return (
     <div className="container w-full max-w-screen-lg py-32">
-      <h1 className="text-center text-4xl font-bold text-primary">
-        Buka Bersama
+      <h1 className="mb-5 text-center text-4xl font-bold text-primary">
+        {event.nama}
       </h1>
       <div className="flex w-full justify-center px-5">
-        <Carousel images={images} />
+        <Image
+          src={event.foto}
+          alt="bukber"
+          width={600}
+          height={400}
+          className="rounded-md"
+        />
       </div>
       <div>
         <p className="mb-5 flex items-center gap-2">
           <CalendarMonth />
-          <span>23-03-2024</span>
+          <span>{event.tanggal}</span>
         </p>
-        <p className="mb-2 text-default-500">
-          OSIS SMK TELKOM Lorem ipsum dolor sit amet consectetur adipisicing
-          elit. Distinctio, veritatis veniam ipsam amet neque temporibus
-          aspernatur commodi delectus, debitis officiis repudiandae fuga,
-          molestias odio consequatur aliquam animi! Dolor, veniam iure.
-        </p>
-        <p className="mb-2 text-default-500">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa sed
-          eveniet perferendis nihil dignissimos dolorum recusandae vero expedita
-          sint mollitia hic amet repellat veniam placeat at suscipit
-          exercitationem, voluptate dolores?
-        </p>
+        <p className="mb-2 text-default-500">{event.deskripsi}</p>
       </div>
     </div>
   );

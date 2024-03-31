@@ -31,7 +31,7 @@ export function IntroForm({ prevImage }: { prevImage: string }) {
   return (
     <form
       action={dispatch}
-      className="h-fit w-full rounded-lg border border-gray-200 p-5 shadow"
+      className="mx-auto h-fit w-full max-w-screen-sm rounded-lg border border-gray-200 p-5 shadow"
     >
       <h1 className="mb-5 text-4xl">Edit Halaman Intro</h1>
 
@@ -74,7 +74,7 @@ export function AboutForm({ about }: { about: string }) {
     <form
       action={dispatch}
       method="POST"
-      className="h-fit w-full rounded-lg border border-gray-200 p-5 shadow"
+      className="mx-auto h-fit w-full max-w-screen-sm rounded-lg border border-gray-200 p-5 shadow"
     >
       <h1 className="text-4xl">Edit About</h1>
 
@@ -123,7 +123,7 @@ export function PesanKetosForm({ pesanketos }: { pesanketos: PesanKetos }) {
   return (
     <form
       action={dispatch}
-      className="h-fit w-full rounded-lg border border-gray-200 p-5 shadow"
+      className="mx-auto h-fit w-full max-w-screen-sm rounded-lg border border-gray-200 p-5 shadow"
     >
       <h1 className="text-4xl">Edit Halaman Sambutan Ketos</h1>
       <div className="my-5">
@@ -214,7 +214,7 @@ export function AddMisiForm() {
   return (
     <form
       action={disptach}
-      className="h-fit w-full rounded-lg border border-gray-200 p-5 shadow"
+      className="mx-auto h-fit w-full max-w-screen-sm rounded-lg border border-gray-200 p-5 shadow"
     >
       <h1 className="text-4xl">Tambah Misi OSIS</h1>
 
@@ -262,7 +262,7 @@ export function VisiForm({ visi }: { visi: string }) {
     <form
       action={dispatch}
       method="POST"
-      className="h-fit w-full rounded-lg border border-gray-200 p-5 shadow"
+      className="mx-auto h-fit w-full max-w-screen-sm rounded-lg border border-gray-200 p-5 shadow"
     >
       <h1 className="text-4xl">Edit Visi</h1>
 
@@ -311,7 +311,7 @@ export function MisiForm({ misi }: { misi: Array<Misi> }) {
     <form
       action={dispatch}
       method="POST"
-      className="h-fit w-full rounded-lg border border-gray-200 p-5 shadow"
+      className="mx-auto h-fit w-full max-w-screen-sm rounded-lg border border-gray-200 p-5 shadow"
     >
       <h1 className="text-4xl">Edit Misi</h1>
 

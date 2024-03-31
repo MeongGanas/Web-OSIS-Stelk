@@ -1,5 +1,5 @@
 import { sql } from "@vercel/postgres";
-import { Bidang, Misi, PesanKetos } from "./definitions";
+import { Bidang, Events, Misi, PesanKetos } from "./definitions";
 import { unstable_noStore as noStore } from "next/cache";
 
 export async function getAllBidang() {
@@ -66,5 +66,42 @@ export async function getIntroImage() {
   } catch (err) {
     console.log(err);
     throw new Error("failed fetch prev image");
+  }
+}
+
+export async function getAllEvents() {
+  noStore();
+
+  try {
+    const events = await sql<Events>`SELECT * FROM events`;
+    return events.rows;
+  } catch (err) {
+    console.log(err);
+    throw new Error("failed fetch events");
+  }
+}
+
+export async function get3Events() {
+  noStore();
+
+  try {
+    const events =
+      await sql<Events>`SELECT * FROM events ORDER BY id DESC LIMIT 3`;
+    return events.rows;
+  } catch (err) {
+    console.log(err);
+    throw new Error("failed fetch events");
+  }
+}
+
+export async function getDetailEvent(id: number) {
+  noStore();
+
+  try {
+    const events = await sql<Events>`SELECT * FROM events WHERE id=${id}`;
+    return events.rows[0];
+  } catch (err) {
+    console.log(err);
+    throw new Error("failed fetch events");
   }
 }

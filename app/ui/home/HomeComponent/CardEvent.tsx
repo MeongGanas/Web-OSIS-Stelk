@@ -2,11 +2,12 @@ import { CalendarMonth } from "@mui/icons-material";
 import { Card, CardBody, CardFooter, Image } from "@nextui-org/react";
 import Link from "next/link";
 import { CardRevealBottom } from "../../Reveal";
+import { Events } from "@/app/lib/definitions";
 
-export default function CardEvent() {
+export default function CardEvent({ data }: { data: Events }) {
   return (
     <CardRevealBottom>
-      <Card shadow="sm" isPressable className="w-full">
+      <Card shadow="sm" className="w-full">
         <CardBody className="overflow-visible p-0">
           <Image
             shadow="sm"
@@ -14,20 +15,20 @@ export default function CardEvent() {
             width="100%"
             alt="bukber"
             className="h-[200px] w-full object-cover"
-            src={"/images/bukber.jpg"}
+            src={`${data.foto}`}
           />
         </CardBody>
         <CardFooter className="text-small">
           <div className="w-full text-center">
-            <b className="mb-3 text-xl">Buka Bersama</b>
-            <p className="my-2 text-default-500">
-              Buka Puasa bersama kelas X dan forum orang tua murid.
-            </p>
-            <div className="mb-3 flex items-center justify-center gap-2 text-default-500">
+            <b className="mt-2 text-xl">{data.nama}</b>
+            <div className="my-3 flex items-center justify-center gap-2 text-default-500">
               <CalendarMonth />
-              <p>23-05-2024</p>
+              <p>{data.tanggal}</p>
             </div>
-            <Link href={"/events/1"} className="text-blue-700 underline">
+            <Link
+              href={`/events/${data.id}`}
+              className="text-blue-700 underline"
+            >
               Lihat Detail
             </Link>
           </div>
