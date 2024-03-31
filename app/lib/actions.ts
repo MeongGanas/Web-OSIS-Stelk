@@ -237,3 +237,16 @@ export async function EditEvent(
     return { success: false, message: "Something went wrong" };
   }
 }
+
+export async function DeleteEvent(id: number) {
+  try {
+    await sql`DELETE FROM events WHERE id=${id}`;
+
+    revalidatePath("/dashboard/events");
+
+    return { success: true, message: "Event deleted successfully." };
+  } catch (err) {
+    console.log(err);
+    return { success: false, message: "Something went wrong" };
+  }
+}

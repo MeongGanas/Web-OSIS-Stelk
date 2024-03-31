@@ -10,15 +10,15 @@ export default function CardEvent({ data }: { data: Events }) {
       <Card shadow="sm" className="w-full">
         <CardBody className="overflow-visible p-0">
           <Image
-            shadow="sm"
+            shadow="none"
             radius="none"
             width="100%"
             alt="bukber"
-            className="h-[200px] w-full object-cover"
+            className="h-[200px] w-full object-center"
             src={`${data.foto}`}
           />
         </CardBody>
-        <CardFooter className="text-small">
+        <CardFooter className="border-t border-t-gray-300 text-small">
           <div className="w-full text-center">
             <b className="mt-2 text-xl">{data.nama}</b>
             <div className="my-3 flex items-center justify-center gap-2 text-default-500">

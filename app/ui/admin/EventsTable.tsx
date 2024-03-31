@@ -9,6 +9,8 @@ import {
 } from "@nextui-org/table";
 import { Events } from "@/app/lib/definitions";
 import Link from "next/link";
+import { Button } from "@nextui-org/react";
+import { DeleteEvent } from "@/app/lib/actions";
 
 export default function EventsTable({ events }: { events: Array<Events> }) {
   return (
@@ -18,7 +20,7 @@ export default function EventsTable({ events }: { events: Array<Events> }) {
         <TableColumn className="text-center">Tanggal</TableColumn>
         <TableColumn className="text-center">Deskripsi</TableColumn>
         <TableColumn className="text-center">Foto</TableColumn>
-        <TableColumn className="text-center">Edit</TableColumn>
+        <TableColumn className="text-center">Actions</TableColumn>
       </TableHeader>
       <TableBody>
         {events &&
@@ -30,19 +32,28 @@ export default function EventsTable({ events }: { events: Array<Events> }) {
               <TableCell className="min-w-40 text-center">
                 {event.tanggal.split("-").reverse().join("-")}
               </TableCell>
-              <TableCell className="min-w-96">{event.deskripsi}</TableCell>
+              <TableCell className="min-w-96 text-center">
+                {event.deskripsi}
+              </TableCell>
               <TableCell className="min-w-40 text-center">
                 <Link href={event.foto} className="text-blue-600 underline">
                   foto
                 </Link>
               </TableCell>
               <TableCell className="min-w-40 text-center">
-                <Link
+                <Button
+                  as={Link}
                   href={`/dashboard/events/${event.id}`}
-                  className="text-blue-600 underline"
+                  className="bg-transparent text-blue-700 underline"
                 >
                   Edit
-                </Link>
+                </Button>
+                <Button
+                  className="bg-transparent text-red-700 underline"
+                  onClick={() => DeleteEvent(event.id)}
+                >
+                  Delete
+                </Button>
               </TableCell>
             </TableRow>
           ))}

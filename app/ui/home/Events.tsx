@@ -16,7 +16,7 @@ export default async function Events() {
           </p>
         </CardRevealTop>
       </div>
-      <div className="mt-5 grid w-fit grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-5 grid w-full grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
         {events &&
           events.map((event) => <CardEvent key={event.id} data={event} />)}
       </div>

@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { CardRevealBottom } from "../../Reveal";
 
 export default function CardBidang({
   url,
@@ -22,7 +21,7 @@ export default function CardBidang({
         src={url}
         alt={name}
         width={200}
-        height={200}
+        height={150}
         quality={1}
         className="h-full w-full"
       />
