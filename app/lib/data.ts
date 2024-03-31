@@ -23,7 +23,7 @@ export async function getDetailBidang(id: String) {
     return data.rows[0];
   } catch (err) {
     console.log(err);
-    throw new Error("failed fetch bidang");
+    throw new Error("failed fetch detail bidang");
   }
 }
 
@@ -53,6 +53,18 @@ export async function getPesanKetos() {
     return pesan.rows[0];
   } catch (err) {
     console.log(err);
-    throw new Error("failed fetch about");
+    throw new Error("failed fetch pesan ketos");
+  }
+}
+
+export async function getIntroImage() {
+  noStore();
+
+  try {
+    const introImage = await sql`SELECT * FROM intropage`;
+    return introImage.rows[0];
+  } catch (err) {
+    console.log(err);
+    throw new Error("failed fetch prev image");
   }
 }

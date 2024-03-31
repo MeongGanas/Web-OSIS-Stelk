@@ -1,11 +1,16 @@
 module.exports = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "ik.imagekit.io",
+        port: "",
+        pathname: "/**",
+      },
+    ],
+  },
   async redirects() {
     return [
-      {
-        source: "/pengurus/",
-        destination: "/pengurus/inti",
-        permanent: false,
-      },
       {
         source: "/pengurus/bidang",
         destination: "/pengurus/bidang/1",

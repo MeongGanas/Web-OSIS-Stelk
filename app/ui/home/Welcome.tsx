@@ -1,8 +1,10 @@
 import { ContainerReveal } from "@/app/ui/Reveal";
 import Image from "next/image";
 import { raleway } from "../fonts";
+import { getIntroImage } from "@/app/lib/data";
 
 export default async function WelcomePage() {
+  const { image } = await getIntroImage();
   return (
     <div className="relative min-h-screen">
       <ContainerReveal>
@@ -23,7 +25,7 @@ export default async function WelcomePage() {
         </div>
       </ContainerReveal>
       <Image
-        src="/images/introOsis.png"
+        src={image}
         alt="intro"
         className="absolute bottom-10 right-1/2 -z-10 translate-x-1/2 md:bottom-20 lg:bottom-0 xl:bottom-16 xl:right-16 xl:translate-x-16"
         width={600}

@@ -11,6 +11,8 @@ const bcrypt = require("bcrypt");
 
 async function seedBidang(client) {
   try {
+    await client.sql`DROP TABLE IF EXISTS bidangs`;
+
     const createTable = await client.sql`
         CREATE TABLE IF NOT EXISTS bidangs (
         id INT PRIMARY KEY,
@@ -44,6 +46,8 @@ async function seedBidang(client) {
 
 async function seedVisi(client) {
   try {
+    await client.sql`DROP TABLE IF EXISTS visiosis`;
+
     const createTable = await client.sql`
         CREATE TABLE IF NOT EXISTS VisiOSIS (
         id SERIAL PRIMARY KEY,
@@ -73,6 +77,8 @@ async function seedVisi(client) {
 
 async function seedMisi(client) {
   try {
+    await client.sql`DROP TABLE IF EXISTS misiosis`;
+
     const createTable = await client.sql`
         CREATE TABLE IF NOT EXISTS MisiOSIS (
         id SERIAL PRIMARY KEY,
@@ -106,6 +112,8 @@ async function seedMisi(client) {
 
 async function seedAbout(client) {
   try {
+    await client.sql`DROP TABLE IF EXISTS aboutosis`;
+
     const createTable = await client.sql`
         CREATE TABLE IF NOT EXISTS aboutosis (
         id SERIAL PRIMARY KEY,
@@ -135,12 +143,15 @@ async function seedAbout(client) {
 
 async function seedPesan(client) {
   try {
+    await client.sql`DROP TABLE IF EXISTS pesanketos`;
+
     const createTable = await client.sql`
         CREATE TABLE IF NOT EXISTS pesanketos (
         id SERIAL PRIMARY KEY,
         nama VARCHAR(255) NOT NULL,
         periode VARCHAR(255) NOT NULL,
-        pesan TEXT NOT NULL
+        pesan TEXT NOT NULL,
+        image TEXT
         );
     `;
 
@@ -166,6 +177,8 @@ async function seedPesan(client) {
 
 async function seedAdmin(client) {
   try {
+    await client.sql`DROP TABLE IF EXISTS admins`;
+
     const createTable = await client.sql`
         CREATE TABLE IF NOT EXISTS admins (
         id SERIAL PRIMARY KEY,
@@ -203,11 +216,11 @@ async function seedAdmin(client) {
 async function main() {
   const client = await db.connect();
 
-  // await seedBidang(client);
-  // await seedVisi(client);
-  // await seedMisi(client);
-  // await seedAbout(client);
-  // await seedAdmin(client);
+  await seedBidang(client);
+  await seedVisi(client);
+  await seedMisi(client);
+  await seedAbout(client);
+  await seedAdmin(client);
   await seedPesan(client);
 
   await client.end();

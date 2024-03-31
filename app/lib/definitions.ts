@@ -37,4 +37,5 @@ export type PesanKetos = {
   nama: string;
   pesan: string;
   periode: string;
+  image: string | null;
 };

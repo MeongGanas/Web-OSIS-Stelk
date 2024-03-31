@@ -29,15 +29,15 @@ export function EditEventForm() {
         </div>
 
         <div className="mb-4 w-full">
-          <label htmlFor="fotoEvent" className="mb-2 block">
+          <label htmlFor="image" className="mb-2 block">
             Foto Event
           </label>
           <div className="w-full rounded-md border border-gray-500 p-3 text-sm text-default-500">
             <input
               type="file"
               className="block w-full"
-              id="fotoEvent"
-              name="fotoEvent"
+              id="image"
+              name="image"
             />
           </div>
         </div>
@@ -65,15 +65,15 @@ export function AddEventForm() {
           />
         </div>
         <div className="mb-4 w-full">
-          <label htmlFor="fotoEvent" className="mb-2 block">
+          <label htmlFor="image" className="mb-2 block">
             Foto Event
           </label>
           <div className="w-full max-w-sm rounded-md border border-gray-500 p-3 text-sm text-default-500">
             <input
               type="file"
               className="block w-full"
-              id="fotoEvent"
-              name="fotoEvent"
+              id="image"
+              name="image"
             />
           </div>
         </div>

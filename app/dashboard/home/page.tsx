@@ -1,4 +1,4 @@
-import { getAbout, getPesanKetos } from "@/app/lib/data";
+import { getAbout, getIntroImage, getPesanKetos } from "@/app/lib/data";
 import {
   AboutForm,
   AddMisiForm,
@@ -11,15 +11,16 @@ import {
 export default async function Dashboard() {
   const { about, visi, misi } = await getAbout();
   const pesanketos = await getPesanKetos();
+  const { image } = await getIntroImage();
 
   return (
-    <div className="container grid grid-cols-1 gap-5 pb-20 pt-32 md:grid-cols-2">
-      <IntroForm />
-      <PesanKetosForm pesanketos={pesanketos} />
+    <div className="container grid grid-cols-1 gap-5 pb-20 pt-32">
+      <IntroForm prevImage={image} />
       <AboutForm about={about} />
       <VisiForm visi={visi} />
       <MisiForm misi={misi} />
       <AddMisiForm />
+      <PesanKetosForm pesanketos={pesanketos} />
     </div>
   );
 }

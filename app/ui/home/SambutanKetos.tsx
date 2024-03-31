@@ -10,7 +10,7 @@ export default async function SambutanKetos() {
         <div className="flex flex-wrap items-center">
           <div className="order-2 flex w-full justify-center md:order-1 md:w-1/2">
             <Image
-              src="/images/sambutanketos.png"
+              src={`${pesanketos.image}`}
               className="max-w-full"
               height={500}
               width={500}

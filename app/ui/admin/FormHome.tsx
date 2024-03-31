@@ -2,56 +2,56 @@
 import {
   AddMisi,
   EditAbout,
+  EditIntro,
   EditMisi,
   EditPesanKetos,
   EditVisi,
 } from "@/app/lib/actions";
 import { Misi, PesanKetos } from "@/app/lib/definitions";
 import { Button } from "@nextui-org/react";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useFormState } from "react-dom";
+import InputImage from "./InputImage";
+import Image from "next/image";
 
-export function IntroForm() {
+export function IntroForm({ prevImage }: { prevImage: string }) {
+  const [formState, dispatch] = useFormState(EditIntro, undefined);
+  const [showMessage, setShowMessage] = useState(false);
+
+  useEffect(() => {
+    if (formState && (formState.success || !formState.success)) {
+      setShowMessage(true);
+      const timer = setTimeout(() => {
+        setShowMessage(false);
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [formState]);
+
   return (
     <form
-      action=""
+      action={dispatch}
       className="h-fit w-full rounded-lg border border-gray-200 p-5 shadow"
     >
-      <h1 className="text-4xl">Edit Halaman Intro</h1>
+      <h1 className="mb-5 text-4xl">Edit Halaman Intro</h1>
+
+      <h3>Previous Image</h3>
+      <Image src={prevImage} width={200} height={200} alt="previmg" />
+
       <div className="my-5 w-full items-center justify-center" id="input-image">
-        <label
-          htmlFor="dropzone-file"
-          className="dark:hover:bg-bray-800 flex w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100"
-        >
-          <div className="flex flex-col items-center justify-center pb-6 pt-5">
-            <svg
-              className="mb-4 h-8 w-8 text-gray-500 dark:text-gray-400"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 20 16"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
-              />
-            </svg>
-            <Image
-              src="/images/introOsis.png"
-              alt="intro"
-              className="object-cover"
-              width={300}
-              height={300}
-            />
-          </div>
-          <input id="dropzone-file" type="file" className="hidden" />
+        <label htmlFor="image-intro" className="mb-2 block">
+          Foto Halaman Intro
         </label>
+        <InputImage name="image-intro" />
       </div>
       <Button type="submit">Submit</Button>
+
+      {showMessage && formState && formState.success && (
+        <p className="mt-5 text-green-500">{formState.message}</p>
+      )}
+      {showMessage && formState && !formState.success && (
+        <p className="mt-5 text-red-700">{formState.message}</p>
+      )}
     </form>
   );
 }
@@ -128,7 +128,7 @@ export function PesanKetosForm({ pesanketos }: { pesanketos: PesanKetos }) {
       <h1 className="text-4xl">Edit Halaman Sambutan Ketos</h1>
       <div className="my-5">
         <div className="mb-2">
-          <label htmlFor="pesan" className="mb-2">
+          <label htmlFor="pesan" className="mb-2 block">
             Sambutan Ketos
           </label>
           <textarea
@@ -142,7 +142,7 @@ export function PesanKetosForm({ pesanketos }: { pesanketos: PesanKetos }) {
         </div>
 
         <div className="mb-2">
-          <label htmlFor="nama" className="mb-2">
+          <label htmlFor="nama" className="mb-2 block">
             Nama Ketos
           </label>
           <input
@@ -155,7 +155,7 @@ export function PesanKetosForm({ pesanketos }: { pesanketos: PesanKetos }) {
         </div>
 
         <div className="mb-2">
-          <label htmlFor="periode" className="mb-2">
+          <label htmlFor="periode" className="mb-2 block">
             Periode
           </label>
           <input
@@ -165,6 +165,24 @@ export function PesanKetosForm({ pesanketos }: { pesanketos: PesanKetos }) {
             name="periode"
             className="mb-3 w-full text-wrap rounded-md border border-gray-500 p-3 text-default-500"
           />
+        </div>
+        <h3>Previous Image</h3>
+        {pesanketos.image && (
+          <Image
+            src={pesanketos.image}
+            width={200}
+            height={200}
+            alt="previmg"
+          />
+        )}
+        <div
+          className="my-5 w-full items-center justify-center"
+          id="input-image"
+        >
+          <label htmlFor="image-sambutan" className="mb-2 block">
+            Foto Sambutan Ketos
+          </label>
+          <InputImage name="image-sambutan" />
         </div>
       </div>
       <Button type="submit">Submit</Button>
