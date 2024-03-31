@@ -23,7 +23,7 @@ export default function CardEvent({ data }: { data: Events }) {
             <b className="mt-2 text-xl">{data.nama}</b>
             <div className="my-3 flex items-center justify-center gap-2 text-default-500">
               <CalendarMonth />
-              <p>{data.tanggal}</p>
+              <p>{data.tanggal.split("-").reverse().join("-")}</p>
             </div>
             <Link
               href={`/events/${data.id}`}

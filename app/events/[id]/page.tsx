@@ -25,7 +25,7 @@ export default async function EventDetail({
       <div>
         <p className="mb-5 flex items-center gap-2">
           <CalendarMonth />
-          <span>{event.tanggal}</span>
+          <span>{event.tanggal.split("-").reverse().join("-")}</span>
         </p>
         <p className="mb-2 text-default-500">{event.deskripsi}</p>
       </div>

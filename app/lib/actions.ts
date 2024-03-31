@@ -5,7 +5,6 @@ import { signIn, signOut } from "@/auth";
 import { sql } from "@vercel/postgres";
 import { revalidatePath } from "next/cache";
 import ImageKit from "imagekit";
-import { redirect } from "next/navigation";
 
 const imageKit = new ImageKit({
   publicKey: process.env.IMAGEKIT_PUBLIC_KEY!,
@@ -190,17 +189,12 @@ export async function EditIntro(
   }
 }
 
-export default async function AddEvent(
+export async function AddEvent(
   prevState: { success: boolean; message: string } | undefined,
   formData: FormData,
 ) {
   const nama = formData.get("namaEvent")?.toString();
-  const tanggal = formData
-    .get("tanggalEvent")
-    ?.toString()
-    .split("-")
-    .reverse()
-    .join("-");
+  const tanggal = formData.get("tanggalEvent")?.toString();
   const desc = formData.get("desc")?.toString();
 
   try {
@@ -209,8 +203,37 @@ export default async function AddEvent(
     VALUES (${nama}, ${tanggal}, ${desc}, ${imageUrl})`;
 
     revalidatePath("/dashboard/events");
-    redirect("/dashboard/events");
+
+    return { success: true, message: "Event added successfully." };
   } catch (err) {
+    console.log(err);
+    return { success: false, message: "Something went wrong." };
+  }
+}
+
+export async function EditEvent(
+  prevState: { success: boolean; message: string } | undefined,
+  formData: FormData,
+) {
+  const id = formData.get("id")?.toString();
+  const nama = formData.get("namaEvent")?.toString();
+  const tanggal = formData.get("tanggalEvent")?.toString();
+  const desc = formData.get("desc")?.toString();
+
+  try {
+    const imageUrl = await UploadSingleImage(formData);
+
+    if (imageUrl) {
+      await sql`UPDATE events SET nama=${nama}, tanggal=${tanggal}, deskripsi=${desc}, foto=${imageUrl} WHERE id=${id}`;
+    } else {
+      await sql`UPDATE events SET nama=${nama}, tanggal=${tanggal}, deskripsi=${desc} WHERE id=${id}`;
+    }
+
+    revalidatePath("/dashboard/events");
+
+    return { success: true, message: "Event edited successfully." };
+  } catch (err) {
+    console.log(err);
     return { success: false, message: "Something went wrong" };
   }
 }
