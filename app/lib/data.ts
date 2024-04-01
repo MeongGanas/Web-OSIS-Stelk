@@ -1,5 +1,5 @@
 import { sql } from "@vercel/postgres";
-import { Bidang, Events, Misi, PesanKetos } from "./definitions";
+import { Anggota, Bidang, Events, Misi, PesanKetos } from "./definitions";
 import { unstable_noStore as noStore } from "next/cache";
 
 export async function getAllBidang() {
@@ -14,7 +14,7 @@ export async function getAllBidang() {
   }
 }
 
-export async function getDetailBidang(id: String) {
+export async function getDetailBidang(id: string) {
   noStore();
 
   try {
@@ -94,7 +94,7 @@ export async function get3Events() {
   }
 }
 
-export async function getDetailEvent(id: number) {
+export async function getDetailEvent(id: string) {
   noStore();
 
   try {
@@ -103,5 +103,18 @@ export async function getDetailEvent(id: number) {
   } catch (err) {
     console.log(err);
     throw new Error("failed fetch events");
+  }
+}
+
+export async function getAllAnggota(id: string) {
+  noStore();
+
+  try {
+    const anggotas =
+      await sql<Anggota>`SELECT * FROM anggotas WHERE idBidang=${id}`;
+    return anggotas.rows;
+  } catch (err) {
+    console.log(err);
+    throw new Error("failed fetch anggota");
   }
 }

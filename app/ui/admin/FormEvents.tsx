@@ -36,6 +36,7 @@ export function EditEventForm({ data }: { data: Events }) {
             type="text"
             id="namaEvent"
             name="namaEvent"
+            required
             defaultValue={data.nama}
             className="block w-full rounded-md border border-gray-500 p-3 text-sm text-default-500"
           />
@@ -48,6 +49,7 @@ export function EditEventForm({ data }: { data: Events }) {
           <input
             type="date"
             id="tanggalEvent"
+            required
             name="tanggalEvent"
             defaultValue={data.tanggal}
             className="block w-full rounded-md border border-gray-500 p-3 text-sm text-default-500"
@@ -61,6 +63,7 @@ export function EditEventForm({ data }: { data: Events }) {
           <textarea
             id="desc"
             name="desc"
+            required
             rows={5}
             defaultValue={data.deskripsi}
             className="block w-full rounded-md border border-gray-500 p-3 text-sm text-default-500"
@@ -68,8 +71,8 @@ export function EditEventForm({ data }: { data: Events }) {
         </div>
 
         <div className="mb-4">
-          <h3 className="mb-2">Prev Image</h3>
-          <Image src={data.foto} width={300} height={300} alt="prev image" />
+          <h3 className="mb-2">Current Image</h3>
+          <Image src={data.foto} width={300} height={300} alt="Current image" />
         </div>
 
         <div className="mb-4 w-full">
@@ -119,6 +122,7 @@ export function AddEventForm() {
             type="text"
             id="namaEvent"
             name="namaEvent"
+            required
             className="block w-full rounded-md border border-gray-500 p-3 text-sm text-default-500"
           />
         </div>
@@ -130,6 +134,7 @@ export function AddEventForm() {
           <input
             type="date"
             id="tanggalEvent"
+            required
             name="tanggalEvent"
             className="block w-full rounded-md border border-gray-500 p-3 text-sm text-default-500"
           />
@@ -143,6 +148,7 @@ export function AddEventForm() {
             id="desc"
             name="desc"
             rows={5}
+            required
             className="block w-full rounded-md border border-gray-500 p-3 text-sm text-default-500"
           ></textarea>
         </div>

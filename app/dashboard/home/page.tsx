@@ -15,7 +15,7 @@ export default async function Dashboard() {
 
   return (
     <div className="container grid grid-cols-1 gap-5 pb-20 pt-32">
-      <IntroForm prevImage={image} />
+      <IntroForm currentImage={image} />
       <AboutForm about={about} />
       <VisiForm visi={visi} />
       <MisiForm misi={misi} />

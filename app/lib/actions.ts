@@ -250,3 +250,39 @@ export async function DeleteEvent(id: number) {
     return { success: false, message: "Something went wrong" };
   }
 }
+
+export async function AddAnggota(
+  prevState: { success: boolean; message: string } | undefined,
+  formData: FormData,
+) {
+  const idBidang = formData.get("id")?.toString();
+  const nama = formData.get("nama")?.toString();
+  const jabatan = formData.get("jabatan")?.toString();
+
+  try {
+    const imageUrl = await UploadSingleImage(formData);
+
+    await sql`INSERT INTO anggotas (nama, image, jabatan, idBidang)
+    VALUES (${nama}, ${imageUrl}, ${jabatan}, ${idBidang})`;
+
+    revalidatePath(`/dashboard/pengurus/bidang/${idBidang}`);
+
+    return { success: true, message: "Anggota added successfully." };
+  } catch (err) {
+    console.log(err);
+    return { success: false, message: "Something went wrong" };
+  }
+}
+
+export async function DeleteAnggota(id: number, idBidang: number) {
+  try {
+    await sql`DELETE FROM anggotas WHERE id=${id}`;
+
+    revalidatePath(`/dashboard/pengurus/bidang/${idBidang}`);
+
+    return { success: true, message: "Anggota deleted successfully." };
+  } catch (err) {
+    console.log(err);
+    return { success: false, message: "Something went wrong" };
+  }
+}

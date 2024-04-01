@@ -1,4 +1,13 @@
-import { Button } from "@nextui-org/react";
+"use client";
+
+import { Anggota } from "@/app/lib/definitions";
+import { Button, Select, SelectItem } from "@nextui-org/react";
+import InputImage from "./InputImage";
+import { useFormState } from "react-dom";
+import { AddAnggota } from "@/app/lib/actions";
+import { useEffect, useState } from "react";
+import { redirect } from "next/navigation";
+import { jabatanBidang } from "@/app/lib/placeholder-data";
 
 export function EditBidangForm({
   params,
@@ -25,6 +34,7 @@ export function EditBidangForm({
                 id="nama"
                 name="nama"
                 defaultValue={detail.nama}
+                required
                 className="block w-full rounded-md border border-gray-500 p-3 text-sm uppercase text-default-500"
               />
             </div>
@@ -37,6 +47,7 @@ export function EditBidangForm({
                 name="tugas"
                 rows={2}
                 defaultValue={detail.nama}
+                required
                 className="block w-full rounded-md border border-gray-500 p-3 text-sm text-default-500"
               ></textarea>
             </div>
@@ -47,27 +58,13 @@ export function EditBidangForm({
               <label htmlFor="card" className="mb-2 block">
                 Foto Card Bidang {params.id}
               </label>
-              <div className="w-full rounded-md border border-gray-500 p-3 text-sm text-default-500">
-                <input
-                  type="file"
-                  className="block w-full"
-                  id="card"
-                  name="card"
-                />
-              </div>
+              <InputImage name="card" />
             </div>
             <div>
               <label htmlFor="intro" className="mb-2 block">
                 Foto Intro Bidang {params.id}
               </label>
-              <div className="w-full rounded-md border border-gray-500 p-3 text-sm text-default-500">
-                <input
-                  type="file"
-                  className="block w-full"
-                  id="intro"
-                  name="intro"
-                />
-              </div>
+              <InputImage name="intro" />
             </div>
           </div>
         </div>
@@ -78,71 +75,43 @@ export function EditBidangForm({
   );
 }
 
-export function EditAnggotaForm({
-  params,
-  detail,
-}: {
-  params: { id: string };
-  detail: { nama: string };
-}) {
+export function EditAnggotaForm({ data }: { data: Anggota }) {
   return (
     <div className="w-full rounded-lg border border-gray-200 p-5 shadow">
-      <h1 className="mb-5 text-4xl">Anggota Bidang {params.id}</h1>
+      <h1 className="mb-5 text-4xl">Edit Anggota</h1>
 
       <form action={""}>
         <div className="mb-4 grid w-full grid-cols-2 gap-5" id="koor">
           <div className="mb-2">
             <label htmlFor="namaKoor" className="mb-2 block">
-              Nama Koordinator
+              Nama Anggota
             </label>
             <input
               type="text"
               id="namaKoor"
               name="namaKoor"
-              defaultValue={detail.nama}
+              required
               className="block w-full rounded-md border border-gray-500 p-3 text-sm uppercase text-default-500"
             />
           </div>
-          <div>
-            <label htmlFor="fotoKoor" className="mb-2 block">
-              Foto Koordinator
-            </label>
-            <div className="w-full rounded-md border border-gray-500 p-3 text-sm text-default-500">
-              <input
-                type="file"
-                className="block w-full"
-                id="fotoKoor"
-                name="fotoKoor"
-              />
-            </div>
-          </div>
-        </div>
-
-        <div className="mb-4 grid w-full grid-cols-2 gap-5" id="anggota">
-          <div>
-            <label htmlFor="namaAnggota" className="mb-2 block">
-              Nama Anggota
+          <div className="mb-2">
+            <label htmlFor="jabatan" className="mb-2 block">
+              Jabatan Anggota
             </label>
             <input
               type="text"
-              id="namaAnggota"
-              name="namaAnggota"
-              defaultValue={detail.nama}
+              id="jabatan"
+              name="jabatan"
+              // defaultValue={}
+              required
               className="block w-full rounded-md border border-gray-500 p-3 text-sm uppercase text-default-500"
             />
           </div>
           <div>
-            <label htmlFor="fotoAnggota1" className="mb-2 block">
+            <label htmlFor="image-anggota" className="mb-2 block">
               Foto Anggota
             </label>
-            <div className="w-full rounded-md border border-gray-500 p-3 text-sm text-default-500">
-              <input
-                type="file"
-                className="block w-full"
-                id="fotoAnggota1"
-                name="fotoAnggota1"
-              />
-            </div>
+            <InputImage name="image-anggota" />
           </div>
         </div>
         <Button type="submit">Submit</Button>
@@ -151,37 +120,70 @@ export function EditAnggotaForm({
   );
 }
 
-export function AddAnggotaForm({ params }: { params: { id: string } }) {
+export function AddAnggotaForm({ id }: { id: string }) {
+  const [formState, dispatch] = useFormState(AddAnggota, undefined);
+  const [showMessage, setShowMessage] = useState(false);
+
+  useEffect(() => {
+    if (formState && formState.success) {
+      redirect(`/dashboard/pengurus/bidang/${id}`);
+    } else if (formState && !formState.success) {
+      setShowMessage(true);
+      const timer = setTimeout(() => {
+        setShowMessage(false);
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [formState]);
+
   return (
-    <div className="w-full rounded-lg border border-gray-200 p-5 shadow">
-      <h1 className="mb-5 text-4xl">Tambah Anggota Bidang {params.id}</h1>
-      <form action="">
+    <div className="mx-auto w-full max-w-screen-sm rounded-lg border border-gray-200 p-5 shadow">
+      <h1 className="mb-5 text-4xl">Tambah Anggota Bidang {id}</h1>
+      <form action={dispatch}>
         <div className="mb-4 w-full">
-          <label htmlFor="anggotaBaru" className="mb-2 block">
+          <label htmlFor="nama" className="mb-2 block">
             Nama Anggota
           </label>
           <input
             type="text"
-            id="anggotaBaru"
-            name="anggotaBaru"
-            className="block w-full max-w-sm rounded-md border border-gray-500 p-3 text-sm text-default-500"
+            id="nama"
+            name="nama"
+            required
+            className="block w-full rounded-md border border-gray-500 p-3 text-sm text-default-500"
           />
         </div>
         <div className="mb-4 w-full">
-          <label htmlFor="fotoAnggota" className="mb-2 block">
+          <label htmlFor="jabatan" className="mb-2 block">
+            Jabatan Anggota
+          </label>
+          <Select
+            label="Pilih Jabatan"
+            radius="sm"
+            className="w-full rounded-md border border-gray-500"
+            name="jabatan"
+            id="jabatan"
+          >
+            {jabatanBidang.map((jabatan) => (
+              <SelectItem key={jabatan} value={jabatan}>
+                {jabatan}
+              </SelectItem>
+            ))}
+          </Select>
+        </div>
+        <div className="mb-4 w-full">
+          <label htmlFor="image-anggota" className="mb-2 block">
             Foto Anggota
           </label>
-          <div className="w-full max-w-sm rounded-md border border-gray-500 p-3 text-sm text-default-500">
-            <input
-              type="file"
-              className="block w-full"
-              id="fotoAnggota"
-              name="fotoAnggota"
-            />
-          </div>
+          <InputImage name="image-anggota" />
         </div>
 
-        <Button type="submit">Submit</Button>
+        <Button type="submit" name="id" value={id}>
+          Submit
+        </Button>
+
+        {showMessage && formState && !formState.success && (
+          <p className="mt-5 text-red-700">{formState.message}</p>
+        )}
       </form>
     </div>
   );

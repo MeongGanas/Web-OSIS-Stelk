@@ -32,6 +32,7 @@ export default function InputImage({ name }: { name: string }) {
       </div>
       {previewUrl && (
         <div className="mt-4">
+          <h1>Image Preview</h1>
           <Image
             src={`${previewUrl}`}
             alt="Image Preview"

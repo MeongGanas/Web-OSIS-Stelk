@@ -63,6 +63,26 @@ const PesanKetos = {
   periode: "2024/2025",
 };
 
+const jabatanBidang = ["Koordinator", "Anggota"];
+const jabatanInti = [
+  "Ketua OSIS",
+  "Wakil Ketua OSIS 1",
+  "Wakil Ketua OSIS 2",
+  "Sekretaris",
+  "Wakil Sekretaris",
+  "Bendahara",
+  "Wakil Bendahara",
+];
+
 const admins = [{ nama: "Farrel", email: "farrel@gmail.com", password: "123" }];
 
-module.exports = { bidangs, about, visi, misi, admins, PesanKetos };
+module.exports = {
+  bidangs,
+  about,
+  visi,
+  misi,
+  admins,
+  PesanKetos,
+  jabatanBidang,
+  jabatanInti,
+};

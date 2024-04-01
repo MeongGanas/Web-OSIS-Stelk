@@ -14,7 +14,7 @@ import { useFormState } from "react-dom";
 import InputImage from "./InputImage";
 import Image from "next/image";
 
-export function IntroForm({ prevImage }: { prevImage: string }) {
+export function IntroForm({ currentImage }: { currentImage: string }) {
   const [formState, dispatch] = useFormState(EditIntro, undefined);
   const [showMessage, setShowMessage] = useState(false);
 
@@ -35,8 +35,8 @@ export function IntroForm({ prevImage }: { prevImage: string }) {
     >
       <h1 className="mb-5 text-4xl">Edit Halaman Intro</h1>
 
-      <h3>Previous Image</h3>
-      <Image src={prevImage} width={200} height={200} alt="previmg" />
+      <h3>Current Image</h3>
+      <Image src={currentImage} width={200} height={200} alt="currentimg" />
 
       <div className="my-5 w-full items-center justify-center" id="input-image">
         <label htmlFor="image-intro" className="mb-2 block">
@@ -88,6 +88,7 @@ export function AboutForm({ about }: { about: string }) {
             name="about"
             defaultValue={about}
             id="about"
+            required
             cols={30}
             rows={4}
           ></textarea>
@@ -133,6 +134,7 @@ export function PesanKetosForm({ pesanketos }: { pesanketos: PesanKetos }) {
           </label>
           <textarea
             name="pesan"
+            required
             id="pesan"
             defaultValue={pesanketos.pesan}
             cols={30}
@@ -146,6 +148,7 @@ export function PesanKetosForm({ pesanketos }: { pesanketos: PesanKetos }) {
             Nama Ketos
           </label>
           <input
+            required
             type="text"
             id="nama"
             name="nama"
@@ -162,17 +165,18 @@ export function PesanKetosForm({ pesanketos }: { pesanketos: PesanKetos }) {
             type="text"
             defaultValue={pesanketos.periode}
             id="periode"
+            required
             name="periode"
             className="mb-3 w-full text-wrap rounded-md border border-gray-500 p-3 text-default-500"
           />
         </div>
-        <h3>Previous Image</h3>
+        <h3>Current Image</h3>
         {pesanketos.image && (
           <Image
             src={pesanketos.image}
             width={200}
             height={200}
-            alt="previmg"
+            alt="currentimg"
           />
         )}
         <div
@@ -227,6 +231,7 @@ export function AddMisiForm() {
             className="block w-full rounded-md border border-gray-500 p-3 text-sm text-default-500"
             name="misiBaru"
             id="misiBaru"
+            required
             cols={30}
             rows={4}
           ></textarea>
@@ -275,6 +280,7 @@ export function VisiForm({ visi }: { visi: string }) {
             className="block w-full rounded-md border border-gray-500 p-3 text-sm text-default-500"
             name="visi"
             id="visi"
+            required
             defaultValue={visi}
             cols={30}
             rows={8}

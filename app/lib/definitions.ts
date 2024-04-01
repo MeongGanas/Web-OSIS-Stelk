@@ -1,14 +1,15 @@
-type Anggota = {
+export type Anggota = {
+  id: number;
+  idBidang: number;
   nama: string;
   image: string;
-  profesi?: string;
+  jabatan: string;
 };
 
 export type Bidang = {
   id: number;
   nama: string;
   periode: string;
-  anggota: Array<Anggota>;
   tugas: string;
   image: string;
 };
