@@ -274,6 +274,33 @@ export async function AddAnggota(
   }
 }
 
+export async function EditAnggota(
+  prevState: { success: boolean; message: string } | undefined,
+  formData: FormData,
+) {
+  const [id, idbidang] = formData.get("id")?.toString()?.split("-") ?? [];
+  const nama = formData.get("nama")?.toString();
+  const jabatanIndex = formData.get("jabatan")?.toString();
+  const jabatan = jabatanIndex === "0" ? "Koordinator" : "Anggota";
+
+  try {
+    const imageUrl = await UploadSingleImage(formData);
+
+    if (imageUrl) {
+      await sql`UPDATE anggotas SET nama=${nama}, jabatan=${jabatan}, image=${imageUrl} WHERE id=${id}`;
+    } else {
+      await sql`UPDATE anggotas SET nama=${nama}, jabatan=${jabatan} WHERE id=${id}`;
+    }
+
+    revalidatePath(`/dashboard/pengurus/bidang/${idbidang}`);
+
+    return { success: true, message: "Anggota edited successfully." };
+  } catch (err) {
+    console.log(err);
+    return { success: false, message: "Something went wrong" };
+  }
+}
+
 export async function DeleteAnggota(id: number, idBidang: number) {
   try {
     await sql`DELETE FROM anggotas WHERE id=${id}`;

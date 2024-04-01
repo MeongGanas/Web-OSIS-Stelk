@@ -1,6 +1,6 @@
 export type Anggota = {
   id: number;
-  idBidang: number;
+  idbidang: number;
   nama: string;
   image: string;
   jabatan: string;

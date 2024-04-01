@@ -25,7 +25,7 @@ export default function EventsTable({ events }: { events: Array<Events> }) {
       <TableBody>
         {events &&
           events.map((event) => (
-            <TableRow key="1">
+            <TableRow key={event.id}>
               <TableCell className="min-w-40 text-center">
                 {event.nama}
               </TableCell>

@@ -4,10 +4,11 @@ import { Anggota } from "@/app/lib/definitions";
 import { Button, Select, SelectItem } from "@nextui-org/react";
 import InputImage from "./InputImage";
 import { useFormState } from "react-dom";
-import { AddAnggota } from "@/app/lib/actions";
+import { AddAnggota, EditAnggota } from "@/app/lib/actions";
 import { useEffect, useState } from "react";
 import { redirect } from "next/navigation";
 import { jabatanBidang } from "@/app/lib/placeholder-data";
+import Image from "next/image";
 
 export function EditBidangForm({
   params,
@@ -76,37 +77,65 @@ export function EditBidangForm({
 }
 
 export function EditAnggotaForm({ data }: { data: Anggota }) {
+  const [formState, dispatch] = useFormState(EditAnggota, undefined);
+  const [showMessage, setShowMessage] = useState(false);
+
+  useEffect(() => {
+    if (formState && formState.success) {
+      redirect(`/dashboard/pengurus/bidang/${data.idbidang}`);
+    } else if (formState && !formState.success) {
+      setShowMessage(true);
+      const timer = setTimeout(() => {
+        setShowMessage(false);
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [formState]);
+
   return (
-    <div className="w-full rounded-lg border border-gray-200 p-5 shadow">
+    <div className="mx-auto w-full max-w-screen-sm rounded-lg border border-gray-200 p-5 shadow">
       <h1 className="mb-5 text-4xl">Edit Anggota</h1>
 
-      <form action={""}>
-        <div className="mb-4 grid w-full grid-cols-2 gap-5" id="koor">
+      <form action={dispatch}>
+        <div className="mb-4" id="koor">
           <div className="mb-2">
-            <label htmlFor="namaKoor" className="mb-2 block">
+            <label htmlFor="nama" className="mb-2 block">
               Nama Anggota
             </label>
             <input
               type="text"
-              id="namaKoor"
-              name="namaKoor"
+              id="nama"
+              name="nama"
               required
-              className="block w-full rounded-md border border-gray-500 p-3 text-sm uppercase text-default-500"
+              defaultValue={data.nama}
+              className="block w-full rounded-md border border-gray-500 p-3 text-sm  text-default-500"
             />
           </div>
           <div className="mb-2">
             <label htmlFor="jabatan" className="mb-2 block">
               Jabatan Anggota
             </label>
-            <input
-              type="text"
-              id="jabatan"
+            <Select
+              label="Pilih Jabatan"
+              radius="sm"
+              className="w-full rounded-md border border-gray-500"
               name="jabatan"
-              // defaultValue={}
-              required
-              className="block w-full rounded-md border border-gray-500 p-3 text-sm uppercase text-default-500"
-            />
+              id="jabatan"
+              defaultSelectedKeys={data.jabatan === "Koordinator" ? "0" : "1"}
+            >
+              {jabatanBidang.map((jabatan, index) => (
+                <SelectItem key={index} value={jabatan}>
+                  {jabatan}
+                </SelectItem>
+              ))}
+            </Select>
           </div>
+
+          <div className="mb-4">
+            <h1 className="mb-2">Current Image</h1>
+            <Image src={data.image} width={200} height={200} alt={data.nama} />
+          </div>
+
           <div>
             <label htmlFor="image-anggota" className="mb-2 block">
               Foto Anggota
@@ -114,7 +143,13 @@ export function EditAnggotaForm({ data }: { data: Anggota }) {
             <InputImage name="image-anggota" />
           </div>
         </div>
-        <Button type="submit">Submit</Button>
+        <Button type="submit" name="id" value={`${data.id}-${data.idbidang}`}>
+          Submit
+        </Button>
+
+        {showMessage && formState && !formState.success && (
+          <p className="mt-5 text-red-700">{formState.message}</p>
+        )}
       </form>
     </div>
   );

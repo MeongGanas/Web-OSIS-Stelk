@@ -32,7 +32,7 @@ async function seedBidang(client) {
       }),
     );
 
-    console.log(`Seeded ${insertedBidangs.length} users`);
+    console.log(`Seeded ${insertedBidangs.length} bidang`);
 
     return {
       createTable,

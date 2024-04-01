@@ -4,7 +4,7 @@ import { EditEventForm } from "@/app/ui/admin/FormEvents";
 export default async function EditEvent({
   params,
 }: {
-  params: { id: number };
+  params: { id: string };
 }) {
   const detail = await getDetailEvent(params.id);
   return (

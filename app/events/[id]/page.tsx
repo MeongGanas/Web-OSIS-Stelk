@@ -5,15 +5,15 @@ import Image from "next/image";
 export default async function EventDetail({
   params,
 }: {
-  params: { id: number };
+  params: { id: string };
 }) {
   const event = await getDetailEvent(params.id);
   return (
     <div className="container w-full max-w-screen-lg py-32">
-      <h1 className="mb-5 text-center text-4xl font-bold text-primary">
+      <h1 className="text-center text-4xl font-bold text-primary">
         {event.nama}
       </h1>
-      <div className="flex w-full justify-center px-5">
+      <div className="my-5 flex w-full justify-center">
         <Image
           src={event.foto}
           alt="bukber"

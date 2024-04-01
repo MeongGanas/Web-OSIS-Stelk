@@ -118,3 +118,15 @@ export async function getAllAnggota(id: string) {
     throw new Error("failed fetch anggota");
   }
 }
+
+export async function getDetailAnggota(id: string) {
+  noStore();
+
+  try {
+    const anggota = await sql<Anggota>`SELECT * FROM anggotas WHERE id=${id}`;
+    return anggota.rows[0];
+  } catch (err) {
+    console.log(err);
+    throw new Error("failed fetch anggota");
+  }
+}

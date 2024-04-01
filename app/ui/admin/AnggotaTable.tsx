@@ -28,7 +28,7 @@ export default function AnggotaTable({
       <TableBody>
         {anggotas &&
           anggotas.map((anggota) => (
-            <TableRow key="1">
+            <TableRow key={anggota.id}>
               <TableCell className="min-w-40 text-center">
                 {anggota.nama}
               </TableCell>
@@ -43,14 +43,14 @@ export default function AnggotaTable({
               <TableCell className="min-w-40 text-center">
                 <Button
                   as={Link}
-                  href={`/dashboard/pengurus/bidang/${anggota.idBidang}/${anggota.id}`}
+                  href={`/dashboard/pengurus/bidang/${anggota.idbidang}/edit/${anggota.id}`}
                   className="bg-transparent text-blue-700 underline"
                 >
                   Edit
                 </Button>
                 <Button
                   className="bg-transparent text-red-700 underline"
-                  onClick={() => DeleteAnggota(anggota.id, anggota.idBidang)}
+                  onClick={() => DeleteAnggota(anggota.id, anggota.idbidang)}
                 >
                   Delete
                 </Button>
