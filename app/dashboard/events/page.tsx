@@ -10,7 +10,7 @@ export default async function Events() {
       <Button href={"/dashboard/events/add"} as={Link} className="mb-5">
         Tambah Event
       </Button>
-      <EventsTable events={events} />;
+      <EventsTable events={events} />
     </div>
   );
 }

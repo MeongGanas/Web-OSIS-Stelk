@@ -9,9 +9,9 @@ export type Anggota = {
 export type Bidang = {
   id: number;
   nama: string;
-  periode: string;
-  tugas: string;
-  image: string;
+  tugasumum: string;
+  introImage: string;
+  cardImage: string;
 };
 
 export type Inti = {

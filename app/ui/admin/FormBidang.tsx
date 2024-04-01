@@ -1,5 +1,4 @@
 "use client";
-
 import { Anggota } from "@/app/lib/definitions";
 import { Button, Select, SelectItem } from "@nextui-org/react";
 import InputImage from "./InputImage";
@@ -25,48 +24,43 @@ export function EditBidangForm({
           className="mb-5 grid grid-cols-1 gap-5 md:grid-cols-2"
           id="wrapper-grid"
         >
-          <div className="w-full" id="text-input">
-            <div className="mb-4 w-full">
-              <label htmlFor="nama" className="mb-2 block">
-                Nama Bidang {params.id}
-              </label>
-              <input
-                type="text"
-                id="nama"
-                name="nama"
-                defaultValue={detail.nama}
-                required
-                className="block w-full rounded-md border border-gray-500 p-3 text-sm uppercase text-default-500"
-              />
-            </div>
-            <div className="mb-4 w-full">
-              <label htmlFor="tugas" className="mb-2 block">
-                Tugas Umum Bidang {params.id}
-              </label>
-              <textarea
-                id="tugas"
-                name="tugas"
-                rows={2}
-                defaultValue={detail.nama}
-                required
-                className="block w-full rounded-md border border-gray-500 p-3 text-sm text-default-500"
-              ></textarea>
-            </div>
+          <div className="mb-4 w-full">
+            <label htmlFor="nama" className="mb-2 block">
+              Nama Bidang {params.id}
+            </label>
+            <input
+              type="text"
+              id="nama"
+              name="nama"
+              defaultValue={detail.nama}
+              required
+              className="block w-full rounded-md border border-gray-500 p-3 text-sm uppercase text-default-500"
+            />
           </div>
-
-          <div className="w-full" id="images-input">
-            <div className="mb-4 w-full">
-              <label htmlFor="card" className="mb-2 block">
-                Foto Card Bidang {params.id}
-              </label>
-              <InputImage name="card" />
-            </div>
-            <div>
-              <label htmlFor="intro" className="mb-2 block">
-                Foto Intro Bidang {params.id}
-              </label>
-              <InputImage name="intro" />
-            </div>
+          <div className="mb-4 w-full">
+            <label htmlFor="tugas" className="mb-2 block">
+              Tugas Umum Bidang {params.id}
+            </label>
+            <textarea
+              id="tugas"
+              name="tugas"
+              rows={2}
+              defaultValue={detail.nama}
+              required
+              className="block w-full rounded-md border border-gray-500 p-3 text-sm text-default-500"
+            ></textarea>
+          </div>
+          <div>
+            <label htmlFor="intro" className="mb-2 block">
+              Foto Intro Bidang {params.id}
+            </label>
+            <InputImage name="intro" />
+          </div>
+          <div className="mb-4 w-full">
+            <label htmlFor="card" className="mb-2 block">
+              Foto Card Bidang {params.id}
+            </label>
+            <InputImage name="card" />
           </div>
         </div>
 
@@ -219,6 +213,59 @@ export function AddAnggotaForm({ id }: { id: string }) {
         {showMessage && formState && !formState.success && (
           <p className="mt-5 text-red-700">{formState.message}</p>
         )}
+      </form>
+    </div>
+  );
+}
+
+export function TambahBidangForm() {
+  return (
+    <div className="w-full rounded-lg border border-gray-200 p-5 shadow">
+      <h1 className="mb-5 text-4xl">Tambah Bidang</h1>
+      <form action="">
+        <div
+          className="mb-5 grid grid-cols-1 gap-5 md:grid-cols-2"
+          id="wrapper-grid"
+        >
+          <div className="mb-4 w-full">
+            <label htmlFor="nama" className="mb-2 block">
+              Nama Bidang
+            </label>
+            <input
+              type="text"
+              id="nama"
+              name="nama"
+              required
+              className="block w-full rounded-md border border-gray-500 p-3 text-sm uppercase text-default-500"
+            />
+          </div>
+          <div className="mb-4 w-full">
+            <label htmlFor="tugas" className="mb-2 block">
+              Tugas Umum
+            </label>
+            <textarea
+              id="tugas"
+              name="tugas"
+              rows={2}
+              required
+              className="block w-full rounded-md border border-gray-500 p-3 text-sm text-default-500"
+            ></textarea>
+          </div>
+          <div>
+            <label htmlFor="intro" className="mb-2 block">
+              Foto Intro
+            </label>
+            <InputImage name="intro" />
+          </div>
+          <div className="mb-4 w-full">
+            <label htmlFor="card" className="mb-2 block">
+              Foto Card
+            </label>
+            <InputImage name="card" />
+          </div>
+        </div>
+
+        <Button type="submit">Submit</Button>
       </form>
     </div>
   );

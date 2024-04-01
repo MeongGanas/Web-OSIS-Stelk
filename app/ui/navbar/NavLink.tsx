@@ -92,6 +92,16 @@ export default function NavLinks({ bidangs }: { bidangs: Array<Bidang> }) {
           pathname={pathname}
           to={isInDashboard ? "/dashboard/events" : "/events"}
         />
+        <div className={`${isInDashboard ? "block" : "hidden"}`}>
+          <Button
+            as={Link}
+            href="/dashboard/pengurus/bidang/add"
+            type="submit"
+            className="bg-transparent px-5 font-semibold uppercase transition duration-200 hover:text-primary"
+          >
+            Tambah Bidang
+          </Button>
+        </div>
         <form
           action={Logout}
           className={`${isInDashboard ? "block" : "hidden"}`}
