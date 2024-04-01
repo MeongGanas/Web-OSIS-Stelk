@@ -26,6 +26,7 @@ export default function InputImage({ name }: { name: string }) {
           type="file"
           className="block w-full"
           id={name}
+          accept="image"
           name={name}
           onChange={handleImageChange}
         />

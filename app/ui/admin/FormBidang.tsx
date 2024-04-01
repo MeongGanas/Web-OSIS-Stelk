@@ -1,9 +1,9 @@
 "use client";
-import { Anggota } from "@/app/lib/definitions";
+import { Anggota, Bidang } from "@/app/lib/definitions";
 import { Button, Select, SelectItem } from "@nextui-org/react";
 import InputImage from "./InputImage";
 import { useFormState } from "react-dom";
-import { AddAnggota, EditAnggota } from "@/app/lib/actions";
+import { AddAnggota, AddBidang, EditAnggota } from "@/app/lib/actions";
 import { useEffect, useState } from "react";
 import { redirect } from "next/navigation";
 import { jabatanBidang } from "@/app/lib/placeholder-data";
@@ -14,7 +14,7 @@ export function EditBidangForm({
   detail,
 }: {
   params: { id: string };
-  detail: { nama: string };
+  detail: Bidang;
 }) {
   return (
     <div className="w-full rounded-lg border border-gray-200 p-5 shadow">
@@ -45,18 +45,34 @@ export function EditBidangForm({
               id="tugas"
               name="tugas"
               rows={2}
-              defaultValue={detail.nama}
+              defaultValue={detail.tugasumum}
               required
               className="block w-full rounded-md border border-gray-500 p-3 text-sm text-default-500"
             ></textarea>
           </div>
           <div>
+            <h1>Current Image</h1>
+            <Image
+              src={detail.introimage}
+              width={200}
+              height={200}
+              alt={detail.nama}
+              className="my-2"
+            />
             <label htmlFor="intro" className="mb-2 block">
               Foto Intro Bidang {params.id}
             </label>
             <InputImage name="intro" />
           </div>
           <div className="mb-4 w-full">
+            <h1>Current Image</h1>
+            <Image
+              src={detail.cardimage}
+              width={200}
+              height={200}
+              alt={detail.nama}
+              className="my-2"
+            />
             <label htmlFor="card" className="mb-2 block">
               Foto Card Bidang {params.id}
             </label>
@@ -219,10 +235,25 @@ export function AddAnggotaForm({ id }: { id: string }) {
 }
 
 export function TambahBidangForm() {
+  const [formState, dispatch] = useFormState(AddBidang, undefined);
+  const [showMessage, setShowMessage] = useState(false);
+
+  useEffect(() => {
+    if (formState && formState.success) {
+      redirect(`/dashboard/pengurus`);
+    } else if (formState && !formState.success) {
+      setShowMessage(true);
+      const timer = setTimeout(() => {
+        setShowMessage(false);
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [formState]);
+
   return (
     <div className="w-full rounded-lg border border-gray-200 p-5 shadow">
       <h1 className="mb-5 text-4xl">Tambah Bidang</h1>
-      <form action="">
+      <form action={dispatch}>
         <div
           className="mb-5 grid grid-cols-1 gap-5 md:grid-cols-2"
           id="wrapper-grid"
@@ -240,6 +271,31 @@ export function TambahBidangForm() {
             />
           </div>
           <div className="mb-4 w-full">
+            <label htmlFor="nama" className="mb-2 block">
+              Bidang ke -
+            </label>
+            <input
+              type="number"
+              id="id"
+              name="id"
+              required
+              className="block w-full rounded-md border border-gray-500 p-3 text-sm uppercase text-default-500"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="image-intro" className="mb-2 block">
+              Foto Intro
+            </label>
+            <InputImage name="image-intro" />
+          </div>
+          <div className="mb-4 w-full">
+            <label htmlFor="image-card" className="mb-2 block">
+              Foto Card
+            </label>
+            <InputImage name="image-card" />
+          </div>
+          <div className="mb-4 w-full">
             <label htmlFor="tugas" className="mb-2 block">
               Tugas Umum
             </label>
@@ -251,21 +307,13 @@ export function TambahBidangForm() {
               className="block w-full rounded-md border border-gray-500 p-3 text-sm text-default-500"
             ></textarea>
           </div>
-          <div>
-            <label htmlFor="intro" className="mb-2 block">
-              Foto Intro
-            </label>
-            <InputImage name="intro" />
-          </div>
-          <div className="mb-4 w-full">
-            <label htmlFor="card" className="mb-2 block">
-              Foto Card
-            </label>
-            <InputImage name="card" />
-          </div>
         </div>
 
         <Button type="submit">Submit</Button>
+
+        {showMessage && formState && !formState.success && (
+          <p className="mt-5 text-red-700">{formState.message}</p>
+        )}
       </form>
     </div>
   );

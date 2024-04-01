@@ -10,8 +10,8 @@ export type Bidang = {
   id: number;
   nama: string;
   tugasumum: string;
-  introImage: string;
-  cardImage: string;
+  introimage: string;
+  cardimage: string;
 };
 
 export type Inti = {

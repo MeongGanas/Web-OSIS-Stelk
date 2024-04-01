@@ -6,7 +6,7 @@ export async function getAllBidang() {
   noStore();
 
   try {
-    const data = await sql<Bidang>`SELECT * FROM bidangs`;
+    const data = await sql<Bidang>`SELECT * FROM bidangs ORDER BY id`;
     return data.rows;
   } catch (err) {
     console.log(err);

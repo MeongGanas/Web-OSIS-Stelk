@@ -313,3 +313,26 @@ export async function DeleteAnggota(id: number, idBidang: number) {
     return { success: false, message: "Something went wrong" };
   }
 }
+
+export async function AddBidang(
+  prevState: { success: boolean; message: string } | undefined,
+  formData: FormData,
+) {
+  const id = formData.get("id")?.toString();
+  const nama = formData.get("nama")?.toString();
+  const tugasumum = formData.get("tugas")?.toString();
+
+  try {
+    const [intro, card] = await UploadMultiImage(formData);
+
+    await sql`INSERT INTO bidangs (id, nama, tugasumum, introImage, cardImage)
+    VALUES (${id}, ${nama}, ${tugasumum}, ${intro}, ${card})`;
+
+    revalidatePath(`/dashboard/pengurus`);
+
+    return { success: true, message: "Anggota added successfully." };
+  } catch (err) {
+    console.log(err);
+    return { success: false, message: "Something went wrong" };
+  }
+}

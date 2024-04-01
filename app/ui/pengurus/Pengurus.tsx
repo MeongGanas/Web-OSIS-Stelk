@@ -7,18 +7,14 @@ export default async function PengurusContent({
   id,
   admin,
 }: {
-  id: String;
+  id: string;
   admin?: boolean;
 }) {
   const bidang = await getDetailBidang(id);
   return (
     <>
-      <HomePengurus
-        admin={admin}
-        name={`Bidang ${bidang.id}`}
-        namaBidang={bidang.nama}
-      />
-      <TugasUmum admin={admin} />
+      <HomePengurus data={bidang} />
+      <TugasUmum />
       <Anggota />
     </>
   );

@@ -25,7 +25,7 @@ export default async function ListBidang() {
           {bidangs.map((bidang) => (
             <CardBidang
               name={`bidang ${bidang.id}`}
-              url={`/images/bidang${bidang.id}/BIDANG ${bidang.id}.svg`}
+              url={bidang.cardimage}
               to={`/pengurus/bidang/${bidang.id}`}
               key={bidang.id}
             />

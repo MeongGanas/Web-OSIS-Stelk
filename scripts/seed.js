@@ -9,7 +9,31 @@ const {
 } = require("../app/lib/placeholder-data");
 const bcrypt = require("bcrypt");
 
-async function seedBidang(client) {
+async function createAnggota(client) {
+  try {
+    await client.sql`DROP TABLE IF EXISTS anggotas`;
+
+    const createTable = await client.sql`
+        CREATE TABLE IF NOT EXISTS anggotas (
+        id INT PRIMARY KEY,
+        idbidang INTEGER,
+        nama VARCHAR(255) NOT NULL,
+        image TEXT NOT NULL,
+        jabatan VARCHAR(255) NOT NULL,
+        FOREIGN KEY (idbidang) REFERENCES bidangs(id)
+        );
+    `;
+
+    return {
+      createTable,
+    };
+  } catch (error) {
+    console.error("Error seeding anggota:", error);
+    throw error;
+  }
+}
+
+async function createBidang(client) {
   try {
     await client.sql`DROP TABLE IF EXISTS bidangs`;
 
@@ -23,23 +47,8 @@ async function seedBidang(client) {
         );
     `;
 
-    console.log(`Created "bidangs" table`);
-
-    const insertedBidangs = await Promise.all(
-      bidangs.map(async (bidang) => {
-        return client.sql`
-        INSERT INTO bidangs (id, nama)
-        VALUES (${bidang.id}, ${bidang.nama})
-        ON CONFLICT (id) DO NOTHING;
-      `;
-      }),
-    );
-
-    console.log(`Seeded ${insertedBidangs.length} bidang`);
-
     return {
       createTable,
-      bidangs: insertedBidangs,
     };
   } catch (error) {
     console.error("Error seeding bidangs:", error);
@@ -219,12 +228,7 @@ async function seedAdmin(client) {
 async function main() {
   const client = await db.connect();
 
-  await seedBidang(client);
-  await seedVisi(client);
-  await seedMisi(client);
-  await seedAbout(client);
-  await seedAdmin(client);
-  await seedPesan(client);
+  await createAnggota(client);
 
   await client.end();
 }

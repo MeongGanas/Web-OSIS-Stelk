@@ -1,44 +1,47 @@
 const bidangs = [
   {
-    id: 1,
+    id: "blablabla",
     nama: "KEIMANAN DAN KETAKWAAN KEPADA TUHAN YANG MAHA ESA",
+    tugasumum: "blalablabla",
+    introImage: "balabla",
+    cardImage: "blablabl",
   },
-  {
-    id: 2,
-    nama: "PEMBINAAN BUDI PEKERTI LUHUR ATAU AKHLAK MULIA",
-  },
-  {
-    id: 3,
-    nama: "KEPRIBADIAN UNGGUL, WAWASAN KEBANGSAAN DAN BELA NEGARA",
-  },
-  {
-    id: 4,
-    nama: "PEMBINAAN PRESTASI AKADEMIK, SENI DAN OLAHRAGA SESUAI BAKAT DAN MINAT",
-  },
-  {
-    id: 5,
-    nama: "DEMOKRASI, HAK ASASI MANUSIA, PENDIDIKAN POLITIK, LINGKUNGAN HIDUP KEPEKAAN, DAN TOLERANSI SOSIAL DALAM KONTEKS MASYARAKAT PLURAL ",
-  },
-  {
-    id: 6,
-    nama: "KREATIVITAS, KETERAMPILAN DAN KEWIRAUSAHAAN",
-  },
-  {
-    id: 7,
-    nama: "KUALITAS JASMANI, KESEHATAN, DAN GIZI BERBASIS SUMBER GIZI YANG TERDIVERSIFIKASI",
-  },
-  {
-    id: 8,
-    nama: "SASTRA & BUDAYA",
-  },
-  {
-    id: 9,
-    nama: "TEKNOLOGI INFORMASI DAN KOMUNIKASI",
-  },
-  {
-    id: 10,
-    nama: "KOMUNIKASI DALAM BAHASA INGGRIS",
-  },
+  // {
+  //   id: 2,
+  //   nama: "PEMBINAAN BUDI PEKERTI LUHUR ATAU AKHLAK MULIA",
+  // },
+  // {
+  //   id: 3,
+  //   nama: "KEPRIBADIAN UNGGUL, WAWASAN KEBANGSAAN DAN BELA NEGARA",
+  // },
+  // {
+  //   id: 4,
+  //   nama: "PEMBINAAN PRESTASI AKADEMIK, SENI DAN OLAHRAGA SESUAI BAKAT DAN MINAT",
+  // },
+  // {
+  //   id: 5,
+  //   nama: "DEMOKRASI, HAK ASASI MANUSIA, PENDIDIKAN POLITIK, LINGKUNGAN HIDUP KEPEKAAN, DAN TOLERANSI SOSIAL DALAM KONTEKS MASYARAKAT PLURAL ",
+  // },
+  // {
+  //   id: 6,
+  //   nama: "KREATIVITAS, KETERAMPILAN DAN KEWIRAUSAHAAN",
+  // },
+  // {
+  //   id: 7,
+  //   nama: "KUALITAS JASMANI, KESEHATAN, DAN GIZI BERBASIS SUMBER GIZI YANG TERDIVERSIFIKASI",
+  // },
+  // {
+  //   id: 8,
+  //   nama: "SASTRA & BUDAYA",
+  // },
+  // {
+  //   id: 9,
+  //   nama: "TEKNOLOGI INFORMASI DAN KOMUNIKASI",
+  // },
+  // {
+  //   id: 10,
+  //   nama: "KOMUNIKASI DALAM BAHASA INGGRIS",
+  // },
 ];
 
 const about =
