@@ -4,52 +4,7 @@ import { AuthError } from "next-auth";
 import { signIn, signOut } from "@/auth";
 import { sql } from "@vercel/postgres";
 import { revalidatePath } from "next/cache";
-import ImageKit from "imagekit";
-
-const imageKit = new ImageKit({
-  publicKey: process.env.IMAGEKIT_PUBLIC_KEY!,
-  privateKey: process.env.IMAGEKIT_PRIVATE_KEY!,
-  urlEndpoint: process.env.IMAGEKIT_URL_ENDPOINT!,
-});
-
-export async function UploadSingleImage(formData: FormData) {
-  const entries = Array.from(formData.entries());
-  const [key, value] = entries.filter(([key]) => key.startsWith("image-"))[0];
-  const image = value as unknown as File;
-
-  if (image.size !== 0) {
-    const imageBuffer = await image.arrayBuffer();
-    const buffer = Buffer.from(imageBuffer);
-
-    const response = await imageKit.upload({
-      file: buffer,
-      fileName: image.name,
-    });
-    return response.url;
-  }
-  return null;
-}
-
-export async function UploadMultiImage(formData: FormData) {
-  const entries = Array.from(formData.entries());
-  const imageEntries = entries.filter(([key]) => key.startsWith("image-"));
-
-  const imageUrl = await Promise.all(
-    imageEntries.map(async ([key, value]) => {
-      const image = value as unknown as File;
-      const imageBuffer = await image.arrayBuffer();
-      const buffer = Buffer.from(imageBuffer);
-
-      const response = await imageKit.upload({
-        file: buffer,
-        fileName: image.name,
-      });
-      return response.url;
-    }),
-  );
-
-  return imageUrl;
-}
+import { UploadMultiImage, UploadSingleImage } from "./utils";
 
 export async function authenticate(
   prevState: string | undefined,
@@ -88,7 +43,10 @@ export async function AddMisi(
     revalidatePath("/dashboard/home");
     return { success: true, message: "Misi added successfully." };
   } catch (error) {
-    return { success: false, message: "Something went wrong" };
+    return {
+      success: false,
+      message: `Something went wrong, please try again`,
+    };
   }
 }
 
@@ -103,7 +61,10 @@ export async function EditAbout(
     revalidatePath("/dashboard/home");
     return { success: true, message: "About updated successfully." };
   } catch (error) {
-    return { success: false, message: "Something went wrong" };
+    return {
+      success: false,
+      message: `Something went wrong, please try again`,
+    };
   }
 }
 
@@ -185,7 +146,10 @@ export async function EditIntro(
     }
     return { success: false, message: "Please insert image first." };
   } catch (err) {
-    return { success: false, message: "Something went wrong" };
+    return {
+      success: false,
+      message: `Something went wrong, please try again`,
+    };
   }
 }
 
@@ -234,7 +198,10 @@ export async function EditEvent(
     return { success: true, message: "Event edited successfully." };
   } catch (err) {
     console.log(err);
-    return { success: false, message: "Something went wrong" };
+    return {
+      success: false,
+      message: `Something went wrong, please try again`,
+    };
   }
 }
 
@@ -247,7 +214,10 @@ export async function DeleteEvent(id: number) {
     return { success: true, message: "Event deleted successfully." };
   } catch (err) {
     console.log(err);
-    return { success: false, message: "Something went wrong" };
+    return {
+      success: false,
+      message: `Something went wrong, please try again`,
+    };
   }
 }
 
@@ -270,7 +240,10 @@ export async function AddAnggota(
     return { success: true, message: "Anggota added successfully." };
   } catch (err) {
     console.log(err);
-    return { success: false, message: "Something went wrong" };
+    return {
+      success: false,
+      message: `Something went wrong, please try again`,
+    };
   }
 }
 
@@ -297,7 +270,10 @@ export async function EditAnggota(
     return { success: true, message: "Anggota edited successfully." };
   } catch (err) {
     console.log(err);
-    return { success: false, message: "Something went wrong" };
+    return {
+      success: false,
+      message: `Something went wrong, please try again`,
+    };
   }
 }
 
@@ -310,7 +286,10 @@ export async function DeleteAnggota(id: number, idBidang: number) {
     return { success: true, message: "Anggota deleted successfully." };
   } catch (err) {
     console.log(err);
-    return { success: false, message: "Something went wrong" };
+    return {
+      success: false,
+      message: `Something went wrong, please try again`,
+    };
   }
 }
 
@@ -324,15 +303,65 @@ export async function AddBidang(
 
   try {
     const [intro, card] = await UploadMultiImage(formData);
-
     await sql`INSERT INTO bidangs (id, nama, tugasumum, introImage, cardImage)
-    VALUES (${id}, ${nama}, ${tugasumum}, ${intro}, ${card})`;
+      VALUES (${id}, ${nama}, ${tugasumum}, ${intro}, ${card})`;
 
     revalidatePath(`/dashboard/pengurus`);
 
-    return { success: true, message: "Anggota added successfully." };
+    return { success: true, message: "Bidang added successfully." };
   } catch (err) {
     console.log(err);
-    return { success: false, message: "Something went wrong" };
+    return {
+      success: false,
+      message: `Something went wrong, please try again`,
+    };
+  }
+}
+
+export async function EditBidang(
+  prevState: { success: boolean; message: string } | undefined,
+  formData: FormData,
+) {
+  const id = formData.get("id")?.toString();
+  const nama = formData.get("nama")?.toString();
+  const tugasumum = formData.get("tugas")?.toString();
+
+  try {
+    const [intro, card] = await UploadMultiImage(formData);
+    if (intro && card) {
+      await sql`UPDATE bidangs set id=${id}, nama=${nama}, tugasumum${tugasumum}, introimage=${intro}, cardimage=${card} WHERE id=${id}`;
+    } else if (intro && !card) {
+      await sql`UPDATE bidangs set id=${id}, nama=${nama}, tugasumum${tugasumum}, introimage=${intro} WHERE id=${id}`;
+    } else if (!intro && !card) {
+      await sql`UPDATE bidangs set id=${id}, nama=${nama}, tugasumum${tugasumum}, cardimage=${card}, cardimage=${card} WHERE id=${id}`;
+    } else {
+      await sql`UPDATE bidangs set id=${id}, nama=${nama}, tugasumum${tugasumum} WHERE id=${id}`;
+    }
+
+    revalidatePath(`/dashboard/pengurus`);
+
+    return { success: true, message: "Bidang edited successfully." };
+  } catch (err) {
+    console.log(err);
+    return {
+      success: false,
+      message: `Something went wrong, please try again`,
+    };
+  }
+}
+
+export async function DeleteBidang(id: number) {
+  try {
+    await sql`DELETE FROM bidangs WHERE id=${id}`;
+
+    revalidatePath(`/dashboard/pengurus`);
+
+    return { success: true, message: "Bidang deleted successfully." };
+  } catch (err) {
+    console.log(err);
+    return {
+      success: false,
+      message: `Something went wrong, please try again`,
+    };
   }
 }

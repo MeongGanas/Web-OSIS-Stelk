@@ -40,7 +40,7 @@ async function createBidang(client) {
     const createTable = await client.sql`
         CREATE TABLE IF NOT EXISTS bidangs (
         id INT PRIMARY KEY,
-        nama VARCHAR(255) NOT NULL,
+        nama TEXT NOT NULL,
         tugasumum VARCHAR(255) NOT NULL,
         introImage TEXT NOT NULL,
         cardImage TEXT NOT NULL

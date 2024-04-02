@@ -3,11 +3,17 @@ import { Anggota, Bidang } from "@/app/lib/definitions";
 import { Button, Select, SelectItem } from "@nextui-org/react";
 import InputImage from "./InputImage";
 import { useFormState } from "react-dom";
-import { AddAnggota, AddBidang, EditAnggota } from "@/app/lib/actions";
+import {
+  AddAnggota,
+  AddBidang,
+  EditAnggota,
+  EditBidang,
+} from "@/app/lib/actions";
 import { useEffect, useState } from "react";
 import { redirect } from "next/navigation";
 import { jabatanBidang } from "@/app/lib/placeholder-data";
 import Image from "next/image";
+import { useFormStatus } from "react-dom";
 
 export function EditBidangForm({
   params,
@@ -16,10 +22,26 @@ export function EditBidangForm({
   params: { id: string };
   detail: Bidang;
 }) {
+  const [formState, dispatch] = useFormState(EditBidang, undefined);
+  const { pending } = useFormStatus();
+  const [showMessage, setShowMessage] = useState(false);
+
+  useEffect(() => {
+    if (formState && formState.success) {
+      redirect(`/dashboard/pengurus/bidang/${params.id}`);
+    } else if (formState && !formState.success) {
+      setShowMessage(true);
+      const timer = setTimeout(() => {
+        setShowMessage(false);
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [formState]);
+
   return (
     <div className="w-full rounded-lg border border-gray-200 p-5 shadow">
       <h1 className="mb-5 text-4xl">Edit Bidang {params.id}</h1>
-      <form action="">
+      <form action={dispatch}>
         <div
           className="mb-5 grid grid-cols-1 gap-5 md:grid-cols-2"
           id="wrapper-grid"
@@ -81,6 +103,12 @@ export function EditBidangForm({
         </div>
 
         <Button type="submit">Submit</Button>
+
+        {pending && <p>Loading...</p>}
+
+        {showMessage && formState && !formState.success && (
+          <p className="mt-5 text-red-700">{formState.message}</p>
+        )}
       </form>
     </div>
   );
@@ -88,6 +116,7 @@ export function EditBidangForm({
 
 export function EditAnggotaForm({ data }: { data: Anggota }) {
   const [formState, dispatch] = useFormState(EditAnggota, undefined);
+  const { pending } = useFormStatus();
   const [showMessage, setShowMessage] = useState(false);
 
   useEffect(() => {
@@ -167,6 +196,7 @@ export function EditAnggotaForm({ data }: { data: Anggota }) {
 
 export function AddAnggotaForm({ id }: { id: string }) {
   const [formState, dispatch] = useFormState(AddAnggota, undefined);
+  const { pending } = useFormStatus();
   const [showMessage, setShowMessage] = useState(false);
 
   useEffect(() => {
@@ -180,6 +210,10 @@ export function AddAnggotaForm({ id }: { id: string }) {
       return () => clearTimeout(timer);
     }
   }, [formState]);
+
+  useEffect(() => {
+    console.log(pending);
+  }, [pending]);
 
   return (
     <div className="mx-auto w-full max-w-screen-sm rounded-lg border border-gray-200 p-5 shadow">
@@ -236,6 +270,7 @@ export function AddAnggotaForm({ id }: { id: string }) {
 
 export function TambahBidangForm() {
   const [formState, dispatch] = useFormState(AddBidang, undefined);
+  const { pending } = useFormStatus();
   const [showMessage, setShowMessage] = useState(false);
 
   useEffect(() => {
@@ -245,7 +280,7 @@ export function TambahBidangForm() {
       setShowMessage(true);
       const timer = setTimeout(() => {
         setShowMessage(false);
-      }, 1500);
+      }, 3000);
       return () => clearTimeout(timer);
     }
   }, [formState]);
@@ -310,6 +345,8 @@ export function TambahBidangForm() {
         </div>
 
         <Button type="submit">Submit</Button>
+
+        {pending && <p>Loading...</p>}
 
         {showMessage && formState && !formState.success && (
           <p className="mt-5 text-red-700">{formState.message}</p>

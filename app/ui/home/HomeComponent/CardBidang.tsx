@@ -13,7 +13,7 @@ export default function CardBidang({
 }) {
   return (
     <Link href={to} className="group relative h-fit overflow-hidden rounded-md">
-      <div className="absolute bottom-0 left-0 right-0 top-0 max-h-[100px] w-full bg-black bg-opacity-20 transition-all duration-200 group-hover:bg-opacity-100"></div>
+      <div className="absolute bottom-0 left-0 right-0 top-0 h-full w-full bg-black bg-opacity-20 transition-all duration-200 group-hover:bg-opacity-100"></div>
       <Image
         src={url}
         alt={name}

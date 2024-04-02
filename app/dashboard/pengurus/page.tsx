@@ -1,4 +1,5 @@
 import { getAllBidang } from "@/app/lib/data";
+import BidangList from "@/app/ui/admin/BidangList";
 import Link from "next/link";
 
 export default async function Pengurus() {
@@ -18,16 +19,7 @@ export default async function Pengurus() {
             Inti OSIS
           </Link>
         </li>
-        {bidangs.map((bidang, index) => (
-          <li className="mb-5" key={index}>
-            <Link
-              href={`/dashboard/pengurus/bidang/${bidang.id}`}
-              className="findus-link text-center"
-            >
-              Bidang {bidang.id}
-            </Link>
-          </li>
-        ))}
+        <BidangList bidangs={bidangs} />
       </ul>
     </div>
   );
