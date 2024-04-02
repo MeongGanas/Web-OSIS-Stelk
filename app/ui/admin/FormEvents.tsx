@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { Events } from "@/app/lib/definitions";
 import Image from "next/image";
 import { redirect } from "next/navigation";
+import { Submit, SubmitValue } from "@/app/Button";
 
 export function EditEventForm({ data }: { data: Events }) {
   const [formState, dispatch] = useFormState(EditEvent, undefined);
@@ -82,9 +83,7 @@ export function EditEventForm({ data }: { data: Events }) {
           <InputImage name="image-event" />
         </div>
 
-        <Button type="submit" name="id" id={`${data.id}`} value={`${data.id}`}>
-          Submit
-        </Button>
+        <SubmitValue name="Submit" buttonName="id" value={`${data.id}`} />
 
         {showMessage && formState && !formState.success && (
           <p className="mt-5 text-red-700">{formState.message}</p>
@@ -160,7 +159,7 @@ export function AddEventForm() {
           <InputImage name="image-event" />
         </div>
 
-        <Button type="submit">Submit</Button>
+        <Submit name="Submit" />
 
         {showMessage && formState && !formState.success && (
           <p className="mt-5 text-red-700">{formState.message}</p>

@@ -1,3 +1,4 @@
+import Compressor from "compressorjs";
 import ImageKit from "imagekit";
 
 const imageKit = new ImageKit({
@@ -9,12 +10,11 @@ const imageKit = new ImageKit({
 export async function UploadSingleImage(formData: FormData) {
   const entries = Array.from(formData.entries());
   const [key, value] = entries.filter(([key]) => key.startsWith("image-"))[0];
-  const image = value as unknown as File;
+  const image = value as File;
 
   if (image.size !== 0) {
     const imageBuffer = await image.arrayBuffer();
     const buffer = Buffer.from(imageBuffer);
-
     const response = await imageKit.upload({
       file: buffer,
       fileName: image.name,

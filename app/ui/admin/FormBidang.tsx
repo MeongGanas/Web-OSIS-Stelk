@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 import { redirect } from "next/navigation";
 import { jabatanBidang } from "@/app/lib/placeholder-data";
 import Image from "next/image";
-import { useFormStatus } from "react-dom";
+import { Submit, SubmitValue } from "@/app/Button";
 
 export function EditBidangForm({
   params,
@@ -23,7 +23,6 @@ export function EditBidangForm({
   detail: Bidang;
 }) {
   const [formState, dispatch] = useFormState(EditBidang, undefined);
-  const { pending } = useFormStatus();
   const [showMessage, setShowMessage] = useState(false);
 
   useEffect(() => {
@@ -102,9 +101,7 @@ export function EditBidangForm({
           </div>
         </div>
 
-        <Button type="submit">Submit</Button>
-
-        {pending && <p>Loading...</p>}
+        <Submit name="Submit" />
 
         {showMessage && formState && !formState.success && (
           <p className="mt-5 text-red-700">{formState.message}</p>
@@ -116,7 +113,6 @@ export function EditBidangForm({
 
 export function EditAnggotaForm({ data }: { data: Anggota }) {
   const [formState, dispatch] = useFormState(EditAnggota, undefined);
-  const { pending } = useFormStatus();
   const [showMessage, setShowMessage] = useState(false);
 
   useEffect(() => {
@@ -182,9 +178,12 @@ export function EditAnggotaForm({ data }: { data: Anggota }) {
             <InputImage name="image-anggota" />
           </div>
         </div>
-        <Button type="submit" name="id" value={`${data.id}-${data.idbidang}`}>
-          Submit
-        </Button>
+
+        <SubmitValue
+          name="Submit"
+          buttonName="id"
+          value={`${data.id}-${data.idbidang}`}
+        />
 
         {showMessage && formState && !formState.success && (
           <p className="mt-5 text-red-700">{formState.message}</p>
@@ -196,7 +195,6 @@ export function EditAnggotaForm({ data }: { data: Anggota }) {
 
 export function AddAnggotaForm({ id }: { id: string }) {
   const [formState, dispatch] = useFormState(AddAnggota, undefined);
-  const { pending } = useFormStatus();
   const [showMessage, setShowMessage] = useState(false);
 
   useEffect(() => {
@@ -210,10 +208,6 @@ export function AddAnggotaForm({ id }: { id: string }) {
       return () => clearTimeout(timer);
     }
   }, [formState]);
-
-  useEffect(() => {
-    console.log(pending);
-  }, [pending]);
 
   return (
     <div className="mx-auto w-full max-w-screen-sm rounded-lg border border-gray-200 p-5 shadow">
@@ -256,9 +250,7 @@ export function AddAnggotaForm({ id }: { id: string }) {
           <InputImage name="image-anggota" />
         </div>
 
-        <Button type="submit" name="id" value={id}>
-          Submit
-        </Button>
+        <SubmitValue name="Submit" buttonName="id" value={id} />
 
         {showMessage && formState && !formState.success && (
           <p className="mt-5 text-red-700">{formState.message}</p>
@@ -270,7 +262,6 @@ export function AddAnggotaForm({ id }: { id: string }) {
 
 export function TambahBidangForm() {
   const [formState, dispatch] = useFormState(AddBidang, undefined);
-  const { pending } = useFormStatus();
   const [showMessage, setShowMessage] = useState(false);
 
   useEffect(() => {
@@ -344,9 +335,7 @@ export function TambahBidangForm() {
           </div>
         </div>
 
-        <Button type="submit">Submit</Button>
-
-        {pending && <p>Loading...</p>}
+        <Submit name="Submit" />
 
         {showMessage && formState && !formState.success && (
           <p className="mt-5 text-red-700">{formState.message}</p>

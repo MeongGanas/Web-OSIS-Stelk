@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import { useFormState } from "react-dom";
 import InputImage from "./InputImage";
 import Image from "next/image";
+import { Submit } from "@/app/Button";
 
 export function IntroForm({ currentImage }: { currentImage: string }) {
   const [formState, dispatch] = useFormState(EditIntro, undefined);
@@ -44,7 +45,8 @@ export function IntroForm({ currentImage }: { currentImage: string }) {
         </label>
         <InputImage name="image-intro" />
       </div>
-      <Button type="submit">Submit</Button>
+
+      <Submit name="Submit" />
 
       {showMessage && formState && formState.success && (
         <p className="mt-5 text-green-500">{formState.message}</p>
@@ -95,7 +97,7 @@ export function AboutForm({ about }: { about: string }) {
         </div>
       </div>
 
-      <Button type="submit">Submit</Button>
+      <Submit name="Submit" />
 
       {showMessage && formState && formState.success && (
         <p className="mt-5 text-green-500">{formState.message}</p>
@@ -189,7 +191,8 @@ export function PesanKetosForm({ pesanketos }: { pesanketos: PesanKetos }) {
           <InputImage name="image-sambutan" />
         </div>
       </div>
-      <Button type="submit">Submit</Button>
+
+      <Submit name="Submit" />
 
       {showMessage && formState && formState.success && (
         <p className="mt-5 text-green-500">{formState.message}</p>
@@ -238,7 +241,8 @@ export function AddMisiForm() {
         </div>
       </div>
 
-      <Button type="submit">Submit</Button>
+      <Submit name="Submit" />
+
       {showMessage && formState && formState.success && (
         <p className="mt-5 text-green-500">{formState.message}</p>
       )}
@@ -288,7 +292,8 @@ export function VisiForm({ visi }: { visi: string }) {
         </div>
       </div>
 
-      <Button type="submit">Submit</Button>
+      <Submit name="Submit" />
+
       {showMessage && formState && formState.success && (
         <p className="mt-5 text-green-500">{formState.message}</p>
       )}
@@ -340,7 +345,7 @@ export function MisiForm({ misi }: { misi: Array<Misi> }) {
         </div>
       </div>
 
-      <Button type="submit">Submit</Button>
+      <Submit name="Submit" />
 
       {showMessage && formState && formState.success && (
         <p className="mt-5 text-green-500">{formState.message}</p>

@@ -1,7 +1,7 @@
 "use client";
 import { useFormState } from "react-dom";
 import { authenticate } from "@/app/lib/actions";
-import { Button } from "@nextui-org/react";
+import { Submit } from "../Button";
 
 export default function LoginForm() {
   const [errorMessage, dispatch] = useFormState(authenticate, undefined);
@@ -48,9 +48,7 @@ export default function LoginForm() {
             </div>
           </div>
         </div>
-        <Button type="submit" className="mt-5">
-          Login
-        </Button>
+        <Submit name={"Login"} />
         <div
           className="flex h-8 items-end space-x-1"
           aria-live="polite"
