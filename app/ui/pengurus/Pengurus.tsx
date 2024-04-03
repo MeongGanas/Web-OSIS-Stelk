@@ -1,21 +1,15 @@
 import { getDetailBidang } from "@/app/lib/data";
-import HomePengurus from "./HomePengurus";
 import TugasUmum from "./TugasUmum";
-import Anggota from "./Anggota";
+import { AnggotaBidang } from "./Anggota";
+import { HomePengurus } from "./HomePengurus";
 
-export default async function PengurusContent({
-  id,
-  admin,
-}: {
-  id: string;
-  admin?: boolean;
-}) {
+export default async function PengurusContent({ id }: { id: string }) {
   const bidang = await getDetailBidang(id);
   return (
     <>
       <HomePengurus data={bidang} />
       <TugasUmum />
-      <Anggota />
+      {/* <AnggotaBidang /> */}
     </>
   );
 }

@@ -33,6 +33,53 @@ async function createAnggota(client) {
   }
 }
 
+async function createInti(client) {
+  try {
+    await client.sql`DROP TABLE IF EXISTS intis`;
+
+    const createTable = await client.sql`
+        CREATE TABLE IF NOT EXISTS intis (
+        tugasumum TEXT NOT NULL,
+        introimage TEXT NOT NULL
+        );
+    `;
+
+    const insertedInti = await client.sql`
+    INSERT INTO intis (tugasumum, introimage)
+    VALUES ('balbalbal', 'balblablablab');
+    `;
+
+    return {
+      createTable,
+    };
+  } catch (error) {
+    console.error("Error seeding inti:", error);
+    throw error;
+  }
+}
+
+async function createAnggotaInti(client) {
+  try {
+    await client.sql`DROP TABLE IF EXISTS AnggotaIntis`;
+
+    const createTable = await client.sql`
+        CREATE TABLE IF NOT EXISTS AnggotaIntis (
+        id SERIAL PRIMARY KEY,
+        nama VARCHAR(255) NOT NULL,
+        image TEXT NOT NULL,
+        jabatan VARCHAR(255) NOT NULL
+        );
+    `;
+
+    return {
+      createTable,
+    };
+  } catch (error) {
+    console.error("Error seeding inti:", error);
+    throw error;
+  }
+}
+
 async function createBidang(client) {
   try {
     await client.sql`DROP TABLE IF EXISTS bidangs`;
@@ -228,7 +275,8 @@ async function seedAdmin(client) {
 async function main() {
   const client = await db.connect();
 
-  await createAnggota(client);
+  await createInti(client);
+  await createAnggotaInti(client);
 
   await client.end();
 }

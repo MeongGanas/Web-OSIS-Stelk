@@ -5,6 +5,12 @@ export type Anggota = {
   image: string;
   jabatan: string;
 };
+export type AnggotaInti = {
+  id: number;
+  nama: string;
+  image: string;
+  jabatan: string;
+};
 
 export type Bidang = {
   id: number;
@@ -15,10 +21,9 @@ export type Bidang = {
 };
 
 export type Inti = {
-  periode: string;
-  image: string;
-  anggota: Array<Anggota>;
-  tugas: string;
+  nama: string;
+  introimage: string;
+  tugasumum: string;
 };
 
 export type Admin = {

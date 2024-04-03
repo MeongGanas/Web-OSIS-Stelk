@@ -207,7 +207,6 @@ export async function DeleteEvent(id: number) {
 }
 
 export async function AddAnggota(formData: FormData) {
-  console.log(formData);
   const idBidang = formData.get("id")?.toString();
   const nama = formData.get("nama")?.toString();
   const jabatan = formData.get("jabatan")?.toString();
@@ -315,7 +314,7 @@ export async function EditBidang(formData: FormData) {
       await sql`UPDATE bidangs SET id=${id}, nama=${nama}, tugasumum=${tugasumum} WHERE id=${id}`;
     }
 
-    revalidatePath(`/dashboard/pengurus`);
+    revalidatePath(`/dashboard/pengurus/bidang/${id}`);
     return { success: true, message: "Bidang edited successfully." };
   } catch (err) {
     console.log(err);
@@ -333,6 +332,77 @@ export async function DeleteBidang(id: number) {
     revalidatePath(`/dashboard/pengurus`);
 
     return { success: true, message: "Bidang deleted successfully." };
+  } catch (err) {
+    console.log(err);
+    return {
+      success: false,
+      message: `Something went wrong, please try again`,
+    };
+  }
+}
+
+export async function AddAnggotaInti(formData: FormData) {
+  console.log(formData);
+  const nama = formData.get("nama")?.toString();
+  const jabatan = formData.get("jabatan")?.toString();
+
+  try {
+    const imageUrl = await UploadSingleImage(formData);
+
+    await sql`INSERT INTO AnggotaIntis (nama, image, jabatan)
+    VALUES (${nama}, ${imageUrl}, ${jabatan})`;
+
+    revalidatePath(`/dashboard/pengurus/inti`);
+
+    return { success: true, message: "Anggota Inti added successfully." };
+  } catch (err) {
+    console.log(err);
+    return {
+      success: false,
+      message: `Something went wrong, please try again`,
+    };
+  }
+}
+
+export async function EditInti(formData: FormData) {
+  const tugasumum = formData.get("tugas")?.toString();
+  try {
+    if (formData.get("image-intro")) {
+      const intro = await UploadSingleImage(formData);
+
+      await sql`UPDATE intis SET tugasumum=${tugasumum}, introimage=${intro}`;
+    } else {
+      await sql`UPDATE bidangs SET tugasumum=${tugasumum}`;
+    }
+
+    revalidatePath(`/dashboard/pengurus/inti`);
+    return { success: true, message: "Inti edited successfully." };
+  } catch (err) {
+    console.log(err);
+    return {
+      success: false,
+      message: `Something went wrong, please try again`,
+    };
+  }
+}
+
+export async function EditAnggotaInti(formData: FormData) {
+  const id = formData.get("id")?.toString();
+  const nama = formData.get("nama")?.toString();
+  const jabatan = formData.get("jabatan")?.toString();
+
+  try {
+    if (formData.get("image-anggota")) {
+      const imageUrl = await UploadSingleImage(formData);
+
+      await sql`UPDATE anggotaintis SET nama=${nama}, jabatan=${jabatan}, image=${imageUrl} WHERE id=${id}`;
+    } else {
+      await sql`UPDATE anggotaintis SET nama=${nama}, jabatan=${jabatan} WHERE id=${id}`;
+    }
+
+    revalidatePath(`/dashboard/pengurus/inti`);
+
+    return { success: true, message: "Anggota Inti edited successfully." };
   } catch (err) {
     console.log(err);
     return {

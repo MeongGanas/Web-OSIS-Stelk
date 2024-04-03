@@ -1,8 +1,7 @@
 "use client";
 import { Anggota, Bidang } from "@/app/lib/definitions";
-import { Button, Select, SelectItem } from "@nextui-org/react";
+import { Select, SelectItem } from "@nextui-org/react";
 import InputImage from "./InputImage";
-import { useFormState } from "react-dom";
 import {
   AddAnggota,
   AddBidang,
@@ -191,7 +190,7 @@ export function EditAnggotaForm({ data }: { data: Anggota }) {
               name="jabatan"
               id="jabatan"
               onChange={(e) => setJabatan(e.target.value)}
-              defaultSelectedKeys={data.jabatan === "Koordinator" ? "0" : "1"}
+              defaultSelectedKeys={data.jabatan.indexOf(jabatan).toString()}
             >
               {jabatanBidang.map((jabatan, index) => (
                 <SelectItem key={index} value={jabatan}>

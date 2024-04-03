@@ -1,6 +1,6 @@
 import { getAllAnggota, getDetailBidang } from "@/app/lib/data";
-import AnggotaTable from "@/app/ui/admin/AnggotaTable";
 import { EditBidangForm } from "@/app/ui/admin/FormBidang";
+import { AnggotaTable } from "@/app/ui/admin/Tables";
 import { Button } from "@nextui-org/react";
 import Link from "next/link";
 

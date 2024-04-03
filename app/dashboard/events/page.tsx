@@ -1,5 +1,5 @@
 import { getAllEvents } from "@/app/lib/data";
-import EventsTable from "@/app/ui/admin/EventsTable";
+import { EventsTable } from "@/app/ui/admin/Tables";
 import { Button } from "@nextui-org/react";
 import Link from "next/link";
 

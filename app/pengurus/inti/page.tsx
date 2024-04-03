@@ -1,13 +1,16 @@
-import Anggota from "@/app/ui/pengurus/Anggota";
-import HomePengurus from "../../ui/pengurus/HomePengurus";
+import { AnggotaBidang } from "@/app/ui/pengurus/Anggota";
+import { HomeInti } from "../../ui/pengurus/HomePengurus";
 import TugasUmum from "../../ui/pengurus/TugasUmum";
+import { getAllAnggotaInti, getIntiData } from "@/app/lib/data";
 
-export default function Bidang() {
+export default async function Inti() {
+  const inti = await getIntiData();
+  // const Anggota = await getAllAnggotaInti();
   return (
     <>
-      {/* <HomePengurus name={"Inti OSIS"} /> */}
+      <HomeInti data={inti} />
       <TugasUmum />
-      <Anggota />
+      {/* <AnggotaInti anggota /> */}
     </>
   );
 }

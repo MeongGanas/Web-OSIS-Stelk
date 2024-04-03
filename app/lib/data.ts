@@ -1,5 +1,13 @@
 import { sql } from "@vercel/postgres";
-import { Anggota, Bidang, Events, Misi, PesanKetos } from "./definitions";
+import {
+  Anggota,
+  AnggotaInti,
+  Bidang,
+  Events,
+  Inti,
+  Misi,
+  PesanKetos,
+} from "./definitions";
 import { unstable_noStore as noStore } from "next/cache";
 
 export async function getAllBidang() {
@@ -111,7 +119,7 @@ export async function getAllAnggota(id: string) {
 
   try {
     const anggotas =
-      await sql<Anggota>`SELECT * FROM anggotas WHERE idBidang=${id}`;
+      await sql<Anggota>`SELECT * FROM anggotas WHERE idbidang=${id}`;
     return anggotas.rows;
   } catch (err) {
     console.log(err);
@@ -128,5 +136,55 @@ export async function getDetailAnggota(id: string) {
   } catch (err) {
     console.log(err);
     throw new Error("failed fetch anggota");
+  }
+}
+
+export async function getAllAnggotaInti() {
+  noStore();
+
+  try {
+    const anggotaintis = await sql<AnggotaInti>`SELECT * FROM AnggotaIntis`;
+    return anggotaintis.rows;
+  } catch (err) {
+    console.log(err);
+    throw new Error("failed fetch anggota inti");
+  }
+}
+
+export async function getAllAnggotaIntiOnly() {
+  noStore();
+
+  try {
+    const anggotaintis =
+      await sql<AnggotaInti>`SELECT * FROM AnggotaIntis WHERE jabatan!='Ketua OSIS'`;
+    return anggotaintis.rows;
+  } catch (err) {
+    console.log(err);
+    throw new Error("failed fetch anggota inti");
+  }
+}
+
+export async function getIntiData() {
+  noStore();
+
+  try {
+    const inti = await sql<Inti>`SELECT * FROM intis`;
+    return { ...inti.rows[0], nama: "Inti OSIS" };
+  } catch (err) {
+    console.log(err);
+    throw new Error("failed fetch anggota inti");
+  }
+}
+
+export async function getDetailAnggotaInti(id: string) {
+  noStore();
+
+  try {
+    const anggotaintis =
+      await sql<AnggotaInti>`SELECT * FROM AnggotaIntis WHERE id=${id}`;
+    return anggotaintis.rows[0];
+  } catch (err) {
+    console.log(err);
+    throw new Error("failed fetch anggota inti");
   }
 }
