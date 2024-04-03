@@ -15,7 +15,7 @@ async function createAnggota(client) {
 
     const createTable = await client.sql`
         CREATE TABLE IF NOT EXISTS anggotas (
-        id INT PRIMARY KEY,
+        id SERIAL PRIMARY KEY,
         idbidang INTEGER,
         nama VARCHAR(255) NOT NULL,
         image TEXT NOT NULL,

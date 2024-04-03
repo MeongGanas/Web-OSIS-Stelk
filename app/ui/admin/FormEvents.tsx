@@ -1,34 +1,51 @@
 "use client";
 import { AddEvent, EditEvent } from "@/app/lib/actions";
-import { Button } from "@nextui-org/react";
 import { useFormState } from "react-dom";
 import InputImage from "./InputImage";
 import { useEffect, useState } from "react";
 import { Events } from "@/app/lib/definitions";
 import Image from "next/image";
 import { redirect } from "next/navigation";
-import { Submit, SubmitValue } from "@/app/Button";
+import { Submit } from "@/app/Button";
 
 export function EditEventForm({ data }: { data: Events }) {
-  const [formState, dispatch] = useFormState(EditEvent, undefined);
-  const [showMessage, setShowMessage] = useState(false);
+  const [success, setSuccess] = useState<boolean | null>(null);
+  const [message, setMessage] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (formState && formState.success) {
-      redirect("/dashboard/events");
-    } else if (formState && !formState.success) {
-      setShowMessage(true);
-      const timer = setTimeout(() => {
-        setShowMessage(false);
-      }, 1500);
-      return () => clearTimeout(timer);
+  const [nama, setNama] = useState<string>(data.nama);
+  const [tanggal, setTanggal] = useState<string>(data.tanggal);
+  const [desc, setDesc] = useState<string>(data.deskripsi);
+  const [event, setEvent] = useState<File | null>(null);
+
+  const handleSubmit = async () => {
+    const formData = new FormData();
+    formData.append("id", data.id.toString());
+    formData.append("namaEvent", nama);
+    formData.append("tanggalEvent", tanggal);
+    formData.append("desc", desc);
+
+    if (event) {
+      formData.append("image-event", event);
     }
-  }, [formState]);
+
+    const response: { success: boolean; message: string } =
+      await EditEvent(formData);
+
+    if (response.success) {
+      setSuccess(true);
+      setMessage(response.message);
+
+      redirect("/dashboard/events");
+    } else {
+      setSuccess(false);
+      setMessage(response.message);
+    }
+  };
 
   return (
     <div className="mx-auto w-full max-w-screen-sm rounded-lg border border-gray-200 p-5 shadow">
       <h1 className="mb-5 text-4xl">Edit Event</h1>
-      <form action={dispatch}>
+      <form action={handleSubmit}>
         <div className="mb-4 w-full">
           <label htmlFor="namaEvent" className="mb-2 block">
             Nama Event
@@ -39,6 +56,9 @@ export function EditEventForm({ data }: { data: Events }) {
             name="namaEvent"
             required
             defaultValue={data.nama}
+            onChange={(e) => {
+              setNama(e.target.value);
+            }}
             className="block w-full rounded-md border border-gray-500 p-3 text-sm text-default-500"
           />
         </div>
@@ -52,6 +72,9 @@ export function EditEventForm({ data }: { data: Events }) {
             id="tanggalEvent"
             required
             name="tanggalEvent"
+            onChange={(e) => {
+              setTanggal(e.target.value);
+            }}
             defaultValue={data.tanggal}
             className="block w-full rounded-md border border-gray-500 p-3 text-sm text-default-500"
           />
@@ -66,6 +89,9 @@ export function EditEventForm({ data }: { data: Events }) {
             name="desc"
             required
             rows={5}
+            onChange={(e) => {
+              setDesc(e.target.value);
+            }}
             defaultValue={data.deskripsi}
             className="block w-full rounded-md border border-gray-500 p-3 text-sm text-default-500"
           ></textarea>
@@ -80,39 +106,55 @@ export function EditEventForm({ data }: { data: Events }) {
           <label htmlFor="image-event" className="mb-2 block">
             Foto Event
           </label>
-          <InputImage name="image-event" />
+          <InputImage name="image-event" setCompress={setEvent} />
         </div>
 
-        <SubmitValue name="Submit" buttonName="id" value={`${data.id}`} />
+        <Submit name="Submit" />
 
-        {showMessage && formState && !formState.success && (
-          <p className="mt-5 text-red-700">{formState.message}</p>
-        )}
+        {message && success && <p className="mt-5 text-green-500">{message}</p>}
+        {message && !success && <p className="mt-5 text-red-700">{message}</p>}
       </form>
     </div>
   );
 }
 
 export function AddEventForm() {
-  const [formState, dispatch] = useFormState(AddEvent, undefined);
-  const [showMessage, setShowMessage] = useState(false);
+  const [success, setSuccess] = useState<boolean | null>(null);
+  const [message, setMessage] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (formState && formState.success) {
-      redirect("/dashboard/events");
-    } else if (formState && !formState.success) {
-      setShowMessage(true);
-      const timer = setTimeout(() => {
-        setShowMessage(false);
-      }, 1500);
-      return () => clearTimeout(timer);
+  const [nama, setNama] = useState<string | null>(null);
+  const [tanggal, setTanggal] = useState<string | null>(null);
+  const [desc, setDesc] = useState<string | null>(null);
+  const [event, setEvent] = useState<File | null>(null);
+
+  const handleSubmit = async () => {
+    const formData = new FormData();
+
+    if (event && nama && tanggal && desc) {
+      formData.append("namaEvent", nama);
+      formData.append("tanggalEvent", tanggal);
+      formData.append("desc", desc);
+      formData.append("image-event", event);
+
+      const response: { success: boolean; message: string } =
+        await AddEvent(formData);
+
+      if (response.success) {
+        setSuccess(true);
+        setMessage(response.message);
+
+        redirect("/dashboard/events");
+      } else {
+        setSuccess(false);
+        setMessage(response.message);
+      }
     }
-  }, [formState]);
+  };
 
   return (
     <div className="mx-auto w-full max-w-screen-sm rounded-lg border border-gray-200 p-5 shadow">
       <h1 className="mb-5 text-4xl">Tambah Event</h1>
-      <form action={dispatch} method="POST">
+      <form action={handleSubmit} method="POST">
         <div className="mb-4 w-full">
           <label htmlFor="namaEvent" className="mb-2 block">
             Nama Event
@@ -120,6 +162,9 @@ export function AddEventForm() {
           <input
             type="text"
             id="namaEvent"
+            onChange={(e) => {
+              setNama(e.target.value);
+            }}
             name="namaEvent"
             required
             className="block w-full rounded-md border border-gray-500 p-3 text-sm text-default-500"
@@ -133,6 +178,9 @@ export function AddEventForm() {
           <input
             type="date"
             id="tanggalEvent"
+            onChange={(e) => {
+              setTanggal(e.target.value);
+            }}
             required
             name="tanggalEvent"
             className="block w-full rounded-md border border-gray-500 p-3 text-sm text-default-500"
@@ -147,6 +195,9 @@ export function AddEventForm() {
             id="desc"
             name="desc"
             rows={5}
+            onChange={(e) => {
+              setDesc(e.target.value);
+            }}
             required
             className="block w-full rounded-md border border-gray-500 p-3 text-sm text-default-500"
           ></textarea>
@@ -156,14 +207,13 @@ export function AddEventForm() {
           <label htmlFor="image-event" className="mb-2 block">
             Foto Event
           </label>
-          <InputImage name="image-event" />
+          <InputImage name="image-event" setCompress={setEvent} />
         </div>
 
         <Submit name="Submit" />
 
-        {showMessage && formState && !formState.success && (
-          <p className="mt-5 text-red-700">{formState.message}</p>
-        )}
+        {message && success && <p className="mt-5 text-green-500">{message}</p>}
+        {message && !success && <p className="mt-5 text-red-700">{message}</p>}
       </form>
     </div>
   );

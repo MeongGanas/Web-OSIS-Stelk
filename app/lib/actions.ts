@@ -112,10 +112,8 @@ export async function EditMisi(
   }
 }
 
-export async function EditPesanKetos(
-  prevState: { success: boolean; message: string } | undefined,
-  formData: FormData,
-) {
+export async function EditPesanKetos(formData: FormData) {
+  console.log(formData);
   const pesan = formData.get("pesan")?.toString();
   const nama = formData.get("nama")?.toString();
   const periode = formData.get("periode")?.toString();
@@ -134,10 +132,7 @@ export async function EditPesanKetos(
   }
 }
 
-export async function EditIntro(
-  prevState: { success: boolean; message: string } | undefined,
-  formData: FormData,
-) {
+export async function EditIntro(formData: FormData) {
   try {
     const imageUrl = await UploadSingleImage(formData);
     if (imageUrl) {
@@ -153,10 +148,7 @@ export async function EditIntro(
   }
 }
 
-export async function AddEvent(
-  prevState: { success: boolean; message: string } | undefined,
-  formData: FormData,
-) {
+export async function AddEvent(formData: FormData) {
   const nama = formData.get("namaEvent")?.toString();
   const tanggal = formData.get("tanggalEvent")?.toString();
   const desc = formData.get("desc")?.toString();
@@ -175,26 +167,19 @@ export async function AddEvent(
   }
 }
 
-export async function EditEvent(
-  prevState: { success: boolean; message: string } | undefined,
-  formData: FormData,
-) {
+export async function EditEvent(formData: FormData) {
   const id = formData.get("id")?.toString();
   const nama = formData.get("namaEvent")?.toString();
   const tanggal = formData.get("tanggalEvent")?.toString();
   const desc = formData.get("desc")?.toString();
-
   try {
-    const imageUrl = await UploadSingleImage(formData);
-
-    if (imageUrl) {
+    if (formData.get("image-event")) {
+      const imageUrl = await UploadSingleImage(formData);
       await sql`UPDATE events SET nama=${nama}, tanggal=${tanggal}, deskripsi=${desc}, foto=${imageUrl} WHERE id=${id}`;
     } else {
       await sql`UPDATE events SET nama=${nama}, tanggal=${tanggal}, deskripsi=${desc} WHERE id=${id}`;
     }
-
     revalidatePath("/dashboard/events");
-
     return { success: true, message: "Event edited successfully." };
   } catch (err) {
     console.log(err);
@@ -221,10 +206,8 @@ export async function DeleteEvent(id: number) {
   }
 }
 
-export async function AddAnggota(
-  prevState: { success: boolean; message: string } | undefined,
-  formData: FormData,
-) {
+export async function AddAnggota(formData: FormData) {
+  console.log(formData);
   const idBidang = formData.get("id")?.toString();
   const nama = formData.get("nama")?.toString();
   const jabatan = formData.get("jabatan")?.toString();
@@ -232,7 +215,7 @@ export async function AddAnggota(
   try {
     const imageUrl = await UploadSingleImage(formData);
 
-    await sql`INSERT INTO anggotas (nama, image, jabatan, idBidang)
+    await sql`INSERT INTO anggotas (nama, image, jabatan, idbidang)
     VALUES (${nama}, ${imageUrl}, ${jabatan}, ${idBidang})`;
 
     revalidatePath(`/dashboard/pengurus/bidang/${idBidang}`);
@@ -247,19 +230,15 @@ export async function AddAnggota(
   }
 }
 
-export async function EditAnggota(
-  prevState: { success: boolean; message: string } | undefined,
-  formData: FormData,
-) {
+export async function EditAnggota(formData: FormData) {
   const [id, idbidang] = formData.get("id")?.toString()?.split("-") ?? [];
   const nama = formData.get("nama")?.toString();
-  const jabatanIndex = formData.get("jabatan")?.toString();
-  const jabatan = jabatanIndex === "0" ? "Koordinator" : "Anggota";
+  const jabatan = formData.get("jabatan")?.toString();
 
   try {
-    const imageUrl = await UploadSingleImage(formData);
+    if (formData.get("image-anggota")) {
+      const imageUrl = await UploadSingleImage(formData);
 
-    if (imageUrl) {
       await sql`UPDATE anggotas SET nama=${nama}, jabatan=${jabatan}, image=${imageUrl} WHERE id=${id}`;
     } else {
       await sql`UPDATE anggotas SET nama=${nama}, jabatan=${jabatan} WHERE id=${id}`;
@@ -293,10 +272,7 @@ export async function DeleteAnggota(id: number, idBidang: number) {
   }
 }
 
-export async function AddBidang(
-  prevState: { success: boolean; message: string } | undefined,
-  formData: FormData,
-) {
+export async function AddBidang(formData: FormData) {
   const id = formData.get("id")?.toString();
   const nama = formData.get("nama")?.toString();
   const tugasumum = formData.get("tugas")?.toString();
@@ -318,28 +294,28 @@ export async function AddBidang(
   }
 }
 
-export async function EditBidang(
-  prevState: { success: boolean; message: string } | undefined,
-  formData: FormData,
-) {
+export async function EditBidang(formData: FormData) {
   const id = formData.get("id")?.toString();
   const nama = formData.get("nama")?.toString();
   const tugasumum = formData.get("tugas")?.toString();
-
   try {
-    const [intro, card] = await UploadMultiImage(formData);
-    if (intro && card) {
-      await sql`UPDATE bidangs set id=${id}, nama=${nama}, tugasumum${tugasumum}, introimage=${intro}, cardimage=${card} WHERE id=${id}`;
-    } else if (intro && !card) {
-      await sql`UPDATE bidangs set id=${id}, nama=${nama}, tugasumum${tugasumum}, introimage=${intro} WHERE id=${id}`;
-    } else if (!intro && !card) {
-      await sql`UPDATE bidangs set id=${id}, nama=${nama}, tugasumum${tugasumum}, cardimage=${card}, cardimage=${card} WHERE id=${id}`;
+    if (formData.get("image-intro") && formData.get("image-card")) {
+      const [intro, card] = await UploadMultiImage(formData);
+
+      await sql`UPDATE bidangs SET id=${id}, nama=${nama}, tugasumum=${tugasumum}, introimage=${intro}, cardimage=${card} WHERE id=${id}`;
+    } else if (formData.get("image-intro") && !formData.get("image-card")) {
+      const intro = await UploadSingleImage(formData);
+
+      await sql`UPDATE bidangs SET id=${id}, nama=${nama}, tugasumum=${tugasumum}, introimage=${intro} WHERE id=${id}`;
+    } else if (!formData.get("image-intro") && formData.get("image-card")) {
+      const card = await UploadSingleImage(formData);
+
+      await sql`UPDATE bidangs SET id=${id}, nama=${nama}, tugasumum=${tugasumum}, cardimage=${card} WHERE id=${id}`;
     } else {
-      await sql`UPDATE bidangs set id=${id}, nama=${nama}, tugasumum${tugasumum} WHERE id=${id}`;
+      await sql`UPDATE bidangs SET id=${id}, nama=${nama}, tugasumum=${tugasumum} WHERE id=${id}`;
     }
 
     revalidatePath(`/dashboard/pengurus`);
-
     return { success: true, message: "Bidang edited successfully." };
   } catch (err) {
     console.log(err);

@@ -9,11 +9,11 @@ import {
   EditAnggota,
   EditBidang,
 } from "@/app/lib/actions";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { redirect } from "next/navigation";
 import { jabatanBidang } from "@/app/lib/placeholder-data";
 import Image from "next/image";
-import { Submit, SubmitValue } from "@/app/Button";
+import { Submit } from "@/app/Button";
 
 export function EditBidangForm({
   params,
@@ -22,25 +22,45 @@ export function EditBidangForm({
   params: { id: string };
   detail: Bidang;
 }) {
-  const [formState, dispatch] = useFormState(EditBidang, undefined);
-  const [showMessage, setShowMessage] = useState(false);
+  const [success, setSuccess] = useState<boolean | null>(null);
+  const [message, setMessage] = useState<string | null>(null);
+  const [nama, setNama] = useState<string>(detail.nama);
+  const [tugas, setTugas] = useState<string>(detail.tugasumum);
+  const [intro, setIntro] = useState<File | null>(null);
+  const [card, setCard] = useState<File | null>(null);
 
-  useEffect(() => {
-    if (formState && formState.success) {
-      redirect(`/dashboard/pengurus/bidang/${params.id}`);
-    } else if (formState && !formState.success) {
-      setShowMessage(true);
-      const timer = setTimeout(() => {
-        setShowMessage(false);
-      }, 1500);
-      return () => clearTimeout(timer);
+  const handleSubmit = async () => {
+    const formData = new FormData();
+    formData.append("id", params.id);
+    formData.append("nama", nama);
+    formData.append("tugas", tugas);
+
+    if (intro) {
+      formData.append("image-intro", intro);
     }
-  }, [formState]);
+
+    if (card) {
+      formData.append("image-card", card);
+    }
+
+    const response: { success: boolean; message: string } =
+      await EditBidang(formData);
+
+    if (response.success) {
+      setSuccess(true);
+      setMessage(response.message);
+
+      redirect(`/dashboard/pengurus/bidang/${params.id}`);
+    } else {
+      setSuccess(false);
+      setMessage(response.message);
+    }
+  };
 
   return (
     <div className="w-full rounded-lg border border-gray-200 p-5 shadow">
       <h1 className="mb-5 text-4xl">Edit Bidang {params.id}</h1>
-      <form action={dispatch}>
+      <form action={handleSubmit}>
         <div
           className="mb-5 grid grid-cols-1 gap-5 md:grid-cols-2"
           id="wrapper-grid"
@@ -54,6 +74,7 @@ export function EditBidangForm({
               id="nama"
               name="nama"
               defaultValue={detail.nama}
+              onChange={(e) => setNama(e.target.value)}
               required
               className="block w-full rounded-md border border-gray-500 p-3 text-sm uppercase text-default-500"
             />
@@ -67,6 +88,7 @@ export function EditBidangForm({
               name="tugas"
               rows={2}
               defaultValue={detail.tugasumum}
+              onChange={(e) => setTugas(e.target.value)}
               required
               className="block w-full rounded-md border border-gray-500 p-3 text-sm text-default-500"
             ></textarea>
@@ -83,7 +105,7 @@ export function EditBidangForm({
             <label htmlFor="intro" className="mb-2 block">
               Foto Intro Bidang {params.id}
             </label>
-            <InputImage name="intro" />
+            <InputImage name="intro" setCompress={setIntro} />
           </div>
           <div className="mb-4 w-full">
             <h1>Current Image</h1>
@@ -97,41 +119,52 @@ export function EditBidangForm({
             <label htmlFor="card" className="mb-2 block">
               Foto Card Bidang {params.id}
             </label>
-            <InputImage name="card" />
+            <InputImage name="card" setCompress={setCard} />
           </div>
         </div>
 
         <Submit name="Submit" />
 
-        {showMessage && formState && !formState.success && (
-          <p className="mt-5 text-red-700">{formState.message}</p>
-        )}
+        {message && success && <p className="mt-5 text-green-500">{message}</p>}
+        {message && !success && <p className="mt-5 text-red-700">{message}</p>}
       </form>
     </div>
   );
 }
 
 export function EditAnggotaForm({ data }: { data: Anggota }) {
-  const [formState, dispatch] = useFormState(EditAnggota, undefined);
-  const [showMessage, setShowMessage] = useState(false);
+  const [success, setSuccess] = useState<boolean | null>(null);
+  const [message, setMessage] = useState<string | null>(null);
+  const [nama, setNama] = useState<string>(data.nama);
+  const [jabatan, setJabatan] = useState<string>(data.jabatan);
+  const [image, setImage] = useState<File | null>(null);
 
-  useEffect(() => {
-    if (formState && formState.success) {
-      redirect(`/dashboard/pengurus/bidang/${data.idbidang}`);
-    } else if (formState && !formState.success) {
-      setShowMessage(true);
-      const timer = setTimeout(() => {
-        setShowMessage(false);
-      }, 1500);
-      return () => clearTimeout(timer);
+  const handleSubmit = async () => {
+    const formData = new FormData();
+    formData.append("id", `${data.id}-${data.idbidang}`);
+    formData.append("nama", nama);
+    formData.append("jabatan", jabatan);
+    if (image) {
+      formData.append("image-anggota", image);
     }
-  }, [formState]);
+    const response: { success: boolean; message: string } =
+      await EditAnggota(formData);
 
+    if (response.success) {
+      setSuccess(true);
+      setMessage(response.message);
+
+      redirect(`/dashboard/pengurus/bidang/${data.idbidang}`);
+    } else {
+      setSuccess(false);
+      setMessage(response.message);
+    }
+  };
   return (
     <div className="mx-auto w-full max-w-screen-sm rounded-lg border border-gray-200 p-5 shadow">
       <h1 className="mb-5 text-4xl">Edit Anggota</h1>
 
-      <form action={dispatch}>
+      <form action={handleSubmit}>
         <div className="mb-4" id="koor">
           <div className="mb-2">
             <label htmlFor="nama" className="mb-2 block">
@@ -143,6 +176,7 @@ export function EditAnggotaForm({ data }: { data: Anggota }) {
               name="nama"
               required
               defaultValue={data.nama}
+              onChange={(e) => setNama(e.target.value)}
               className="block w-full rounded-md border border-gray-500 p-3 text-sm  text-default-500"
             />
           </div>
@@ -156,6 +190,7 @@ export function EditAnggotaForm({ data }: { data: Anggota }) {
               className="w-full rounded-md border border-gray-500"
               name="jabatan"
               id="jabatan"
+              onChange={(e) => setJabatan(e.target.value)}
               defaultSelectedKeys={data.jabatan === "Koordinator" ? "0" : "1"}
             >
               {jabatanBidang.map((jabatan, index) => (
@@ -175,44 +210,53 @@ export function EditAnggotaForm({ data }: { data: Anggota }) {
             <label htmlFor="image-anggota" className="mb-2 block">
               Foto Anggota
             </label>
-            <InputImage name="image-anggota" />
+            <InputImage name="image-anggota" setCompress={setImage} />
           </div>
         </div>
 
-        <SubmitValue
-          name="Submit"
-          buttonName="id"
-          value={`${data.id}-${data.idbidang}`}
-        />
+        <Submit name="Submit" />
 
-        {showMessage && formState && !formState.success && (
-          <p className="mt-5 text-red-700">{formState.message}</p>
-        )}
+        {message && success && <p className="mt-5 text-green-500">{message}</p>}
+        {message && !success && <p className="mt-5 text-red-700">{message}</p>}
       </form>
     </div>
   );
 }
 
 export function AddAnggotaForm({ id }: { id: string }) {
-  const [formState, dispatch] = useFormState(AddAnggota, undefined);
-  const [showMessage, setShowMessage] = useState(false);
+  const [success, setSuccess] = useState<boolean | null>(null);
+  const [message, setMessage] = useState<string | null>(null);
+  const [nama, setNama] = useState<string | null>(null);
+  const [jabatan, setJabatan] = useState<string | null>(null);
+  const [image, setImage] = useState<File | null>(null);
 
-  useEffect(() => {
-    if (formState && formState.success) {
-      redirect(`/dashboard/pengurus/bidang/${id}`);
-    } else if (formState && !formState.success) {
-      setShowMessage(true);
-      const timer = setTimeout(() => {
-        setShowMessage(false);
-      }, 1500);
-      return () => clearTimeout(timer);
+  const handleSubmit = async () => {
+    const formData = new FormData();
+    if (jabatan && nama && image) {
+      formData.append("id", id);
+      formData.append("nama", nama);
+      formData.append("jabatan", jabatan);
+      formData.append("image-anggota", image);
+
+      const response: { success: boolean; message: string } =
+        await AddAnggota(formData);
+
+      if (response.success) {
+        setSuccess(true);
+        setMessage(response.message);
+
+        redirect(`/dashboard/pengurus/bidang/${id}`);
+      } else {
+        setSuccess(false);
+        setMessage(response.message);
+      }
     }
-  }, [formState]);
+  };
 
   return (
     <div className="mx-auto w-full max-w-screen-sm rounded-lg border border-gray-200 p-5 shadow">
       <h1 className="mb-5 text-4xl">Tambah Anggota Bidang {id}</h1>
-      <form action={dispatch}>
+      <form action={handleSubmit}>
         <div className="mb-4 w-full">
           <label htmlFor="nama" className="mb-2 block">
             Nama Anggota
@@ -222,6 +266,7 @@ export function AddAnggotaForm({ id }: { id: string }) {
             id="nama"
             name="nama"
             required
+            onChange={(e) => setNama(e.target.value)}
             className="block w-full rounded-md border border-gray-500 p-3 text-sm text-default-500"
           />
         </div>
@@ -235,6 +280,7 @@ export function AddAnggotaForm({ id }: { id: string }) {
             className="w-full rounded-md border border-gray-500"
             name="jabatan"
             id="jabatan"
+            onChange={(e) => setJabatan(e.target.value)}
           >
             {jabatanBidang.map((jabatan) => (
               <SelectItem key={jabatan} value={jabatan}>
@@ -247,39 +293,55 @@ export function AddAnggotaForm({ id }: { id: string }) {
           <label htmlFor="image-anggota" className="mb-2 block">
             Foto Anggota
           </label>
-          <InputImage name="image-anggota" />
+          <InputImage name="image-anggota" setCompress={setImage} />
         </div>
 
-        <SubmitValue name="Submit" buttonName="id" value={id} />
+        <Submit name="Submit" />
 
-        {showMessage && formState && !formState.success && (
-          <p className="mt-5 text-red-700">{formState.message}</p>
-        )}
+        {message && success && <p className="mt-5 text-green-500">{message}</p>}
+        {message && !success && <p className="mt-5 text-red-700">{message}</p>}
       </form>
     </div>
   );
 }
 
 export function TambahBidangForm() {
-  const [formState, dispatch] = useFormState(AddBidang, undefined);
-  const [showMessage, setShowMessage] = useState(false);
+  const [success, setSuccess] = useState<boolean | null>(null);
+  const [message, setMessage] = useState<string | null>(null);
+  const [id, setId] = useState<string | null>(null);
+  const [nama, setNama] = useState<string | null>(null);
+  const [tugas, setTugas] = useState<string | null>(null);
+  const [intro, setIntro] = useState<File | null>(null);
+  const [card, setCard] = useState<File | null>(null);
 
-  useEffect(() => {
-    if (formState && formState.success) {
-      redirect(`/dashboard/pengurus`);
-    } else if (formState && !formState.success) {
-      setShowMessage(true);
-      const timer = setTimeout(() => {
-        setShowMessage(false);
-      }, 3000);
-      return () => clearTimeout(timer);
+  const handleSubmit = async () => {
+    const formData = new FormData();
+    if (intro && card && nama && tugas && id) {
+      formData.append("id", id);
+      formData.append("nama", nama);
+      formData.append("tugas", tugas);
+      formData.append("image-intro", intro);
+      formData.append("image-card", card);
+
+      const response: { success: boolean; message: string } =
+        await AddBidang(formData);
+
+      if (response.success) {
+        setSuccess(true);
+        setMessage(response.message);
+
+        redirect("/dashboard/pengurus");
+      } else {
+        setSuccess(false);
+        setMessage(response.message);
+      }
     }
-  }, [formState]);
+  };
 
   return (
     <div className="w-full rounded-lg border border-gray-200 p-5 shadow">
       <h1 className="mb-5 text-4xl">Tambah Bidang</h1>
-      <form action={dispatch}>
+      <form action={handleSubmit}>
         <div
           className="mb-5 grid grid-cols-1 gap-5 md:grid-cols-2"
           id="wrapper-grid"
@@ -293,6 +355,9 @@ export function TambahBidangForm() {
               id="nama"
               name="nama"
               required
+              onChange={(e) => {
+                setNama(e.target.value);
+              }}
               className="block w-full rounded-md border border-gray-500 p-3 text-sm uppercase text-default-500"
             />
           </div>
@@ -303,6 +368,9 @@ export function TambahBidangForm() {
             <input
               type="number"
               id="id"
+              onChange={(e) => {
+                setId(e.target.value);
+              }}
               name="id"
               required
               className="block w-full rounded-md border border-gray-500 p-3 text-sm uppercase text-default-500"
@@ -313,13 +381,13 @@ export function TambahBidangForm() {
             <label htmlFor="image-intro" className="mb-2 block">
               Foto Intro
             </label>
-            <InputImage name="image-intro" />
+            <InputImage name="image-intro" setCompress={setIntro} />
           </div>
           <div className="mb-4 w-full">
             <label htmlFor="image-card" className="mb-2 block">
               Foto Card
             </label>
-            <InputImage name="image-card" />
+            <InputImage name="image-card" setCompress={setCard} />
           </div>
           <div className="mb-4 w-full">
             <label htmlFor="tugas" className="mb-2 block">
@@ -330,6 +398,9 @@ export function TambahBidangForm() {
               name="tugas"
               rows={2}
               required
+              onChange={(e) => {
+                setTugas(e.target.value);
+              }}
               className="block w-full rounded-md border border-gray-500 p-3 text-sm text-default-500"
             ></textarea>
           </div>
@@ -337,9 +408,8 @@ export function TambahBidangForm() {
 
         <Submit name="Submit" />
 
-        {showMessage && formState && !formState.success && (
-          <p className="mt-5 text-red-700">{formState.message}</p>
-        )}
+        {message && success && <p className="mt-5 text-green-500">{message}</p>}
+        {message && !success && <p className="mt-5 text-red-700">{message}</p>}
       </form>
     </div>
   );

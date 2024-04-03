@@ -8,30 +8,40 @@ import {
   EditVisi,
 } from "@/app/lib/actions";
 import { Misi, PesanKetos } from "@/app/lib/definitions";
-import { Button } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import { useFormState } from "react-dom";
 import InputImage from "./InputImage";
 import Image from "next/image";
 import { Submit } from "@/app/Button";
+import { redirect } from "next/navigation";
 
 export function IntroForm({ currentImage }: { currentImage: string }) {
-  const [formState, dispatch] = useFormState(EditIntro, undefined);
-  const [showMessage, setShowMessage] = useState(false);
+  const [success, setSuccess] = useState<boolean | null>(null);
+  const [message, setMessage] = useState<string | null>(null);
+  const [compressedImage, setCompressedImage] = useState<File | null>(null);
 
-  useEffect(() => {
-    if (formState && (formState.success || !formState.success)) {
-      setShowMessage(true);
-      const timer = setTimeout(() => {
-        setShowMessage(false);
-      }, 1500);
-      return () => clearTimeout(timer);
+  const handleSubmit = async () => {
+    const formData = new FormData();
+    if (compressedImage) {
+      formData.append("image-intro", compressedImage);
     }
-  }, [formState]);
+    const response: { success: boolean; message: string } =
+      await EditIntro(formData);
+
+    if (response.success) {
+      setSuccess(true);
+      setMessage(response.message);
+
+      redirect("/dashboard/home");
+    } else {
+      setSuccess(false);
+      setMessage(response.message);
+    }
+  };
 
   return (
     <form
-      action={dispatch}
+      action={handleSubmit}
       className="mx-auto h-fit w-full max-w-screen-sm rounded-lg border border-gray-200 p-5 shadow"
     >
       <h1 className="mb-5 text-4xl">Edit Halaman Intro</h1>
@@ -43,17 +53,13 @@ export function IntroForm({ currentImage }: { currentImage: string }) {
         <label htmlFor="image-intro" className="mb-2 block">
           Foto Halaman Intro
         </label>
-        <InputImage name="image-intro" />
+        <InputImage name="image-intro" setCompress={setCompressedImage} />
       </div>
 
       <Submit name="Submit" />
 
-      {showMessage && formState && formState.success && (
-        <p className="mt-5 text-green-500">{formState.message}</p>
-      )}
-      {showMessage && formState && !formState.success && (
-        <p className="mt-5 text-red-700">{formState.message}</p>
-      )}
+      {message && success && <p className="mt-5 text-green-500">{message}</p>}
+      {message && !success && <p className="mt-5 text-red-700">{message}</p>}
     </form>
   );
 }
@@ -110,22 +116,39 @@ export function AboutForm({ about }: { about: string }) {
 }
 
 export function PesanKetosForm({ pesanketos }: { pesanketos: PesanKetos }) {
-  const [formState, dispatch] = useFormState(EditPesanKetos, undefined);
-  const [showMessage, setShowMessage] = useState(false);
+  const [success, setSuccess] = useState<boolean | null>(null);
+  const [message, setMessage] = useState<string | null>(null);
+  const [sambutan, setSambutan] = useState<string>(pesanketos.pesan);
+  const [nama, setNama] = useState<string>(pesanketos.nama);
+  const [periode, setPeriode] = useState<string>(pesanketos.periode);
+  const [compressedImage, setCompressedImage] = useState<File | null>(null);
 
-  useEffect(() => {
-    if (formState && (formState.success || !formState.success)) {
-      setShowMessage(true);
-      const timer = setTimeout(() => {
-        setShowMessage(false);
-      }, 1500);
-      return () => clearTimeout(timer);
+  const handleSubmit = async () => {
+    const formData = new FormData();
+    formData.append("nama", nama);
+    formData.append("pesan", sambutan);
+    formData.append("periode", periode);
+
+    if (compressedImage) {
+      formData.append("image-sambutan", compressedImage);
     }
-  }, [formState]);
+    const response: { success: boolean; message: string } =
+      await EditPesanKetos(formData);
+
+    if (response.success) {
+      setSuccess(true);
+      setMessage(response.message);
+
+      redirect("/dashboard/home");
+    } else {
+      setSuccess(false);
+      setMessage(response.message);
+    }
+  };
 
   return (
     <form
-      action={dispatch}
+      action={handleSubmit}
       className="mx-auto h-fit w-full max-w-screen-sm rounded-lg border border-gray-200 p-5 shadow"
     >
       <h1 className="text-4xl">Edit Halaman Sambutan Ketos</h1>
@@ -139,6 +162,7 @@ export function PesanKetosForm({ pesanketos }: { pesanketos: PesanKetos }) {
             required
             id="pesan"
             defaultValue={pesanketos.pesan}
+            onChange={(e) => setSambutan(e.target.value)}
             cols={30}
             rows={5}
             className="mb-3 w-full text-wrap rounded-md border border-gray-500 p-3 text-default-500"
@@ -155,6 +179,7 @@ export function PesanKetosForm({ pesanketos }: { pesanketos: PesanKetos }) {
             id="nama"
             name="nama"
             defaultValue={pesanketos.nama}
+            onChange={(e) => setNama(e.target.value)}
             className="mb-3 w-full text-wrap rounded-md border border-gray-500 p-3 text-default-500"
           />
         </div>
@@ -169,6 +194,7 @@ export function PesanKetosForm({ pesanketos }: { pesanketos: PesanKetos }) {
             id="periode"
             required
             name="periode"
+            onChange={(e) => setPeriode(e.target.value)}
             className="mb-3 w-full text-wrap rounded-md border border-gray-500 p-3 text-default-500"
           />
         </div>
@@ -188,18 +214,14 @@ export function PesanKetosForm({ pesanketos }: { pesanketos: PesanKetos }) {
           <label htmlFor="image-sambutan" className="mb-2 block">
             Foto Sambutan Ketos
           </label>
-          <InputImage name="image-sambutan" />
+          <InputImage name="image-sambutan" setCompress={setCompressedImage} />
         </div>
       </div>
 
       <Submit name="Submit" />
 
-      {showMessage && formState && formState.success && (
-        <p className="mt-5 text-green-500">{formState.message}</p>
-      )}
-      {showMessage && formState && !formState.success && (
-        <p className="mt-5 text-red-700">{formState.message}</p>
-      )}
+      {message && success && <p className="mt-5 text-green-500">{message}</p>}
+      {message && !success && <p className="mt-5 text-red-700">{message}</p>}
     </form>
   );
 }

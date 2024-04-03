@@ -1,5 +1,5 @@
-import Compressor from "compressorjs";
 import ImageKit from "imagekit";
+import sharp from "sharp";
 
 const imageKit = new ImageKit({
   publicKey: process.env.IMAGEKIT_PUBLIC_KEY!,
@@ -15,6 +15,7 @@ export async function UploadSingleImage(formData: FormData) {
   if (image.size !== 0) {
     const imageBuffer = await image.arrayBuffer();
     const buffer = Buffer.from(imageBuffer);
+
     const response = await imageKit.upload({
       file: buffer,
       fileName: image.name,
