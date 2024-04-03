@@ -192,7 +192,7 @@ export function EditAnggotaForm({ data }: { data: Anggota }) {
               name="jabatan"
               id="jabatan"
               onChange={(e) => setJabatan(e.target.value)}
-              defaultSelectedKeys={data.jabatan.indexOf(jabatan).toString()}
+              defaultSelectedKeys={jabatanBidang.indexOf(jabatan).toString()}
             >
               {jabatanBidang.map((jabatan, index) => (
                 <SelectItem key={index} value={jabatan}>
