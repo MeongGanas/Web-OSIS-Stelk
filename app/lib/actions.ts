@@ -1,5 +1,5 @@
 "use server";
-
+import { jabatanBidang, jabatanInti } from "@/app/lib/placeholder-data";
 import { AuthError } from "next-auth";
 import { signIn, signOut } from "@/auth";
 import { sql } from "@vercel/postgres";
@@ -233,7 +233,11 @@ export async function AddAnggota(formData: FormData) {
 export async function EditAnggota(formData: FormData) {
   const [id, idbidang] = formData.get("id")?.toString()?.split("-") ?? [];
   const nama = formData.get("nama")?.toString();
-  const jabatan = formData.get("jabatan")?.toString();
+  const jabatanIndex = formData.get("jabatan")?.toString();
+  let jabatan;
+  if (jabatanIndex) {
+    jabatan = jabatanBidang[parseInt(jabatanIndex)];
+  }
   const instaLink = formData.get("insta")?.toString();
 
   try {
@@ -344,7 +348,6 @@ export async function DeleteBidang(id: number) {
 }
 
 export async function AddAnggotaInti(formData: FormData) {
-  console.log(formData);
   const nama = formData.get("nama")?.toString();
   const jabatan = formData.get("jabatan")?.toString();
   const instaLink = formData.get("insta")?.toString();
@@ -392,7 +395,11 @@ export async function EditInti(formData: FormData) {
 export async function EditAnggotaInti(formData: FormData) {
   const id = formData.get("id")?.toString();
   const nama = formData.get("nama")?.toString();
-  const jabatan = formData.get("jabatan")?.toString();
+  const jabatanIndex = formData.get("jabatan")?.toString();
+  let jabatan;
+  if (jabatanIndex) {
+    jabatan = jabatanInti[parseInt(jabatanIndex)];
+  }
   const instaLink = formData.get("insta")?.toString();
 
   try {
