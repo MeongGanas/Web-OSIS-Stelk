@@ -21,7 +21,11 @@ export function AnggotaBidangList({
         <div className="grid max-w-screen-lg grid-cols-1 gap-10 md:grid-cols-2">
           {anggotas &&
             anggotas.map((anggota, index) => (
-              <CardAnggotaBidang data={anggota} index={index} />
+              <CardAnggotaBidang
+                key={anggota.id}
+                data={anggota}
+                index={index}
+              />
             ))}
         </div>
       </div>
@@ -48,7 +52,9 @@ export function AnggotaIntiList({
       <div className="flex justify-center">
         <div className="grid max-w-screen-lg grid-cols-1 gap-10 md:grid-cols-2">
           {anggotas &&
-            anggotas.map((anggota) => <CardAnggotaInti data={anggota} />)}
+            anggotas.map((anggota) => (
+              <CardAnggotaInti key={anggota.id} data={anggota} />
+            ))}
         </div>
       </div>
     </div>
