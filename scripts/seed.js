@@ -20,6 +20,7 @@ async function createAnggota(client) {
         nama VARCHAR(255) NOT NULL,
         image TEXT NOT NULL,
         jabatan VARCHAR(255) NOT NULL,
+        ig VARCHAR(255) NOT NULL,
         FOREIGN KEY (idbidang) REFERENCES bidangs(id)
         );
     `;
@@ -67,7 +68,8 @@ async function createAnggotaInti(client) {
         id SERIAL PRIMARY KEY,
         nama VARCHAR(255) NOT NULL,
         image TEXT NOT NULL,
-        jabatan VARCHAR(255) NOT NULL
+        jabatan VARCHAR(255) NOT NULL,
+        ig VARCHAR(255) NOT NULL
         );
     `;
 
@@ -275,7 +277,7 @@ async function seedAdmin(client) {
 async function main() {
   const client = await db.connect();
 
-  await createInti(client);
+  await createAnggota(client);
   await createAnggotaInti(client);
 
   await client.end();

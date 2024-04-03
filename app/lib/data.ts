@@ -127,6 +127,19 @@ export async function getAllAnggota(id: string) {
   }
 }
 
+export async function getAllAnggotaOnly(id: string) {
+  noStore();
+
+  try {
+    const anggotas =
+      await sql<Anggota>`SELECT * FROM anggotas WHERE jabatan != 'Koordinator' and idbidang=${id} ORDER BY id`;
+    return anggotas.rows;
+  } catch (err) {
+    console.log(err);
+    throw new Error("failed fetch anggota");
+  }
+}
+
 export async function getDetailAnggota(id: string) {
   noStore();
 
@@ -155,9 +168,35 @@ export async function getAllAnggotaIntiOnly() {
   noStore();
 
   try {
-    const anggotaintis =
+    const ketos =
       await sql<AnggotaInti>`SELECT * FROM AnggotaIntis WHERE jabatan!='Ketua OSIS'`;
-    return anggotaintis.rows;
+    return ketos.rows;
+  } catch (err) {
+    console.log(err);
+    throw new Error("failed fetch anggota inti");
+  }
+}
+
+export async function getKetos() {
+  noStore();
+
+  try {
+    const anggotaintis =
+      await sql<AnggotaInti>`SELECT * FROM AnggotaIntis WHERE jabatan='Ketua OSIS'`;
+    return anggotaintis.rows[0];
+  } catch (err) {
+    console.log(err);
+    throw new Error("failed fetch anggota inti");
+  }
+}
+
+export async function getKoor(id: string) {
+  noStore();
+
+  try {
+    const koor =
+      await sql<Anggota>`SELECT * FROM anggotas WHERE jabatan='Koordinator' and id=${id}`;
+    return koor.rows[0];
   } catch (err) {
     console.log(err);
     throw new Error("failed fetch anggota inti");

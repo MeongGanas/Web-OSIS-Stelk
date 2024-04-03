@@ -11,6 +11,7 @@ import { Anggota, AnggotaInti, Events } from "@/app/lib/definitions";
 import Link from "next/link";
 import { Button } from "@nextui-org/react";
 import { DeleteAnggota, DeleteEvent } from "@/app/lib/actions";
+import { Instagram } from "@mui/icons-material";
 
 export function AnggotaTable({ anggotas }: { anggotas: Array<Anggota> }) {
   return (
@@ -19,6 +20,7 @@ export function AnggotaTable({ anggotas }: { anggotas: Array<Anggota> }) {
         <TableColumn className="text-center">Nama</TableColumn>
         <TableColumn className="text-center">Jabatan</TableColumn>
         <TableColumn className="text-center">Foto</TableColumn>
+        <TableColumn className="text-center">IG</TableColumn>
         <TableColumn className="text-center">Actions</TableColumn>
       </TableHeader>
       <TableBody>
@@ -34,6 +36,11 @@ export function AnggotaTable({ anggotas }: { anggotas: Array<Anggota> }) {
               <TableCell className="min-w-40 text-center">
                 <Link href={anggota.image} className="text-blue-600 underline">
                   foto
+                </Link>
+              </TableCell>
+              <TableCell className="min-w-40 text-center">
+                <Link href={anggota.ig} className="text-blue-600 underline">
+                  <Instagram />
                 </Link>
               </TableCell>
               <TableCell className="min-w-40 text-center">
@@ -115,6 +122,7 @@ export function IntiTable({ inti }: { inti: Array<AnggotaInti> }) {
         <TableColumn className="text-center">Nama</TableColumn>
         <TableColumn className="text-center">Jabatan</TableColumn>
         <TableColumn className="text-center">Foto</TableColumn>
+        <TableColumn className="text-center">IG</TableColumn>
         <TableColumn className="text-center">Actions</TableColumn>
       </TableHeader>
       <TableBody>
@@ -130,6 +138,11 @@ export function IntiTable({ inti }: { inti: Array<AnggotaInti> }) {
               <TableCell className="min-w-40 text-center">
                 <Link href={inti.image} className="text-blue-600 underline">
                   foto
+                </Link>
+              </TableCell>
+              <TableCell className="min-w-40 text-center">
+                <Link href={inti.ig} className="text-blue-600 underline">
+                  <Instagram />
                 </Link>
               </TableCell>
               <TableCell className="min-w-40 text-center">

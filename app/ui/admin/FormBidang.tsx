@@ -136,6 +136,7 @@ export function EditAnggotaForm({ data }: { data: Anggota }) {
   const [message, setMessage] = useState<string | null>(null);
   const [nama, setNama] = useState<string>(data.nama);
   const [jabatan, setJabatan] = useState<string>(data.jabatan);
+  const [insta, setInsta] = useState<string>(data.ig);
   const [image, setImage] = useState<File | null>(null);
 
   const handleSubmit = async () => {
@@ -143,6 +144,7 @@ export function EditAnggotaForm({ data }: { data: Anggota }) {
     formData.append("id", `${data.id}-${data.idbidang}`);
     formData.append("nama", nama);
     formData.append("jabatan", jabatan);
+    formData.append("insta", insta);
     if (image) {
       formData.append("image-anggota", image);
     }
@@ -213,6 +215,21 @@ export function EditAnggotaForm({ data }: { data: Anggota }) {
           </div>
         </div>
 
+        <div className="mb-2">
+          <label htmlFor="insta" className="mb-2 block">
+            Instagram Anggota
+          </label>
+          <input
+            type="text"
+            id="insta"
+            name="insta"
+            required
+            defaultValue={data.ig}
+            onChange={(e) => setInsta(e.target.value)}
+            className="block w-full rounded-md border border-gray-500 p-3 text-sm  text-default-500"
+          />
+        </div>
+
         <Submit name="Submit" />
 
         {message && success && <p className="mt-5 text-green-500">{message}</p>}
@@ -227,14 +244,16 @@ export function AddAnggotaForm({ id }: { id: string }) {
   const [message, setMessage] = useState<string | null>(null);
   const [nama, setNama] = useState<string | null>(null);
   const [jabatan, setJabatan] = useState<string | null>(null);
+  const [insta, setInsta] = useState<string | null>(null);
   const [image, setImage] = useState<File | null>(null);
 
   const handleSubmit = async () => {
     const formData = new FormData();
-    if (jabatan && nama && image) {
+    if (jabatan && nama && image && insta) {
       formData.append("id", id);
       formData.append("nama", nama);
       formData.append("jabatan", jabatan);
+      formData.append("insta", insta);
       formData.append("image-anggota", image);
 
       const response: { success: boolean; message: string } =
@@ -293,6 +312,20 @@ export function AddAnggotaForm({ id }: { id: string }) {
             Foto Anggota
           </label>
           <InputImage name="image-anggota" setCompress={setImage} />
+        </div>
+
+        <div className="mb-4 w-full">
+          <label htmlFor="insta" className="mb-2 block">
+            Instagram Anggota
+          </label>
+          <input
+            type="text"
+            id="insta"
+            name="insta"
+            required
+            onChange={(e) => setInsta(e.target.value)}
+            className="block w-full rounded-md border border-gray-500 p-3 text-sm text-default-500"
+          />
         </div>
 
         <Submit name="Submit" />

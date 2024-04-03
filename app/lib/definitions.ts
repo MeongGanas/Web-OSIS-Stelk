@@ -4,12 +4,14 @@ export type Anggota = {
   nama: string;
   image: string;
   jabatan: string;
+  ig: string;
 };
 export type AnggotaInti = {
   id: number;
   nama: string;
   image: string;
   jabatan: string;
+  ig: string;
 };
 
 export type Bidang = {

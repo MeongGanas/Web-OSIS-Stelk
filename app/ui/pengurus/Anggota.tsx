@@ -1,11 +1,11 @@
 import { Anggota, AnggotaInti } from "@/app/lib/definitions";
-import CardAnggota from "./components/CardAnggota";
+import { CardAnggotaBidang, CardAnggotaInti } from "./components/CardAnggota";
 
 export function AnggotaBidangList({
-  anggota,
+  anggotas,
   nama,
 }: {
-  anggota: Array<Anggota>;
+  anggotas: Array<Anggota>;
   nama: string;
 }) {
   return (
@@ -15,12 +15,14 @@ export function AnggotaBidangList({
         <h1 className="mb-4 text-4xl font-bold italic text-primary">
           Anggota Tim
         </h1>
-        <p className="text-primary">Terdiri dari {anggota.length} Anggota</p>
+        <p className="text-primary">Terdiri dari {anggotas.length} Anggota</p>
       </div>
       <div className="flex justify-center">
         <div className="grid max-w-screen-lg grid-cols-1 gap-10 md:grid-cols-2">
-          <CardAnggota />
-          <CardAnggota />
+          {anggotas &&
+            anggotas.map((anggota, index) => (
+              <CardAnggotaBidang data={anggota} index={index} />
+            ))}
         </div>
       </div>
     </div>
@@ -28,16 +30,14 @@ export function AnggotaBidangList({
 }
 
 export function AnggotaIntiList({
-  anggota,
-  nama,
+  anggotas,
 }: {
-  anggota: Array<AnggotaInti>;
-  nama: string;
+  anggotas: Array<AnggotaInti>;
 }) {
   return (
     <div className="container min-h-screen py-28">
       <div className="mb-10 w-full text-center">
-        <h3 className="italic text-primary">{nama}</h3>
+        <h3 className="italic text-primary">INTI OSIS</h3>
         <h1 className="mb-4 text-4xl font-bold italic text-primary">
           Anggota Tim
         </h1>
@@ -47,8 +47,8 @@ export function AnggotaIntiList({
       </div>
       <div className="flex justify-center">
         <div className="grid max-w-screen-lg grid-cols-1 gap-10 md:grid-cols-2">
-          <CardAnggota />
-          <CardAnggota />
+          {anggotas &&
+            anggotas.map((anggota) => <CardAnggotaInti data={anggota} />)}
         </div>
       </div>
     </div>

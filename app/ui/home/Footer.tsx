@@ -13,7 +13,7 @@ export default function Footer() {
           </p>
           <p className="mb-3">osisstelkmks@gmail.com</p>
         </div>
-        <div className="mb-10 mt-2 w-full max-w-60">
+        <div className="mb-10 mt-2 w-fit min-w-52">
           <h1 className="mb-3 text-2xl">Follow Us</h1>
           <div className="text-slate-50">
             <ul className="flex gap-5">
@@ -35,7 +35,7 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-        <div className="mt-2 w-full max-w-72">
+        <div className="mt-2 w-fit min-w-52">
           <h1 className="mb-3 text-2xl">Usefull Links</h1>
           <div className="text-slate-50">
             <ul>

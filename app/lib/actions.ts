@@ -210,12 +210,13 @@ export async function AddAnggota(formData: FormData) {
   const idBidang = formData.get("id")?.toString();
   const nama = formData.get("nama")?.toString();
   const jabatan = formData.get("jabatan")?.toString();
+  const instaLink = formData.get("insta")?.toString();
 
   try {
     const imageUrl = await UploadSingleImage(formData);
 
-    await sql`INSERT INTO anggotas (nama, image, jabatan, idbidang)
-    VALUES (${nama}, ${imageUrl}, ${jabatan}, ${idBidang})`;
+    await sql`INSERT INTO anggotas (nama, image, jabatan, idbidang, ig)
+    VALUES (${nama}, ${imageUrl}, ${jabatan}, ${idBidang}, ${instaLink})`;
 
     revalidatePath(`/dashboard/pengurus/bidang/${idBidang}`);
 
@@ -233,14 +234,15 @@ export async function EditAnggota(formData: FormData) {
   const [id, idbidang] = formData.get("id")?.toString()?.split("-") ?? [];
   const nama = formData.get("nama")?.toString();
   const jabatan = formData.get("jabatan")?.toString();
+  const instaLink = formData.get("insta")?.toString();
 
   try {
     if (formData.get("image-anggota")) {
       const imageUrl = await UploadSingleImage(formData);
 
-      await sql`UPDATE anggotas SET nama=${nama}, jabatan=${jabatan}, image=${imageUrl} WHERE id=${id}`;
+      await sql`UPDATE anggotas SET nama=${nama}, jabatan=${jabatan}, image=${imageUrl}, ig=${instaLink} WHERE id=${id}`;
     } else {
-      await sql`UPDATE anggotas SET nama=${nama}, jabatan=${jabatan} WHERE id=${id}`;
+      await sql`UPDATE anggotas SET nama=${nama}, jabatan=${jabatan}, ig=${instaLink} WHERE id=${id}`;
     }
 
     revalidatePath(`/dashboard/pengurus/bidang/${idbidang}`);
@@ -345,12 +347,13 @@ export async function AddAnggotaInti(formData: FormData) {
   console.log(formData);
   const nama = formData.get("nama")?.toString();
   const jabatan = formData.get("jabatan")?.toString();
+  const instaLink = formData.get("insta")?.toString();
 
   try {
     const imageUrl = await UploadSingleImage(formData);
 
-    await sql`INSERT INTO AnggotaIntis (nama, image, jabatan)
-    VALUES (${nama}, ${imageUrl}, ${jabatan})`;
+    await sql`INSERT INTO AnggotaIntis (nama, image, jabatan, ig)
+    VALUES (${nama}, ${imageUrl}, ${jabatan}, ${instaLink})`;
 
     revalidatePath(`/dashboard/pengurus/inti`);
 
@@ -390,14 +393,15 @@ export async function EditAnggotaInti(formData: FormData) {
   const id = formData.get("id")?.toString();
   const nama = formData.get("nama")?.toString();
   const jabatan = formData.get("jabatan")?.toString();
+  const instaLink = formData.get("insta")?.toString();
 
   try {
     if (formData.get("image-anggota")) {
       const imageUrl = await UploadSingleImage(formData);
 
-      await sql`UPDATE anggotaintis SET nama=${nama}, jabatan=${jabatan}, image=${imageUrl} WHERE id=${id}`;
+      await sql`UPDATE anggotaintis SET nama=${nama}, jabatan=${jabatan}, ig=${instaLink}, image=${imageUrl} WHERE id=${id}`;
     } else {
-      await sql`UPDATE anggotaintis SET nama=${nama}, jabatan=${jabatan} WHERE id=${id}`;
+      await sql`UPDATE anggotaintis SET nama=${nama}, jabatan=${jabatan}, ig=${instaLink} WHERE id=${id}`;
     }
 
     revalidatePath(`/dashboard/pengurus/inti`);
