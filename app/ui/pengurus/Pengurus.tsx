@@ -1,6 +1,6 @@
 import { getDetailBidang } from "@/app/lib/data";
 import TugasUmum from "./TugasUmum";
-import { AnggotaBidang } from "./Anggota";
+import { AnggotaBidangList } from "./Anggota";
 import { HomePengurus } from "./HomePengurus";
 
 export default async function PengurusContent({ id }: { id: string }) {

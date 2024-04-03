@@ -1,4 +1,4 @@
-import { AnggotaBidang } from "@/app/ui/pengurus/Anggota";
+import { AnggotaIntiList } from "@/app/ui/pengurus/Anggota";
 import { HomeInti } from "../../ui/pengurus/HomePengurus";
 import TugasUmum from "../../ui/pengurus/TugasUmum";
 import { getAllAnggotaInti, getIntiData } from "@/app/lib/data";
@@ -10,7 +10,7 @@ export default async function Inti() {
     <>
       <HomeInti data={inti} />
       <TugasUmum />
-      {/* <AnggotaInti anggota /> */}
+      {/* <AnggotaIntiList anggota /> */}
     </>
   );
 }

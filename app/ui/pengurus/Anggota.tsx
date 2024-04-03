@@ -1,7 +1,7 @@
 import { Anggota, AnggotaInti } from "@/app/lib/definitions";
 import CardAnggota from "./components/CardAnggota";
 
-export function AnggotaBidang({
+export function AnggotaBidangList({
   anggota,
   nama,
 }: {
@@ -27,7 +27,7 @@ export function AnggotaBidang({
   );
 }
 
-export function AnggotaInti({
+export function AnggotaIntiList({
   anggota,
   nama,
 }: {
