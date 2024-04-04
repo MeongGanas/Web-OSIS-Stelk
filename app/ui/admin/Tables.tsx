@@ -10,7 +10,11 @@ import {
 import { Anggota, AnggotaInti, Events } from "@/app/lib/definitions";
 import Link from "next/link";
 import { Button } from "@nextui-org/react";
-import { DeleteAnggota, DeleteEvent } from "@/app/lib/actions";
+import {
+  DeleteAnggota,
+  DeleteAnggotaInti,
+  DeleteEvent,
+} from "@/app/lib/actions";
 import { Instagram } from "@mui/icons-material";
 
 export function AnggotaTable({ anggotas }: { anggotas: Array<Anggota> }) {
@@ -153,7 +157,10 @@ export function IntiTable({ inti }: { inti: Array<AnggotaInti> }) {
                 >
                   Edit
                 </Button>
-                <Button className="bg-transparent text-red-700 underline">
+                <Button
+                  className="bg-transparent text-red-700 underline"
+                  onClick={() => DeleteAnggotaInti(inti.id)}
+                >
                   Delete
                 </Button>
               </TableCell>

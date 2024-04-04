@@ -215,7 +215,7 @@ export function EditAnggotaForm({ data }: { data: Anggota }) {
           </div>
         </div>
 
-        <div className="mb-2">
+        <div className="my-2">
           <label htmlFor="insta" className="mb-2 block">
             Instagram Anggota
           </label>

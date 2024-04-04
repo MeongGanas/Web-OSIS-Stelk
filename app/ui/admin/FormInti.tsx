@@ -165,7 +165,7 @@ export function EditAnggotaForm({ data }: { data: AnggotaInti }) {
             <InputImage name="image-anggota" setCompress={setImage} />
           </div>
 
-          <div className="mb-2">
+          <div className="my-2">
             <label htmlFor="insta" className="mb-2 block">
               Instagram Anggota
             </label>

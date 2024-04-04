@@ -182,10 +182,15 @@ export async function EditEvent(formData: FormData) {
     revalidatePath("/dashboard/events");
     return { success: true, message: "Event edited successfully." };
   } catch (err) {
-    console.log(err);
+    let errorMessage = "Something went wrong, please try again";
+    if (err instanceof Error) {
+      errorMessage += ` ${err.message}`;
+    } else {
+      errorMessage += ` ${String(err)}`;
+    }
     return {
       success: false,
-      message: `Something went wrong, please try again`,
+      message: errorMessage,
     };
   }
 }
@@ -198,10 +203,15 @@ export async function DeleteEvent(id: number) {
 
     return { success: true, message: "Event deleted successfully." };
   } catch (err) {
-    console.log(err);
+    let errorMessage = "Something went wrong, please try again";
+    if (err instanceof Error) {
+      errorMessage += ` ${err.message}`;
+    } else {
+      errorMessage += ` ${String(err)}`;
+    }
     return {
       success: false,
-      message: `Something went wrong, please try again`,
+      message: errorMessage,
     };
   }
 }
@@ -222,10 +232,15 @@ export async function AddAnggota(formData: FormData) {
 
     return { success: true, message: "Anggota added successfully." };
   } catch (err) {
-    console.log(err);
+    let errorMessage = "Something went wrong, please try again";
+    if (err instanceof Error) {
+      errorMessage += ` ${err.message}`;
+    } else {
+      errorMessage += ` ${String(err)}`;
+    }
     return {
       success: false,
-      message: `Something went wrong, please try again`,
+      message: errorMessage,
     };
   }
 }
@@ -233,10 +248,9 @@ export async function AddAnggota(formData: FormData) {
 export async function EditAnggota(formData: FormData) {
   const [id, idbidang] = formData.get("id")?.toString()?.split("-") ?? [];
   const nama = formData.get("nama")?.toString();
-  const jabatanIndex = formData.get("jabatan")?.toString();
-  let jabatan;
-  if (jabatanIndex) {
-    jabatan = jabatanBidang[parseInt(jabatanIndex)];
+  let jabatan = formData.get("jabatan")?.toString();
+  if (jabatan && /^[0-9]*$/.test(jabatan)) {
+    jabatan = jabatanInti[parseInt(jabatan)];
   }
   const instaLink = formData.get("insta")?.toString();
 
@@ -253,10 +267,15 @@ export async function EditAnggota(formData: FormData) {
 
     return { success: true, message: "Anggota edited successfully." };
   } catch (err) {
-    console.log(err);
+    let errorMessage = "Something went wrong, please try again";
+    if (err instanceof Error) {
+      errorMessage += ` ${err.message}`;
+    } else {
+      errorMessage += ` ${String(err)}`;
+    }
     return {
       success: false,
-      message: `Something went wrong, please try again`,
+      message: errorMessage,
     };
   }
 }
@@ -269,10 +288,15 @@ export async function DeleteAnggota(id: number, idBidang: number) {
 
     return { success: true, message: "Anggota deleted successfully." };
   } catch (err) {
-    console.log(err);
+    let errorMessage = "Something went wrong, please try again";
+    if (err instanceof Error) {
+      errorMessage += ` ${err.message}`;
+    } else {
+      errorMessage += ` ${String(err)}`;
+    }
     return {
       success: false,
-      message: `Something went wrong, please try again`,
+      message: errorMessage,
     };
   }
 }
@@ -291,10 +315,15 @@ export async function AddBidang(formData: FormData) {
 
     return { success: true, message: "Bidang added successfully." };
   } catch (err) {
-    console.log(err);
+    let errorMessage = "Something went wrong, please try again";
+    if (err instanceof Error) {
+      errorMessage += ` ${err.message}`;
+    } else {
+      errorMessage += ` ${String(err)}`;
+    }
     return {
       success: false,
-      message: `Something went wrong, please try again`,
+      message: errorMessage,
     };
   }
 }
@@ -323,10 +352,15 @@ export async function EditBidang(formData: FormData) {
     revalidatePath(`/dashboard/pengurus/bidang/${id}`);
     return { success: true, message: "Bidang edited successfully." };
   } catch (err) {
-    console.log(err);
+    let errorMessage = "Something went wrong, please try again";
+    if (err instanceof Error) {
+      errorMessage += ` ${err.message}`;
+    } else {
+      errorMessage += ` ${String(err)}`;
+    }
     return {
       success: false,
-      message: `Something went wrong, please try again`,
+      message: errorMessage,
     };
   }
 }
@@ -339,10 +373,15 @@ export async function DeleteBidang(id: number) {
 
     return { success: true, message: "Bidang deleted successfully." };
   } catch (err) {
-    console.log(err);
+    let errorMessage = "Something went wrong, please try again";
+    if (err instanceof Error) {
+      errorMessage += ` ${err.message}`;
+    } else {
+      errorMessage += ` ${String(err)}`;
+    }
     return {
       success: false,
-      message: `Something went wrong, please try again`,
+      message: errorMessage,
     };
   }
 }
@@ -362,10 +401,15 @@ export async function AddAnggotaInti(formData: FormData) {
 
     return { success: true, message: "Anggota Inti added successfully." };
   } catch (err) {
-    console.log(err);
+    let errorMessage = "Something went wrong, please try again";
+    if (err instanceof Error) {
+      errorMessage += ` ${err.message}`;
+    } else {
+      errorMessage += ` ${String(err)}`;
+    }
     return {
       success: false,
-      message: `Something went wrong, please try again`,
+      message: errorMessage,
     };
   }
 }
@@ -378,16 +422,21 @@ export async function EditInti(formData: FormData) {
 
       await sql`UPDATE intis SET tugasumum=${tugasumum}, introimage=${intro}`;
     } else {
-      await sql`UPDATE bidangs SET tugasumum=${tugasumum}`;
+      await sql`UPDATE intis SET tugasumum=${tugasumum}`;
     }
 
     revalidatePath(`/dashboard/pengurus/inti`);
     return { success: true, message: "Inti edited successfully." };
   } catch (err) {
-    console.log(err);
+    let errorMessage = "Something went wrong, please try again";
+    if (err instanceof Error) {
+      errorMessage += ` ${err.message}`;
+    } else {
+      errorMessage += ` ${String(err)}`;
+    }
     return {
       success: false,
-      message: `Something went wrong, please try again`,
+      message: errorMessage,
     };
   }
 }
@@ -395,10 +444,9 @@ export async function EditInti(formData: FormData) {
 export async function EditAnggotaInti(formData: FormData) {
   const id = formData.get("id")?.toString();
   const nama = formData.get("nama")?.toString();
-  const jabatanIndex = formData.get("jabatan")?.toString();
-  let jabatan;
-  if (jabatanIndex) {
-    jabatan = jabatanInti[parseInt(jabatanIndex)];
+  let jabatan = formData.get("jabatan")?.toString();
+  if (jabatan && /^[0-9]*$/.test(jabatan)) {
+    jabatan = jabatanInti[parseInt(jabatan)];
   }
   const instaLink = formData.get("insta")?.toString();
 
@@ -415,10 +463,36 @@ export async function EditAnggotaInti(formData: FormData) {
 
     return { success: true, message: "Anggota Inti edited successfully." };
   } catch (err) {
-    console.log(err);
+    let errorMessage = "Something went wrong, please try again";
+    if (err instanceof Error) {
+      errorMessage += ` ${err.message}`;
+    } else {
+      errorMessage += ` ${String(err)}`;
+    }
     return {
       success: false,
-      message: `Something went wrong, please try again`,
+      message: errorMessage,
+    };
+  }
+}
+
+export async function DeleteAnggotaInti(id: number) {
+  try {
+    await sql`DELETE FROM anggotaintis WHERE id=${id}`;
+
+    revalidatePath(`/dashboard/pengurus/inti`);
+
+    return { success: true, message: "Anggota Inti deleted successfully." };
+  } catch (err) {
+    let errorMessage = "Something went wrong, please try again";
+    if (err instanceof Error) {
+      errorMessage += ` ${err.message}`;
+    } else {
+      errorMessage += ` ${String(err)}`;
+    }
+    return {
+      success: false,
+      message: errorMessage,
     };
   }
 }
