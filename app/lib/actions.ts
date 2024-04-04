@@ -79,7 +79,16 @@ export async function EditVisi(
     revalidatePath("/dashboard/home");
     return { success: true, message: "Visi updated successfully." };
   } catch (error) {
-    return { success: false, message: "Something went wrong." };
+    let errorMessage = "Something went wrong, please try again";
+    if (error instanceof Error) {
+      errorMessage += ` ${error.message}`;
+    } else {
+      errorMessage += ` ${String(error)}`;
+    }
+    return {
+      success: false,
+      message: errorMessage,
+    };
   }
 }
 
@@ -108,19 +117,27 @@ export async function EditMisi(
     revalidatePath("/dashboard/home");
     return { success: true, message: "Misi updated successfully." };
   } catch (error) {
-    return { success: false, message: "Something went wrong." };
+    let errorMessage = "Something went wrong, please try again";
+    if (error instanceof Error) {
+      errorMessage += ` ${error.message}`;
+    } else {
+      errorMessage += ` ${String(error)}`;
+    }
+    return {
+      success: false,
+      message: errorMessage,
+    };
   }
 }
 
 export async function EditPesanKetos(formData: FormData) {
-  console.log(formData);
   const pesan = formData.get("pesan")?.toString();
   const nama = formData.get("nama")?.toString();
   const periode = formData.get("periode")?.toString();
 
   try {
-    const imageUrl = await UploadSingleImage(formData);
-    if (imageUrl) {
+    if (formData.get("image-sambutan")) {
+      const imageUrl = await UploadSingleImage(formData);
       await sql`UPDATE pesanketos SET pesan=${pesan}, periode=${periode}, nama=${nama}, image=${imageUrl}`;
     } else {
       await sql`UPDATE pesanketos SET pesan=${pesan}, periode=${periode}, nama=${nama}`;
@@ -128,7 +145,16 @@ export async function EditPesanKetos(formData: FormData) {
     revalidatePath("/dashboard/home");
     return { success: true, message: "Sambutan Ketos updated successfully." };
   } catch (error) {
-    return { success: false, message: "Something went wrong." };
+    let errorMessage = "Something went wrong, please try again";
+    if (error instanceof Error) {
+      errorMessage += ` ${error.message}`;
+    } else {
+      errorMessage += ` ${String(error)}`;
+    }
+    return {
+      success: false,
+      message: errorMessage,
+    };
   }
 }
 
@@ -161,9 +187,17 @@ export async function AddEvent(formData: FormData) {
     revalidatePath("/dashboard/events");
 
     return { success: true, message: "Event added successfully." };
-  } catch (err) {
-    console.log(err);
-    return { success: false, message: "Something went wrong." };
+  } catch (error) {
+    let errorMessage = "Something went wrong, please try again";
+    if (error instanceof Error) {
+      errorMessage += ` ${error.message}`;
+    } else {
+      errorMessage += ` ${String(error)}`;
+    }
+    return {
+      success: false,
+      message: errorMessage,
+    };
   }
 }
 
