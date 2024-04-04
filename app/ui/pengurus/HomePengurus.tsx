@@ -23,7 +23,7 @@ export function HomePengurus({ data }: { data: Bidang }) {
 
         <img
           src="/shapes/Vector 3.png"
-          className="absolute bottom-0 left-0 h-1/3 w-full"
+          className="absolute bottom-0 left-0 h-1/5 w-full md:h-1/3"
           alt="shape"
         />
       </div>
