@@ -23,13 +23,13 @@ export function TugasUmumBidang({
               src={data.image}
               width={200}
               height={60}
-              alt="ketos"
+              alt={data.nama}
               className="max-w-sm"
             />
           </div>
           <div className="w-full px-5 text-white md:w-fit">
             <h2 className="mb-2">{data.jabatan}</h2>
-            <h1 className="text-4xl italic">{data.nama}</h1>
+            <h1 className="max-w-sm text-wrap text-4xl italic">{data.nama}</h1>
             <span className="my-5 block h-1 w-32 rounded-md bg-white"></span>
             <Link href={data.ig}>
               <Instagram />

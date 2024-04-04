@@ -195,7 +195,7 @@ export async function getKoor(id: string) {
 
   try {
     const koor =
-      await sql<Anggota>`SELECT * FROM anggotas WHERE jabatan='Koordinator' and id=${id}`;
+      await sql<Anggota>`SELECT * FROM anggotas WHERE jabatan='Koordinator' and idbidang=${id}`;
     return koor.rows[0];
   } catch (err) {
     console.log(err);
