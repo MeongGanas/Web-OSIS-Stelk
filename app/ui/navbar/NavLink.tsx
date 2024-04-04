@@ -70,49 +70,55 @@ export default function NavLinks({ bidangs }: { bidangs: Array<Bidang> }) {
       <ul
         className={`${
           activeNav
-            ? "absolute left-0 top-full block w-full scale-100 bg-white px-5 pb-5 shadow-md"
+            ? "absolute left-0 top-full block w-full scale-100 bg-white px-5 pb-5 shadow-md md:pb-0"
             : "absolute left-0 top-full w-full scale-0"
         } items-center gap-10 font-semibold transition-all duration-200 md:static md:flex md:h-full md:w-full md:scale-100 md:shadow-none`}
       >
-        <NavLink
-          setActiveNav={setActiveNav}
-          name="home"
-          pathname={pathname}
-          to={isInDashboard ? "/dashboard/home" : "/"}
-        />
-        <DropdownBidang
-          pathname={pathname}
-          setActiveNav={setActiveNav}
-          isInDashboard={isInDashboard}
-          bidangs={bidangs}
-        />
-        <NavLink
-          setActiveNav={setActiveNav}
-          name="events"
-          pathname={pathname}
-          to={isInDashboard ? "/dashboard/events" : "/events"}
-        />
-        <div className={`${isInDashboard ? "block" : "hidden"}`}>
-          <Button
-            as={Link}
-            href="/dashboard/pengurus/bidang/add"
-            type="submit"
-            className="bg-transparent px-5 font-semibold uppercase transition duration-200 hover:text-primary"
+        <li>
+          <NavLink
+            setActiveNav={setActiveNav}
+            name="home"
+            pathname={pathname}
+            to={isInDashboard ? "/dashboard/home" : "/"}
+          />
+        </li>
+        <li>
+          <DropdownBidang
+            pathname={pathname}
+            setActiveNav={setActiveNav}
+            isInDashboard={isInDashboard}
+            bidangs={bidangs}
+          />
+        </li>
+        <li className="mb-5 md:mb-0">
+          <NavLink
+            setActiveNav={setActiveNav}
+            name="events"
+            pathname={pathname}
+            to={isInDashboard ? "/dashboard/events" : "/events"}
+          />
+        </li>
+        <li className={`${isInDashboard ? "mb-5 block md:mb-0" : "hidden"}`}>
+          <NavLink
+            name="Tambah Bidang"
+            to="/dashboard/pengurus/bidang/add"
+            pathname={pathname}
+            setActiveNav={setActiveNav}
+          />
+        </li>
+        <li>
+          <form
+            action={Logout}
+            className={`${isInDashboard ? "block" : "hidden"}`}
           >
-            Tambah Bidang
-          </Button>
-        </div>
-        <form
-          action={Logout}
-          className={`${isInDashboard ? "block" : "hidden"}`}
-        >
-          <Button
-            type="submit"
-            className="bg-transparent px-5 font-semibold uppercase transition duration-200 hover:text-primary"
-          >
-            Logout
-          </Button>
-        </form>
+            <Button
+              type="submit"
+              className="h-fit w-fit bg-transparent px-5 font-semibold uppercase transition duration-200 hover:text-primary"
+            >
+              Logout
+            </Button>
+          </form>
+        </li>
       </ul>
     </div>
   );
