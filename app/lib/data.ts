@@ -119,7 +119,7 @@ export async function getAllAnggota(id: string) {
 
   try {
     const anggotas =
-      await sql<Anggota>`SELECT * FROM anggotas WHERE idbidang=${id}`;
+      await sql<Anggota>`SELECT * FROM anggotas WHERE idbidang=${id} ORDER BY id`;
     return anggotas.rows;
   } catch (err) {
     console.log(err);
@@ -156,7 +156,8 @@ export async function getAllAnggotaInti() {
   noStore();
 
   try {
-    const anggotaintis = await sql<AnggotaInti>`SELECT * FROM AnggotaIntis`;
+    const anggotaintis =
+      await sql<AnggotaInti>`SELECT * FROM AnggotaIntis ORDER BY id`;
     return anggotaintis.rows;
   } catch (err) {
     console.log(err);
@@ -169,7 +170,7 @@ export async function getAllAnggotaIntiOnly() {
 
   try {
     const ketos =
-      await sql<AnggotaInti>`SELECT * FROM AnggotaIntis WHERE jabatan!='Ketua OSIS'`;
+      await sql<AnggotaInti>`SELECT * FROM AnggotaIntis WHERE jabatan!='Ketua OSIS' ORDER BY id`;
     return ketos.rows;
   } catch (err) {
     console.log(err);
