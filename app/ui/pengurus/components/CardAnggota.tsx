@@ -19,7 +19,7 @@ export function CardAnggotaBidang({
           width={250}
           height={250}
           alt={data.nama}
-          className="absolute bottom-0 left-1/2 h-full max-h-[330px] w-[85%] -translate-x-1/2 object-cover"
+          className="absolute bottom-0 left-1/2 h-[330px] -translate-x-1/2 object-cover"
         />
       </div>
       <div className="px-5 py-2">
@@ -45,7 +45,7 @@ export function CardAnggotaInti({ data }: { data: AnggotaInti }) {
           src={data.image}
           width={250}
           height={250}
-          className="absolute bottom-0 left-1/2 w-[85%] -translate-x-1/2"
+          className="absolute bottom-0 left-1/2 h-[330px] -translate-x-1/2 object-cover"
           alt="waketos"
         />
       </div>
