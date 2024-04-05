@@ -112,6 +112,7 @@ export default function NavLinks({ bidangs }: { bidangs: Array<Bidang> }) {
             className={`${isInDashboard ? "block" : "hidden"}`}
           >
             <Button
+              disableAnimation={true}
               type="submit"
               className="h-fit w-fit bg-transparent px-5 font-semibold uppercase transition duration-200 hover:text-primary"
             >

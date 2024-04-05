@@ -19,7 +19,7 @@ export function CardAnggotaBidang({
           width={250}
           height={250}
           alt={data.nama}
-          className="absolute bottom-0 left-1/2 h-full w-[85%] -translate-x-1/2 object-cover"
+          className="absolute bottom-0 left-1/2 h-full max-h-[330px] w-[85%] -translate-x-1/2 object-cover"
         />
       </div>
       <div className="px-5 py-2">
@@ -38,10 +38,16 @@ export function CardAnggotaBidang({
 
 export function CardAnggotaInti({ data }: { data: AnggotaInti }) {
   return (
-    <div className="">
-      <div className="relative px-5">
+    <div>
+      <div className="relative min-h-[300px] min-w-[300px] px-5">
         <div className="absolute bottom-0 left-0 right-0 top-16 -z-[99] w-full rounded-md bg-primary"></div>
-        <Image src={data.image} width={250} height={60} alt="waketos" />
+        <Image
+          src={data.image}
+          width={250}
+          height={250}
+          className="absolute bottom-0 left-1/2 w-[85%] -translate-x-1/2"
+          alt="waketos"
+        />
       </div>
       <div className="px-5 py-2">
         <h1 className="mb-2 mt-1 text-xl italic text-primary">{data.nama}</h1>
