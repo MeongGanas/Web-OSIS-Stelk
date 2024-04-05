@@ -11,8 +11,8 @@ export function CardAnggotaBidang({
   index: number;
 }) {
   return (
-    <div className="">
-      <div className="relative min-h-[300px] min-w-[300px] px-5">
+    <div className="w-[300px]">
+      <div className="relative h-[300px] w-[300px] px-5">
         <div className="absolute bottom-0 left-0 right-0 top-16 -z-[99] w-full rounded-md bg-primary"></div>
         <Image
           src={data.image}
@@ -38,8 +38,8 @@ export function CardAnggotaBidang({
 
 export function CardAnggotaInti({ data }: { data: AnggotaInti }) {
   return (
-    <div>
-      <div className="relative min-h-[300px] min-w-[300px] px-5">
+    <div className="w-[300px]">
+      <div className="relative h-[300px] w-[300px] px-5">
         <div className="absolute bottom-0 left-0 right-0 top-16 -z-[99] w-full rounded-md bg-primary"></div>
         <Image
           src={data.image}
