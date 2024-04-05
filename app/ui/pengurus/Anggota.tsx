@@ -18,7 +18,7 @@ export function AnggotaBidangList({
         <p className="text-primary">Terdiri dari {anggotas.length} Anggota</p>
       </div>
       <div className="flex justify-center">
-        <div className="grid max-w-screen-lg grid-cols-1 gap-10 md:grid-cols-2">
+        <div className="flex max-w-screen-sm flex-wrap justify-center gap-10">
           {anggotas &&
             anggotas.map((anggota, index) => (
               <CardAnggotaBidang
@@ -50,7 +50,7 @@ export function AnggotaIntiList({
         </p>
       </div>
       <div className="flex justify-center">
-        <div className="grid max-w-screen-lg grid-cols-1 gap-10 md:grid-cols-2">
+        <div className="flex max-w-screen-sm flex-wrap justify-center gap-10">
           {anggotas &&
             anggotas.map((anggota) => (
               <CardAnggotaInti key={anggota.id} data={anggota} />
