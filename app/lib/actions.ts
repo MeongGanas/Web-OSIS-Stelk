@@ -165,6 +165,7 @@ export async function EditIntro(formData: FormData) {
       await sql`UPDATE intropage SET image=${imageUrl}`;
       return { success: true, message: "Intro Page updated successfully." };
     }
+    revalidatePath("/dashboard/home");
     return { success: false, message: "Please insert image first." };
   } catch (err) {
     return {
@@ -185,6 +186,7 @@ export async function AddEvent(formData: FormData) {
     VALUES (${nama}, ${tanggal}, ${desc}, ${imageUrl})`;
 
     revalidatePath("/dashboard/events");
+    revalidatePath("/dashboard/home");
 
     return { success: true, message: "Event added successfully." };
   } catch (error) {
@@ -214,6 +216,7 @@ export async function EditEvent(formData: FormData) {
       await sql`UPDATE events SET nama=${nama}, tanggal=${tanggal}, deskripsi=${desc} WHERE id=${id}`;
     }
     revalidatePath("/dashboard/events");
+    revalidatePath("/dashboard/home");
     return { success: true, message: "Event edited successfully." };
   } catch (err) {
     let errorMessage = "Something went wrong, please try again";
@@ -234,6 +237,7 @@ export async function DeleteEvent(id: number) {
     await sql`DELETE FROM events WHERE id=${id}`;
 
     revalidatePath("/dashboard/events");
+    revalidatePath("/dashboard/home");
 
     return { success: true, message: "Event deleted successfully." };
   } catch (err) {
@@ -284,7 +288,7 @@ export async function EditAnggota(formData: FormData) {
   const nama = formData.get("nama")?.toString();
   let jabatan = formData.get("jabatan")?.toString();
   if (jabatan && /^[0-9]*$/.test(jabatan)) {
-    jabatan = jabatanInti[parseInt(jabatan)];
+    jabatan = jabatanBidang[parseInt(jabatan)];
   }
   const instaLink = formData.get("insta")?.toString();
 
@@ -384,6 +388,8 @@ export async function EditBidang(formData: FormData) {
     }
 
     revalidatePath(`/dashboard/pengurus/bidang/${id}`);
+    revalidatePath("/dashboard/home");
+
     return { success: true, message: "Bidang edited successfully." };
   } catch (err) {
     let errorMessage = "Something went wrong, please try again";
