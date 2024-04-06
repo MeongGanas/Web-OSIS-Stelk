@@ -3,5 +3,9 @@ const defaultOptions = {
   maxSizeMB: 5,
 };
 export function compressFile(imageFile: File, options = defaultOptions) {
-  return imageCompression(imageFile, options);
+  if (imageFile.size > 5 * 1024 * 1024) {
+    return imageCompression(imageFile, options);
+  } else {
+    return imageFile;
+  }
 }
