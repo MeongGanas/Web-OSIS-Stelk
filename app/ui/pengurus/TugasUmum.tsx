@@ -21,8 +21,8 @@ export function TugasUmumBidang({
           <div className="mb-5 flex w-full justify-center md:mb-0 md:w-fit">
             <Image
               src={data.image}
-              width={200}
-              height={60}
+              width={250}
+              height={250}
               alt={data.nama}
               className="max-w-sm"
             />
