@@ -1,5 +1,5 @@
 "use client";
-import { FacebookOutlined, Instagram, YouTube } from "@mui/icons-material";
+import { FaInstagram, FaTiktok } from "react-icons/fa";
 import Link from "next/link";
 
 export default function Footer() {
@@ -18,20 +18,20 @@ export default function Footer() {
           <div className="text-slate-50">
             <ul className="flex gap-5">
               <li className="transition duration-200 hover:-translate-y-1">
-                <Link href={""}>
-                  <Instagram />
+                <Link href={"https://www.instagram.com/osisstelkmks/"}>
+                  <FaInstagram size={24} />
                 </Link>
               </li>
               <li className="transition duration-200 hover:-translate-y-1">
-                <Link href={""}>
-                  <FacebookOutlined />
+                <Link href={"https://www.tiktok.com/@osisstelkmks"}>
+                  <FaTiktok size={24} />
                 </Link>
               </li>
-              <li className="transition duration-200 hover:-translate-y-1">
+              {/* <li className="transition duration-200 hover:-translate-y-1">
                 <Link href={""}>
-                  <YouTube />
+                  <FaYoutube size={24} />
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>

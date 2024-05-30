@@ -22,7 +22,7 @@ function NavLink({
   return (
     <Button
       className={clsx(
-        "block h-fit w-fit bg-transparent px-5 text-left font-bold uppercase transition duration-150 hover:text-primary",
+        "block h-full w-full bg-transparent px-5 text-left font-bold uppercase transition duration-150 hover:text-primary md:w-fit",
         { "text-primary": pathname === to },
       )}
       disableAnimation={true}

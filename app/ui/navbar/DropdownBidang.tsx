@@ -26,7 +26,7 @@ export default function DropdownBidang({
       <DropdownTrigger>
         <Button
           className={clsx(
-            "my-5 block h-fit w-fit cursor-pointer bg-transparent px-0 text-left font-bold uppercase hover:text-primary md:my-0 md:mb-0",
+            "my-5 block h-fit w-full cursor-pointer bg-transparent px-0 text-left font-bold uppercase hover:text-primary md:my-0 md:mb-0 md:w-fit",
             { "text-primary": pathname.includes("pengurus") },
           )}
           aria-label="dropdownBidang"

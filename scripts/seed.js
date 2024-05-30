@@ -274,11 +274,19 @@ async function seedAdmin(client) {
   }
 }
 
+async function alter(client) {
+  try {
+    await client.sql`ALTER TABLE bidangs ALTER COLUMN tugasumum TYPE TEXT`;
+  } catch (error) {
+    console.error("Error alter bidang:", error);
+    throw error;
+  }
+}
+
 async function main() {
   const client = await db.connect();
 
-  await createAnggota(client);
-  await createAnggotaInti(client);
+  await alter(client);
 
   await client.end();
 }

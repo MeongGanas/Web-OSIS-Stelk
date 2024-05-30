@@ -13,7 +13,7 @@ export default function JoinUs() {
         </CardRevealBottom>
         <CardRevealBottom>
           <Link
-            href={""}
+            href={"https://www.instagram.com/osisstelkmks/"}
             className="text-lg font-bold text-white underline md:text-2xl"
           >
             Ayo Join Sekarang!
@@ -21,22 +21,5 @@ export default function JoinUs() {
         </CardRevealBottom>
       </div>
     </div>
-
-    // <div className="container py-28 text-center">
-    //   <CardRevealBottom>
-    //     <h1 className="mb-10 text-xl font-bold text-primary md:text-3xl">
-    //       Banyak pengalaman dan koneksi yang bisa kalian dapatkan dengan
-    //       mengikuti kepengurusan OSIS.
-    //     </h1>
-    //   </CardRevealBottom>
-    //   <CardRevealBottom>
-    //     <Link
-    //       href={""}
-    //       className="text-lg font-bold text-primary underline md:text-2xl"
-    //     >
-    //       Ayo Join Sekarang!
-    //     </Link>
-    //   </CardRevealBottom>
-    // </div>
   );
 }

@@ -10,6 +10,7 @@ export function TugasUmumBidang({
   data: Anggota;
   tugas: string;
 }) {
+  console.log(data)
   return (
     <div className="bg-primary">
       <div className="container py-28 md:pt-0">
